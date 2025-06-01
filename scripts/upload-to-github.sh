@@ -327,29 +327,29 @@ commit_code() {
 
 # 获取 GitHub 用户名
 get_github_username() {
-    log "获取 GitHub 用户信息..."
-    
+    echo "获取 GitHub 用户信息..." >&2
+
     # 尝试从 GitHub CLI 获取用户名
     if command -v gh &> /dev/null && gh auth status &> /dev/null; then
         username=$(gh api user --jq .login 2>/dev/null)
         if [[ -n "$username" ]]; then
-            success "从 GitHub CLI 获取用户名: $username"
+            echo "从 GitHub CLI 获取用户名: $username" >&2
             echo "$username"
             return 0
         fi
     fi
-    
+
     # 尝试从 Git 配置获取
     username=$(git config user.name 2>/dev/null)
     if [[ -n "$username" ]]; then
-        info "从 Git 配置获取用户名: $username"
+        echo "从 Git 配置获取用户名: $username" >&2
         echo "$username"
         return 0
     fi
-    
+
     # 手动输入
-    warning "无法自动获取 GitHub 用户名"
-    read -p "请输入您的 GitHub 用户名: " username
+    echo "无法自动获取 GitHub 用户名" >&2
+    read -p "请输入您的 GitHub 用户名: " username >&2
     echo "$username"
 }
 
