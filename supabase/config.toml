@@ -1,0 +1,157 @@
+# SocioMint Supabase 配置文件
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[auth]
+enabled = true
+port = 54324
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["https://localhost:3000"]
+jwt_expiry = 3600
+refresh_token_rotation_enabled = true
+security_update_password_require_reauthentication = true
+security_captcha_enabled = false
+
+[auth.email]
+enable_signup = true
+double_confirm_changes = true
+enable_confirmations = false
+
+[auth.sms]
+enable_signup = false
+
+[auth.external.apple]
+enabled = false
+
+[auth.external.azure]
+enabled = false
+
+[auth.external.bitbucket]
+enabled = false
+
+[auth.external.discord]
+enabled = false
+
+[auth.external.facebook]
+enabled = false
+
+[auth.external.github]
+enabled = false
+
+[auth.external.gitlab]
+enabled = false
+
+[auth.external.google]
+enabled = false
+
+[auth.external.keycloak]
+enabled = false
+
+[auth.external.linkedin]
+enabled = false
+
+[auth.external.notion]
+enabled = false
+
+[auth.external.twitch]
+enabled = false
+
+[auth.external.twitter]
+enabled = false
+
+[auth.external.slack]
+enabled = false
+
+[auth.external.spotify]
+enabled = false
+
+[auth.external.workos]
+enabled = false
+
+[auth.external.zoom]
+enabled = false
+
+[db]
+port = 54322
+shadow_port = 54320
+major_version = 15
+
+[realtime]
+enabled = true
+port = 54323
+
+[studio]
+enabled = true
+port = 54323
+
+[inbucket]
+enabled = true
+port = 54324
+
+[storage]
+enabled = true
+port = 54325
+file_size_limit = "50MiB"
+
+[analytics]
+enabled = false
+
+[functions]
+enabled = true
+port = 54321
+
+[edge-runtime]
+enabled = true
+port = 54326
+
+# 项目特定配置
+project_id = "kiyyhitozmezuppziomx"
+
+# 本地开发配置
+[local_config]
+# 数据库种子数据
+seed_enabled = true
+seed_file = "supabase/seed.sql"
+
+# 自定义函数
+custom_functions_enabled = true
+
+# 实时订阅
+realtime_enabled = true
+realtime_max_connections = 100
+
+# 存储配置
+storage_backend = "file"
+storage_file_size_limit = 52428800  # 50MB
+
+# 认证配置
+auth_providers = ["email"]
+auth_password_min_length = 8
+auth_password_require_uppercase = true
+auth_password_require_lowercase = true
+auth_password_require_numbers = true
+auth_password_require_symbols = false
+
+# 安全配置
+security_cors_origins = ["http://localhost:3000", "https://localhost:3000"]
+security_rate_limit_enabled = true
+security_rate_limit_requests_per_minute = 60
+
+# 日志配置
+log_level = "info"
+log_sql = false
+
+# 性能配置
+db_max_connections = 100
+db_pool_size = 10
+db_timeout = 30000
+
+# 备份配置
+backup_enabled = false
+backup_schedule = "0 2 * * *"
+backup_retention_days = 7

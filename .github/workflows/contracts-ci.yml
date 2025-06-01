@@ -1,0 +1,98 @@
+name: Smart Contracts CI
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'contracts/**'
+      - 'test/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'contracts/**'
+      - 'test/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: './test/package-lock.json'
+    
+    - name: Install test dependencies
+      run: cd test && npm ci
+    
+    - name: Run hardhat tests
+      run: cd test && npx hardhat test
+    
+    - name: Generate coverage report
+      run: cd test && npx hardhat coverage
+    
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage-report
+        path: test/coverage
+  
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: './contracts/package-lock.json'
+    
+    - name: Install contract dependencies
+      run: cd contracts && npm ci
+    
+    - name: Run solhint
+      run: cd contracts && npx solhint 'contracts/**/*.sol'
+  
+  audit:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: './contracts/package-lock.json'
+    
+    - name: Install contract dependencies
+      run: cd contracts && npm ci
+    
+    - name: Run npm audit
+      run: cd contracts && npm audit --production
+    
+    # 当slither环境配置好后可以取消注释
+    # - name: Setup Python
+    #   uses: actions/setup-python@v4
+    #   with:
+    #     python-version: '3.10'
+    #
+    # - name: Install Slither
+    #   run: pip install slither-analyzer
+    #
+    # - name: Run Slither
+    #   run: cd contracts && slither . --json slither-report.json
+    #
+    # - name: Upload Slither report
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: slither-report
+    #     path: contracts/slither-report.json 

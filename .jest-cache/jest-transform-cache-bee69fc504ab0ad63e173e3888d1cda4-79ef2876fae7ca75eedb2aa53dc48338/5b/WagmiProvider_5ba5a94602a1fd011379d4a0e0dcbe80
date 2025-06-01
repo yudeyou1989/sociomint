@@ -1,0 +1,335 @@
+0cfafc457bc50cd2930146cf8e995178
+'use client';
+"use strict";
+
+/* istanbul ignore next */
+function cov_21mko2skui() {
+  var path = "/Users/yudeyou/Desktop/sm/sociomint/src/WagmiProvider.tsx";
+  var hash = "8d618760a47fb0e50010a5dfcbdadb339407a2b8";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/yudeyou/Desktop/sm/sociomint/src/WagmiProvider.tsx",
+    statementMap: {
+      "0": {
+        start: {
+          line: 3,
+          column: 0
+        },
+        end: {
+          line: 5,
+          column: 3
+        }
+      },
+      "1": {
+        start: {
+          line: 6,
+          column: 0
+        },
+        end: {
+          line: 11,
+          column: 3
+        }
+      },
+      "2": {
+        start: {
+          line: 9,
+          column: 8
+        },
+        end: {
+          line: 9,
+          column: 29
+        }
+      },
+      "3": {
+        start: {
+          line: 12,
+          column: 20
+        },
+        end: {
+          line: 12,
+          column: 48
+        }
+      },
+      "4": {
+        start: {
+          line: 13,
+          column: 15
+        },
+        end: {
+          line: 13,
+          column: 31
+        }
+      },
+      "5": {
+        start: {
+          line: 14,
+          column: 15
+        },
+        end: {
+          line: 14,
+          column: 31
+        }
+      },
+      "6": {
+        start: {
+          line: 15,
+          column: 16
+        },
+        end: {
+          line: 15,
+          column: 41
+        }
+      },
+      "7": {
+        start: {
+          line: 17,
+          column: 34
+        },
+        end: {
+          line: 17,
+          column: 61
+        }
+      },
+      "8": {
+        start: {
+          line: 20,
+          column: 4
+        },
+        end: {
+          line: 20,
+          column: 52
+        }
+      },
+      "9": {
+        start: {
+          line: 20,
+          column: 30
+        },
+        end: {
+          line: 20,
+          column: 46
+        }
+      },
+      "10": {
+        start: {
+          line: 21,
+          column: 4
+        },
+        end: {
+          line: 24,
+          column: 7
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "(anonymous_0)",
+        decl: {
+          start: {
+            line: 8,
+            column: 9
+          },
+          end: {
+            line: 8,
+            column: 10
+          }
+        },
+        loc: {
+          start: {
+            line: 8,
+            column: 20
+          },
+          end: {
+            line: 10,
+            column: 5
+          }
+        },
+        line: 8
+      },
+      "1": {
+        name: "WagmiProvider",
+        decl: {
+          start: {
+            line: 16,
+            column: 9
+          },
+          end: {
+            line: 16,
+            column: 22
+          }
+        },
+        loc: {
+          start: {
+            line: 16,
+            column: 37
+          },
+          end: {
+            line: 25,
+            column: 1
+          }
+        },
+        line: 16
+      },
+      "2": {
+        name: "(anonymous_2)",
+        decl: {
+          start: {
+            line: 20,
+            column: 26
+          },
+          end: {
+            line: 20,
+            column: 27
+          }
+        },
+        loc: {
+          start: {
+            line: 20,
+            column: 30
+          },
+          end: {
+            line: 20,
+            column: 46
+          }
+        },
+        line: 20
+      }
+    },
+    branchMap: {
+      "0": {
+        loc: {
+          start: {
+            line: 23,
+            column: 18
+          },
+          end: {
+            line: 23,
+            column: 37
+          }
+        },
+        type: "binary-expr",
+        locations: [{
+          start: {
+            line: 23,
+            column: 18
+          },
+          end: {
+            line: 23,
+            column: 25
+          }
+        }, {
+          start: {
+            line: 23,
+            column: 29
+          },
+          end: {
+            line: 23,
+            column: 37
+          }
+        }],
+        line: 23
+      }
+    },
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0,
+      "2": 0
+    },
+    b: {
+      "0": [0, 0]
+    },
+    inputSourceMap: {
+      version: 3,
+      sources: ["/Users/yudeyou/Desktop/sm/sociomint/src/WagmiProvider.tsx"],
+      sourcesContent: ["'use client';\n\nimport { ReactNode, useEffect, useState } from 'react';\nimport { WagmiConfig } from 'wagmi';\nimport { config } from '@/config/wagmi';\n\ninterface WagmiProviderProps {\n  children: ReactNode;\n}\n\nexport function WagmiProvider({ children }: WagmiProviderProps) {\n  const [mounted, setMounted] = useState(false);\n  \n  // \u786E\u4FDD\u6302\u8F7D\u540E\u624D\u6E32\u67D3\u5B50\u7EC4\u4EF6\n  // \u8FD9\u6837\u53EF\u4EE5\u907F\u514D\u5BA2\u6237\u7AEF\u4E0E\u670D\u52A1\u5668\u7AEF\u6E32\u67D3\u4E0D\u5339\u914D\u7684\u95EE\u9898\n  useEffect(() => setMounted(true), []);\n\n  return <WagmiConfig config={config}>{mounted && children}</WagmiConfig>;\n}\n"],
+      names: ["WagmiProvider", "children", "mounted", "setMounted", "useState", "useEffect", "WagmiConfig", "config"],
+      mappings: "AAAA;;;;;+BAUgBA;;;eAAAA;;;;uBAR+B;uBACnB;wBACL;AAMhB,SAASA,cAAc,EAAEC,QAAQ,EAAsB;IAC5D,MAAM,CAACC,SAASC,WAAW,GAAGC,IAAAA,eAAQ,EAAC;IAEvC,cAAc;IACd,yBAAyB;IACzBC,IAAAA,gBAAS,EAAC,IAAMF,WAAW,OAAO,EAAE;IAEpC,qBAAO,qBAACG,kBAAW;QAACC,QAAQA,cAAM;kBAAGL,WAAWD;;AAClD"
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "8d618760a47fb0e50010a5dfcbdadb339407a2b8"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_21mko2skui = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_21mko2skui();
+cov_21mko2skui().s[0]++;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/* istanbul ignore next */
+cov_21mko2skui().s[1]++;
+Object.defineProperty(exports, "WagmiProvider", {
+  enumerable: true,
+  get: function () {
+    /* istanbul ignore next */
+    cov_21mko2skui().f[0]++;
+    cov_21mko2skui().s[2]++;
+    return WagmiProvider;
+  }
+});
+const _jsxruntime =
+/* istanbul ignore next */
+(cov_21mko2skui().s[3]++, require("react/jsx-runtime"));
+const _react =
+/* istanbul ignore next */
+(cov_21mko2skui().s[4]++, require("react"));
+const _wagmi =
+/* istanbul ignore next */
+(cov_21mko2skui().s[5]++, require("wagmi"));
+const _wagmi1 =
+/* istanbul ignore next */
+(cov_21mko2skui().s[6]++, require("./config/wagmi"));
+function WagmiProvider({
+  children
+}) {
+  /* istanbul ignore next */
+  cov_21mko2skui().f[1]++;
+  const [mounted, setMounted] =
+  /* istanbul ignore next */
+  (cov_21mko2skui().s[7]++, (0, _react.useState)(false));
+  // 确保挂载后才渲染子组件
+  // 这样可以避免客户端与服务器端渲染不匹配的问题
+  /* istanbul ignore next */
+  cov_21mko2skui().s[8]++;
+  (0, _react.useEffect)(() => {
+    /* istanbul ignore next */
+    cov_21mko2skui().f[2]++;
+    cov_21mko2skui().s[9]++;
+    return setMounted(true);
+  }, []);
+  /* istanbul ignore next */
+  cov_21mko2skui().s[10]++;
+  return /*#__PURE__*/(0, _jsxruntime.jsx)(_wagmi.WagmiConfig, {
+    config: _wagmi1.config,
+    children:
+    /* istanbul ignore next */
+    (cov_21mko2skui().b[0][0]++, mounted) &&
+    /* istanbul ignore next */
+    (cov_21mko2skui().b[0][1]++, children)
+  });
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfMjFta28yc2t1aSIsImFjdHVhbENvdmVyYWdlIiwicyIsIldhZ21pUHJvdmlkZXIiLCJjaGlsZHJlbiIsImYiLCJtb3VudGVkIiwic2V0TW91bnRlZCIsIl9yZWFjdCIsInVzZVN0YXRlIiwidXNlRWZmZWN0IiwiX2pzeHJ1bnRpbWUiLCJqc3giLCJfd2FnbWkiLCJXYWdtaUNvbmZpZyIsImNvbmZpZyIsIl93YWdtaTEiLCJiIl0sInNvdXJjZXMiOlsiL1VzZXJzL3l1ZGV5b3UvRGVza3RvcC9zbS9zb2Npb21pbnQvc3JjL1dhZ21pUHJvdmlkZXIudHN4Il0sInNvdXJjZXNDb250ZW50IjpbIid1c2UgY2xpZW50JztcblxuaW1wb3J0IHsgUmVhY3ROb2RlLCB1c2VFZmZlY3QsIHVzZVN0YXRlIH0gZnJvbSAncmVhY3QnO1xuaW1wb3J0IHsgV2FnbWlDb25maWcgfSBmcm9tICd3YWdtaSc7XG5pbXBvcnQgeyBjb25maWcgfSBmcm9tICdAL2NvbmZpZy93YWdtaSc7XG5cbmludGVyZmFjZSBXYWdtaVByb3ZpZGVyUHJvcHMge1xuICBjaGlsZHJlbjogUmVhY3ROb2RlO1xufVxuXG5leHBvcnQgZnVuY3Rpb24gV2FnbWlQcm92aWRlcih7IGNoaWxkcmVuIH06IFdhZ21pUHJvdmlkZXJQcm9wcykge1xuICBjb25zdCBbbW91bnRlZCwgc2V0TW91bnRlZF0gPSB1c2VTdGF0ZShmYWxzZSk7XG4gIFxuICAvLyDnoa7kv53mjILovb3lkI7miY3muLLmn5PlrZDnu4Tku7ZcbiAgLy8g6L+Z5qC35Y+v5Lul6YG/5YWN5a6i5oi356uv5LiO5pyN5Yqh5Zmo56uv5riy5p+T5LiN5Yy56YWN55qE6Zeu6aKYXG4gIHVzZUVmZmVjdCgoKSA9PiBzZXRNb3VudGVkKHRydWUpLCBbXSk7XG5cbiAgcmV0dXJuIDxXYWdtaUNvbmZpZyBjb25maWc9e2NvbmZpZ30+e21vdW50ZWQgJiYgY2hpbGRyZW59PC9XYWdtaUNvbmZpZz47XG59XG4iXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztJQVVnQjtJQUFBQSxjQUFBLFlBQUFBLENBQUE7TUFBQSxPQUFBQyxjQUFBO0lBQUE7RUFBQTtFQUFBLE9BQUFBLGNBQUE7QUFBQTtBQUFBRCxjQUFBO0FBQUFBLGNBQUEsR0FBQUUsQ0FBQTs7Ozs7OytCQUFBOzs7Ozs7V0FBQUMsYUFBQTs7Ozs7Ozs7a0NBUitCOzs7a0NBQ25COzs7a0NBQ0w7QUFNaEIsU0FBU0EsY0FBYztFQUFFQztBQUFRLENBQXNCO0VBQUE7RUFBQUosY0FBQSxHQUFBSyxDQUFBO0VBQzVELE1BQU0sQ0FBQ0MsT0FBQSxFQUFTQyxVQUFBLENBQVc7RUFBQTtFQUFBLENBQUFQLGNBQUEsR0FBQUUsQ0FBQSxPQUFHLElBQUFNLE1BQUEsQ0FBQUMsUUFBUSxFQUFDO0VBRXZDO0VBQ0E7RUFBQTtFQUFBVCxjQUFBLEdBQUFFLENBQUE7RUFDQSxJQUFBTSxNQUFBLENBQUFFLFNBQVMsRUFBQyxNQUFNO0lBQUE7SUFBQVYsY0FBQSxHQUFBSyxDQUFBO0lBQUFMLGNBQUEsR0FBQUUsQ0FBQTtJQUFBLE9BQUFLLFVBQUEsQ0FBVztFQUFBLEdBQU8sRUFBRTtFQUFBO0VBQUFQLGNBQUEsR0FBQUUsQ0FBQTtFQUVwQyxvQkFBTyxJQUFBUyxXQUFBLENBQUFDLEdBQUEsRUFBQ0MsTUFBQSxDQUFBQyxXQUFXO0lBQUNDLE1BQUEsRUFBUUMsT0FBQSxDQUFBRCxNQUFNOztJQUFHO0lBQUEsQ0FBQWYsY0FBQSxHQUFBaUIsQ0FBQSxVQUFBWCxPQUFBO0lBQUE7SUFBQSxDQUFBTixjQUFBLEdBQUFpQixDQUFBLFVBQVdiLFFBQUE7O0FBQ2xEIiwiaWdub3JlTGlzdCI6W119

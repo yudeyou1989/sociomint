@@ -1,0 +1,275 @@
+@import "tailwindcss";
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 13, 17, 23;
+  --background-end-rgb: 8, 12, 18;
+  --primary-glow: 32, 202, 255;
+  --secondary-glow: 139, 61, 255;
+  --accent-color: 0, 229, 255;
+  --w3m-accent-color: #0de5ff !important;
+  --w3m-background-color: #000000 !important;
+  --w3m-text-color: #ffffff !important;
+  --w3m-border-radius-master: 12px !important;
+  --w3m-z-index: 10000000 !important;
+  --w3m-font-family: "Inter", system-ui, sans-serif !important;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      rgb(var(--background-start-rgb)),
+      rgb(var(--background-end-rgb))
+    )
+    fixed;
+  font-family: "Inter", sans-serif;
+}
+
+@layer components {
+  .neon-button {
+    @apply bg-[#0de5ff] hover:bg-[#0bc6e0] text-white font-medium py-2 px-4 rounded-md transition-all duration-300 ease-in-out shadow-[0_0_15px_rgba(0,229,255,0.5)] hover:shadow-[0_0_20px_rgba(0,229,255,0.7)];
+  }
+
+  .tech-card {
+    @apply bg-gradient-to-b from-gray-800 to-gray-900 p-6 rounded-xl border border-gray-700 hover:border-[#0de5ff]/50 transition-all duration-300 shadow-lg hover:shadow-[#0de5ff]/20;
+  }
+
+  .input-field {
+    @apply bg-gray-800 border border-gray-700 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-[#0de5ff]/50 transition-all duration-300;
+  }
+}
+
+/* 新增动画和视觉效果样式 */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+}
+
+.animate-rotate {
+  animation: rotate 20s linear infinite;
+}
+
+/* 技术卡片样式 */
+.tech-card {
+  @apply relative p-6 rounded-xl border bg-black/20 backdrop-blur-sm 
+  transition-all duration-300 hover:shadow-lg hover:shadow-[#0de5ff]/10 
+  hover:backdrop-blur-md hover:-translate-y-1;
+}
+
+/* 霓虹按钮样式 */
+.neon-button {
+  @apply relative overflow-hidden rounded-md bg-[#0de5ff] text-white font-medium
+  transition-all duration-300 hover:shadow-lg hover:shadow-[#0de5ff]/50
+  shadow-sm shadow-[#0de5ff]/20;
+}
+
+.neon-button::before {
+  content: "";
+  @apply absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[#0de5ff] via-[#8b3dff] to-[#0de5ff]
+  opacity-0 transition-opacity duration-300;
+}
+
+.neon-button:hover::before {
+  @apply opacity-100;
+  animation: gradient 5s ease infinite;
+}
+
+.neon-button > * {
+  @apply relative z-10;
+}
+
+/* 玻璃态卡片 */
+.glass-card {
+  @apply rounded-xl border border-white/10 bg-white/5 backdrop-blur-lg
+  transition-all duration-300 hover:border-white/20 hover:bg-white/10;
+}
+
+/* 装饰性元素样式 */
+.blur-circle {
+  @apply absolute rounded-full blur-3xl opacity-20 
+  animate-pulse pointer-events-none;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.3);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.5);
+}
+
+/* WalletConnect 模态框样式优化 */
+#wcm-modal,
+.wcm-overlay,
+.wcm-container {
+  z-index: 10000000 !important;
+  position: fixed !important;
+}
+
+#wcm-modal {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+.wcm-overlay {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  position: fixed !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 10000000 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+.wcm-container {
+  z-index: 10000001 !important;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  max-width: calc(100vw - 40px) !important;
+  max-height: calc(100vh - 40px) !important;
+  overflow: auto !important;
+}
+
+/* 移动设备优化 */
+@media (max-width: 768px) {
+  .wcm-container {
+    width: 90vw !important;
+    max-height: 80vh !important;
+  }
+}
+
+body.walletconnect-qrcode-modal-open {
+  overflow: hidden !important;
+}
+
+/* 暗黑模式优化 */
+.wcm-wallet-image {
+  border-radius: 12px !important;
+}
+
+.wcm-modal {
+  --wcm-color-overlay: rgba(0, 0, 0, 0.8) !important;
+}
+
+.wcm-desktop-wallet-selection__container {
+  background-color: rgba(20, 20, 20, 0.9) !important;
+}
+
+/* Web3Modal 样式优化 */
+[data-w3m-container] {
+  position: fixed !important;
+  z-index: 10000000 !important;
+}
+
+[data-w3m-overlay] {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 10000000 !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  backdrop-filter: blur(5px) !important;
+}
+
+[data-w3m-modal] {
+  z-index: 10000001 !important;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  max-width: calc(100vw - 40px) !important;
+  max-height: calc(100vh - 40px) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 0 20px rgba(13, 229, 255, 0.2) !important;
+}
+
+/* 移动设备优化 */
+@media (max-width: 768px) {
+  [data-w3m-modal] {
+    width: 90vw !important;
+    max-height: 80vh !important;
+  }
+}
+
+/* 禁用页面滚动当钱包模态框打开时 */
+body.w3m-modal-open {
+  overflow: hidden !important;
+}
