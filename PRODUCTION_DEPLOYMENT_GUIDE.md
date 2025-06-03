@@ -132,7 +132,7 @@ NEXT_PUBLIC_SM_EXCHANGE_ADDRESS=0xF0c4729f07d7B2F03E2E2F2feED36386Dc8bFb8E
 **BSCScan API 密钥**
 - 🔗 获取地址: https://bscscan.com/apis
 - 📝 用途: 合约验证和交易查询
-- 🔧 配置: `BSCSCAN_API_KEY=您的密钥`
+- 🔧 配置: E6E9MC7X4VVGVQYJ2S1Q8ZVZMV2TJ377I8
 
 **私钥配置**
 - 🔐 测试网私钥: 用于测试网部署和升级
@@ -145,16 +145,22 @@ NEXT_PUBLIC_SM_EXCHANGE_ADDRESS=0xF0c4729f07d7B2F03E2E2F2feED36386Dc8bFb8E
 - 🔗 获取地址: https://developer.twitter.com/
 - 📝 需要: Client ID 和 Client Secret
 - 🔧 配置: OAuth 2.0 应用程序
+Access Token：1517814177359753216-avZNfz2TQULAOoRnlh4SYIX9bWuhvi
+Access Token Secret：cOIsVBdLgaHjJ63XsNhltGDkpvIFfKl9ZXJvlsX7PXCKo
 
 **Discord API**
 - 🔗 获取地址: https://discord.com/developers/applications
 - 📝 需要: Client ID 和 Client Secret
 - 🔧 配置: OAuth2 应用程序
+Application ID:1377572072602996797
+Public Key:503e65872d278469c269776fb904c10885beb1dd180aca5338ca7a5664b2c9e0
 
 **Telegram Bot**
 - 🔗 获取地址: 与 @BotFather 对话
 - 📝 需要: Bot Token
 - 🔧 配置: 创建新的 Bot
+ API:7560632858:AAF_gn5n9I-5NeSI1xnqYGcatVkbXR6Vx6s
+
 
 #### 3.2.3 钱包连接
 
@@ -162,6 +168,7 @@ NEXT_PUBLIC_SM_EXCHANGE_ADDRESS=0xF0c4729f07d7B2F03E2E2F2feED36386Dc8bFb8E
 - 🔗 获取地址: https://cloud.walletconnect.com/
 - 📝 需要: Project ID
 - 🔧 配置: 创建新项目
+Project ID：fced525820007c9c024132cf432ffcae
 
 #### 3.2.4 监控和分析（可选）
 
@@ -169,11 +176,13 @@ NEXT_PUBLIC_SM_EXCHANGE_ADDRESS=0xF0c4729f07d7B2F03E2E2F2feED36386Dc8bFb8E
 - 🔗 获取地址: https://sentry.io/
 - 📝 需要: DSN
 - 🔧 配置: 创建新项目
+https://2aaad66dfe93bd62b56671d84bf544bd@o4509406316658688.ingest.de.sentry.io/4509406467391568
 
 **Google Analytics**
 - 🔗 获取地址: https://analytics.google.com/
 - 📝 需要: Measurement ID (G-XXXXXXXXXX)
 - 🔧 配置: 创建 GA4 属性
+Measurement ID：G-S1WC84RZQR
 
 ### 3.3 部署前检查清单
 
