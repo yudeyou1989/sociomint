@@ -16,7 +16,7 @@ import {
   EmojiEvents as RewardIcon,
   People as ReferralIcon
 } from '@mui/icons-material';
-import Layout from '../components/Layout';
+import PageLayout from '../components/layout/PageLayout';
 import SocialTaskList from '../components/social/SocialTaskList';
 import WeeklyRewardStatus from '../components/social/WeeklyRewardStatus';
 import ReferralSystem from '../components/social/ReferralSystem';
@@ -39,7 +39,7 @@ const SocialTasksPage = () => {
   // 渲染未登录状态
   if (!user) {
     return (
-      <Layout title="社交任务 | SocioMint">
+      <PageLayout title="社交任务 | SocioMint">
         <Container maxWidth="lg" sx={{ py: 4 }}>
           <Paper sx={{ p: 4, textAlign: 'center' }}>
             <Typography variant="h5" component="h1" gutterBottom>
@@ -60,14 +60,14 @@ const SocialTasksPage = () => {
             </Button>
           </Paper>
         </Container>
-      </Layout>
+      </PageLayout>
     );
   }
 
   // 渲染未连接钱包状态
   if (!isConnected) {
     return (
-      <Layout title="社交任务 | SocioMint">
+      <PageLayout title="社交任务 | SocioMint">
         <Container maxWidth="lg" sx={{ py: 4 }}>
           <Paper sx={{ p: 4, textAlign: 'center' }}>
             <Typography variant="h5" component="h1" gutterBottom>
@@ -79,21 +79,21 @@ const SocialTasksPage = () => {
             <Alert severity="warning" sx={{ mb: 3 }}>
               请先连接钱包以访问社交任务系统。
             </Alert>
-            <Button 
-              variant="contained" 
-              color="primary" 
+            <Button
+              variant="contained"
+              color="primary"
               onClick={() => document.getElementById('connect-wallet-button').click()}
             >
               连接钱包
             </Button>
           </Paper>
         </Container>
-      </Layout>
+      </PageLayout>
     );
   }
 
   return (
-    <Layout title="社交任务 | SocioMint">
+    <PageLayout title="社交任务 | SocioMint">
       <Container maxWidth="lg" sx={{ py: 4 }}>
         <Typography variant="h4" component="h1" gutterBottom>
           社交任务系统
@@ -176,7 +176,7 @@ const SocialTasksPage = () => {
           </Box>
         )}
       </Container>
-    </Layout>
+    </PageLayout>
   );
 };
 
