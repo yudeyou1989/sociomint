@@ -15,6 +15,7 @@ on:
     branches: [ main, develop ]
   pull_request:
     branches: [ main, develop ]
+  workflow_dispatch:
 
 jobs:
   lint-and-test:
@@ -32,16 +33,24 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: npm ci
-      
+        run: |
+          cd sociomint
+          npm ci
+
       - name: Run linters
-        run: npm run lint
-      
+        run: |
+          cd sociomint
+          npm run lint
+
       - name: Check filename conventions
-        run: npm run lint:filenames
-      
+        run: |
+          cd sociomint
+          npm run lint:filenames
+
       - name: Run tests
-        run: npm test
+        run: |
+          cd sociomint
+          npm test
   
   build:
     name: Build Application
@@ -59,131 +68,70 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: npm ci
-      
+        run: |
+          cd sociomint
+          npm ci
+
       - name: Build
-        run: npm run build
-      
+        run: |
+          cd sociomint
+          npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_SM_TOKEN_ADDRESS: ${{ secrets.NEXT_PUBLIC_SM_TOKEN_ADDRESS }}
+          NEXT_PUBLIC_SM_EXCHANGE_ADDRESS: ${{ secrets.NEXT_PUBLIC_SM_EXCHANGE_ADDRESS }}
+          NEXT_PUBLIC_MULTISIG_WALLET_ADDRESS: ${{ secrets.NEXT_PUBLIC_MULTISIG_WALLET_ADDRESS }}
+          NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID }}
+          NEXT_PUBLIC_DISCORD_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_DISCORD_CLIENT_ID }}
+          DISCORD_CLIENT_SECRET: ${{ secrets.DISCORD_CLIENT_SECRET }}
+          TWITTER_CLIENT_ID: ${{ secrets.TWITTER_CLIENT_ID }}
+          TWITTER_CLIENT_SECRET: ${{ secrets.TWITTER_CLIENT_SECRET }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID }}
+          DOMAIN_NAME: ${{ secrets.DOMAIN_NAME }}
+          BSC_TESTNET_PRIVATE_KEY: ${{ secrets.BSC_TESTNET_PRIVATE_KEY }}
+          BSCSCAN_API_KEY: ${{ secrets.BSCSCAN_API_KEY }}
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
           name: build-output
-          path: .next
+          path: sociomint/.next
           retention-days: 7
-  
-  deploy-dev:
-    name: Deploy to Development
-    if: github.ref == 'refs/heads/develop'
-    needs: build
-    runs-on: ubuntu-latest
-    environment: development
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Download build artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: build-output
-          path: .next
-      
-      - name: Deploy to Vercel (Development)
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: '--prod'
-          scope: ${{ secrets.VERCEL_ORG_ID }}
-      
-      - name: Apply Supabase migrations
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL_DEV }}
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY_DEV }}
-        run: node scripts/apply-migrations.js
-  
+
   deploy-prod:
     name: Deploy to Production
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
     needs: build
     runs-on: ubuntu-latest
-    environment: production
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-      
+
       - name: Install dependencies
-        run: npm ci
-      
+        run: |
+          cd sociomint
+          npm ci
+
       - name: Download build artifacts
         uses: actions/download-artifact@v3
         with:
           name: build-output
-          path: .next
-      
+          path: sociomint/.next
+
       - name: Deploy to Vercel (Production)
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./sociomint
           vercel-args: '--prod'
-          scope: ${{ secrets.VERCEL_ORG_ID }}
-      
-      - name: Apply Supabase migrations
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL_PROD }}
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY_PROD }}
-        run: node scripts/apply-migrations.js
-      
-      - name: Verify database status
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL_PROD }}
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY_PROD }}
-        run: node scripts/verify-supabase-schema.js
-  
-  backup-database:
-    name: Backup Production Database
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    environment: production
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Backup database
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL_PROD }}
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY_PROD }}
-        run: node scripts/backup-database.js
-      
-      - name: Archive database backup
-        uses: actions/upload-artifact@v3
-        with:
-          name: db-backup-${{ github.sha }}
-          path: backups/
-          retention-days: 30 
