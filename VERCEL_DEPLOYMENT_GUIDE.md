@@ -146,7 +146,8 @@ DOMAIN_NAME=sociomint.top
 ## 📋 项目配置信息
 
 ### Vercel 项目详情
-- **Project ID**: `prj_RqumjDOALyEZZx6aDFjmungZMl1C`
+- **Project ID**: `prj_RgOnCGke5VATTb8DrVt55XQ3YhNK` ✅ 已更正
+- **Project Name**: `socio-mint999`
 - **Team ID**: `team_KiW6xdXGylcFvjyC1wxH6WcF`
 - **域名**: `sociomint.top`
 - **DNS A 记录**: `76.76.19.61` ✅
@@ -154,7 +155,7 @@ DOMAIN_NAME=sociomint.top
 ### GitHub Secrets 状态
 - `VERCEL_TOKEN`: ✅ 已配置
 - `VERCEL_ORG_ID`: ✅ 已配置 (team_KiW6xdXGylcFvjyC1wxH6WcF)
-- `VERCEL_PROJECT_ID`: ✅ 已配置 (prj_RqumjDOALyEZZx6aDFjmungZMl1C)
+- `VERCEL_PROJECT_ID`: ✅ 已更正 (prj_RgOnCGke5VATTb8DrVt55XQ3YhNK)
 
 ### DNS 验证状态
 - **GoDaddy DNS**: ✅ 已更新为 76.76.19.61
