@@ -33,24 +33,16 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: |
-          cd sociomint
-          npm ci
+        run: npm ci
 
       - name: Run linters
-        run: |
-          cd sociomint
-          npm run lint
+        run: npm run lint
 
       - name: Check filename conventions
-        run: |
-          cd sociomint
-          npm run lint:filenames
+        run: npm run lint:filenames
 
       - name: Run tests
-        run: |
-          cd sociomint
-          npm test
+        run: npm test
   
   build:
     name: Build Application
@@ -68,14 +60,10 @@ jobs:
           cache: 'npm'
       
       - name: Install dependencies
-        run: |
-          cd sociomint
-          npm ci
+        run: npm ci
 
       - name: Build
-        run: |
-          cd sociomint
-          npm run build
+        run: npm run build
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
@@ -98,7 +86,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-output
-          path: sociomint/.next
+          path: .next
           retention-days: 7
 
   deploy-prod:
@@ -117,15 +105,13 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: |
-          cd sociomint
-          npm ci
+        run: npm ci
 
       - name: Download build artifacts
         uses: actions/download-artifact@v3
         with:
           name: build-output
-          path: sociomint/.next
+          path: .next
 
       - name: Deploy to Vercel (Production)
         uses: amondnet/vercel-action@v25
@@ -133,5 +119,4 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: ./sociomint
           vercel-args: '--prod'
