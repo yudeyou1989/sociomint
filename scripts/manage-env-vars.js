@@ -104,26 +104,26 @@ async function syncEnvToCloudflare(env = 'development') {
     process.exit(1);
   }
   
-  // 同步到 Vercel
+  // 同步到 cloudflare
   try {
-    console.log(chalk.blue('正在将环境变量推送到 Vercel...'));
+    console.log(chalk.blue('正在将环境变量推送到 cloudflare...'));
     
     for (const [key, value] of Object.entries(envVars)) {
       // 跳过空值
       if (!value) continue;
       
-      // 使用 Vercel CLI 设置环境变量
+      // 使用 cloudflare CLI 设置环境变量
       console.log(`设置 ${key}...`);
-      execSync(`vercel env add ${key} ${env}`, {
+      execSync(`cloudflare env add ${key} ${env}`, {
         stdio: 'pipe',
         input: Buffer.from(value)
       });
     }
     
-    console.log(chalk.green('环境变量已成功同步到 Vercel!'));
+    console.log(chalk.green('环境变量已成功同步到 cloudflare!'));
     console.log(chalk.yellow('注意: 您可能需要重新部署项目以使更改生效。'));
   } catch (error) {
-    console.error(chalk.red('同步环境变量到 Vercel 失败:', error.message));
+    console.error(chalk.red('同步环境变量到 cloudflare 失败:', error.message));
     process.exit(1);
   }
 }
@@ -238,7 +238,7 @@ async function main() {
       break;
     case 'sync':
       if (validateEnvVars(env)) {
-        await syncEnvToVercel(env);
+        await syncEnvTocloudflare(env);
       }
       break;
     case 'create':

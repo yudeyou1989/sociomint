@@ -117,7 +117,7 @@ node scripts/migrate-data.js
 
 ### 5. 更新前端配置
 
-1. 更新 vercel.json 文件，将 Supabase 配置更新为生产环境的配置
+1. 更新 cloudflare.json 文件，将 Supabase 配置更新为生产环境的配置
 2. 部署前端应用到生产环境
 
 ## 注意事项

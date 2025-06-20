@@ -79,7 +79,7 @@ fi
 # 5. SSL 证书检查
 echo -e "\n${BLUE}🔒 5. SSL 证书检查${NC}"
 SSL_INFO=$(echo | openssl s_client -servername sociomint.top -connect sociomint.top:443 2>/dev/null | openssl x509 -noout -issuer -dates 2>/dev/null || echo "无法获取SSL信息")
-if [[ "$SSL_INFO" == *"Let's Encrypt"* ]] || [[ "$SSL_INFO" == *"Vercel"* ]]; then
+if [[ "$SSL_INFO" == *"Let's Encrypt"* ]] || [[ "$SSL_INFO" == *"cloudflare"* ]]; then
     echo -e "✅ SSL 证书已配置"
     echo "$SSL_INFO"
 else
@@ -115,14 +115,14 @@ echo "- 区块链合约地址配置"
 echo "- 数据库连接配置"
 
 echo -e "\n${YELLOW}⚠️  待完成任务:${NC}"
-echo "- Vercel 项目部署"
+echo "- cloudflare 项目部署"
 echo "- 域名 SSL 证书验证"
 echo "- 社交登录功能测试"
 echo "- API 端点功能测试"
 
 echo -e "\n${BLUE}🚀 下一步操作建议:${NC}"
-echo "1. 在 Vercel 控制台导入 GitHub 仓库"
-echo "2. 配置 Vercel 环境变量"
+echo "1. 在 cloudflare 控制台导入 GitHub 仓库"
+echo "2. 配置 cloudflare 环境变量"
 echo "3. 添加自定义域名 sociomint.top"
 echo "4. 测试完整的用户注册流程"
 echo "5. 验证智能合约交互功能"
@@ -130,7 +130,7 @@ echo "5. 验证智能合约交互功能"
 echo -e "\n${GREEN}🎯 快速访问链接:${NC}"
 echo "- GitHub 仓库: https://github.com/yudeyou1989/sociomint"
 echo "- GitHub Actions: https://github.com/yudeyou1989/sociomint/actions"
-echo "- Vercel 控制台: https://vercel.com/dashboard"
+echo "- cloudflare 控制台: https://cloudflare.com/dashboard"
 echo "- GoDaddy DNS: https://dcc.godaddy.com/manage/sociomint.top/dns"
 echo "- 网站地址: https://sociomint.top"
 

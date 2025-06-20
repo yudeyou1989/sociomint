@@ -146,20 +146,20 @@ async function main() {
       sensitive: true
     },
     {
-      name: 'VERCEL_TOKEN',
-      description: 'Vercel 部署令牌 (可选)',
+      name: 'cloudflare_TOKEN',
+      description: 'cloudflare 部署令牌 (可选)',
       required: false,
       sensitive: true
     },
     {
-      name: 'VERCEL_ORG_ID',
-      description: 'Vercel 组织 ID (可选)',
+      name: 'cloudflare_ORG_ID',
+      description: 'cloudflare 组织 ID (可选)',
       required: false,
       sensitive: false
     },
     {
-      name: 'VERCEL_PROJECT_ID',
-      description: 'Vercel 项目 ID (可选)',
+      name: 'cloudflare_PROJECT_ID',
+      description: 'cloudflare 项目 ID (可选)',
       required: false,
       sensitive: false
     }

@@ -97,7 +97,7 @@ echo "✅ Web3 钱包连接配置"
 echo "✅ Telegram Bot 配置"
 echo "✅ Discord OAuth 配置"
 echo "✅ Twitter OAuth 2.0 配置"
-echo "✅ Vercel 部署配置"
+echo "✅ cloudflare 部署配置"
 echo "✅ 监控和分析工具配置"
 echo "✅ 域名配置"
 echo
@@ -107,7 +107,7 @@ echo
 echo -e "${YELLOW}🚀 下一步操作:${NC}"
 echo "1. 验证 Secrets 配置"
 echo "2. 触发 GitHub Actions 测试"
-echo "3. 部署到 Vercel"
+echo "3. 部署到 cloudflare"
 echo "4. 配置域名 sociomint.top"
 echo
 echo -e "${GREEN}✨ 项目已准备好生产部署！${NC}"

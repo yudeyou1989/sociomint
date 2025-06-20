@@ -187,8 +187,8 @@ deployments/*/solcInputs/
 # Local Netlify folder
 .netlify
 
-# Vercel
-.vercel
+# cloudflare
+.cloudflare
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
@@ -300,7 +300,7 @@ commit_code() {
 - Telegram bot functionality with automated notifications
 - Social platform OAuth integration (Twitter, Discord)
 - Comprehensive testing suite with 85%+ coverage
-- Production deployment configuration for Vercel
+- Production deployment configuration for cloudflare
 - Multi-language support (Chinese/English)
 - Web3 wallet integration (MetaMask, WalletConnect)
 - Real-time blockchain data synchronization
@@ -310,7 +310,7 @@ commit_code() {
 - Blockchain: Solidity, Hardhat, OpenZeppelin, UUPS Proxy
 - Database: Supabase (PostgreSQL) with Row Level Security
 - Authentication: Web3 wallet + Social OAuth
-- Deployment: Vercel with custom domain (sociomint.top)
+- Deployment: cloudflare with custom domain (sociomint.top)
 - Monitoring: Sentry, Google Analytics
 - Testing: Jest, React Testing Library, Hardhat Tests
 
@@ -455,7 +455,7 @@ show_result() {
     echo
     info "🎯 下一步操作："
     info "1. 配置 GitHub Secrets (运行: npm run setup:github-secrets)"
-    info "2. 连接 Vercel 部署项目"
+    info "2. 连接 cloudflare 部署项目"
     info "3. 配置自定义域名 sociomint.top"
     info "4. 测试 CI/CD 流程"
     echo
