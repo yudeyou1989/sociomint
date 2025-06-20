@@ -1,41 +1,74 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Cloudflare Pages 静态导出配置
+  output: 'export',
+  trailingSlash: true,
   reactStrictMode: true,
+
+  // 构建优化
   eslint: {
-    // 在生产构建期间忽略ESLint错误
     ignoreDuringBuilds: true,
   },
   typescript: {
-    // 在生产构建期间忽略TypeScript错误
     ignoreBuildErrors: true,
   },
-  // 恢复静态导出模式
-  output: 'export',
-  // 配置静态资源
+
+  // 性能优化
+  experimental: {
+    optimizePackageImports: ['@mui/material', '@mui/icons-material', '@supabase/supabase-js'],
+  },
+
+  // 图片优化 - Cloudflare Pages 兼容
   images: {
     unoptimized: true,
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 60,
   },
-  // 指定要导出的页面
-  exportPathMap: async function (
-    defaultPathMap,
-    { dev, dir, outDir, distDir, buildId }
-  ) {
-    return {
-      '/': { page: '/' },
-      '/assets': { page: '/assets' },
-      '/tasks': { page: '/tasks' },
-      '/profile': { page: '/profile' },
-      '/404': { page: '/404' },
+
+  // 编译优化
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+
+  // Webpack优化
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+        crypto: false,
+      };
+    }
+
+    // 代码分割优化
+    config.optimization.splitChunks = {
+      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+          priority: 10,
+        },
+        mui: {
+          test: /[\\/]node_modules[\\/]@mui[\\/]/,
+          name: 'mui',
+          chunks: 'all',
+          priority: 20,
+        },
+        web3: {
+          test: /[\\/]node_modules[\\/](ethers|@wagmi|viem)[\\/]/,
+          name: 'web3',
+          chunks: 'all',
+          priority: 15,
+        },
+      },
     };
-  },
-  // 跳过预渲染错误
-  onDemandEntries: {
-    // 在开发模式下，页面保持编译状态的时间（毫秒）
-    maxInactiveAge: 25 * 1000,
-    // 同时保持编译状态的页面数
-    pagesBufferLength: 2,
+
+    return config;
   },
 };
 
