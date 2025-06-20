@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAccount, useProvider, useSigner } from 'wagmi';
-import { ethers } from 'ethers';
+import { useAccount, usePublicClient, useWalletClient } from 'wagmi';
+import { ethers, isAddress } from 'ethers';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/Tabs';
 import { Button } from '@/components/ui/Button';
@@ -29,8 +29,8 @@ const ADMIN_ADDRESSES: string[] = [];
 export default function MultisigPage() {
   const router = useRouter();
   const { address, isConnected } = useAccount();
-  const provider = useProvider();
-  const { data: signer } = useSigner();
+  const publicClient = usePublicClient();
+  const { data: walletClient } = useWalletClient();
   
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -53,10 +53,10 @@ export default function MultisigPage() {
   // 检查是否为管理员
   useEffect(() => {
     const checkAdmin = async () => {
-      if (isConnected && address && provider) {
+      if (isConnected && address && publicClient) {
         try {
           // 获取多签钱包信息
-          const info = await MultisigService.getMultisigInfo(provider);
+          const info = await MultisigService.getMultisigInfo(publicClient);
           setWalletInfo(info);
           
           // 更新所有者列表
@@ -99,14 +99,14 @@ export default function MultisigPage() {
     };
     
     checkAdmin();
-  }, [isConnected, address, provider, router]);
+  }, [isConnected, address, publicClient, router]);
   
   // 加载交易
   const loadTransactions = async () => {
     try {
-      if (!provider) return;
-      
-      const txs = await MultisigService.getAllTransactions(provider);
+      if (!publicClient) return;
+
+      const txs = await MultisigService.getAllTransactions(publicClient);
       setTransactions(txs);
       
       logger.info('多签钱包交易加载成功', {
@@ -125,8 +125,8 @@ export default function MultisigPage() {
   const handleSubmitTransaction = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!signer) {
-      logger.error('未找到签名者', {
+    if (!walletClient) {
+      logger.error('未找到钱包客户端', {
         action: 'handleSubmitTransaction',
       });
       return;
@@ -136,7 +136,7 @@ export default function MultisigPage() {
       setIsSubmitting(true);
       
       // 验证输入
-      if (!ethers.utils.isAddress(newTxDestination)) {
+      if (!isAddress(newTxDestination)) {
         throw new Error('无效的目标地址');
       }
       
@@ -146,7 +146,7 @@ export default function MultisigPage() {
       
       // 提交交易
       const txId = await MultisigService.submitTransaction(
-        signer,
+        walletClient,
         newTxDestination,
         newTxValue,
         newTxData,
@@ -180,10 +180,10 @@ export default function MultisigPage() {
   
   // 确认交易
   const handleConfirmTransaction = async (txId: number) => {
-    if (!signer) return;
-    
+    if (!walletClient) return;
+
     try {
-      await MultisigService.confirmTransaction(signer, txId);
+      await MultisigService.confirmTransaction(walletClient, txId);
       loadTransactions();
     } catch (error) {
       logger.error('确认交易失败', {
@@ -192,13 +192,13 @@ export default function MultisigPage() {
       });
     }
   };
-  
+
   // 撤销确认
   const handleRevokeConfirmation = async (txId: number) => {
-    if (!signer) return;
-    
+    if (!walletClient) return;
+
     try {
-      await MultisigService.revokeConfirmation(signer, txId);
+      await MultisigService.revokeConfirmation(walletClient, txId);
       loadTransactions();
     } catch (error) {
       logger.error('撤销确认失败', {
@@ -207,13 +207,13 @@ export default function MultisigPage() {
       });
     }
   };
-  
+
   // 执行交易
   const handleExecuteTransaction = async (txId: number) => {
-    if (!signer) return;
-    
+    if (!walletClient) return;
+
     try {
-      await MultisigService.executeTransaction(signer, txId);
+      await MultisigService.executeTransaction(walletClient, txId);
       loadTransactions();
     } catch (error) {
       logger.error('执行交易失败', {

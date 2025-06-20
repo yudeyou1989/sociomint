@@ -1,7 +1,7 @@
 import { useAccount, useReadContract, useWriteContract } from 'wagmi';
 import { parseEther, formatEther, formatUnits } from 'viem';
 import { useState } from 'react';
-import { contractAbis, contractAddresses, ExchangeStats } from '../config/contracts';
+import { contractAbis, contractAddresses } from '../config/contracts';
 
 // 定义合约返回的原始数据类型
 type ExchangeStatsResult = [
@@ -26,10 +26,10 @@ export function useSMTokenExchange() {
     isLoading: isLoadingStats, 
     refetch: refetchStats
   } = useReadContract({
-    address: contractAddresses.smTokenExchange,
+    address: contractAddresses.exchange as `0x${string}`,
     abi: contractAbis.smTokenExchange,
     functionName: 'getExchangeStats',
-    enabled: !!contractAddresses.smTokenExchange,
+    enabled: !!contractAddresses.exchange,
   }) as { data: ExchangeStatsResult | undefined, isLoading: boolean, refetch: () => Promise<any> };
 
   // 准备写入合约函数
@@ -52,7 +52,7 @@ export function useSMTokenExchange() {
 
       // 调用合约的exchangeTokens函数
       const hash = await writeContractAsync({
-        address: contractAddresses.smTokenExchange,
+        address: contractAddresses.exchange as `0x${string}`,
         abi: contractAbis.smTokenExchange,
         functionName: 'exchangeTokens',
         value: valueInWei,
@@ -89,9 +89,23 @@ export function useSMTokenExchange() {
     formattedNextRoundPrice: formatEther(exchangeStats[4]),
   } : null;
 
+  // 为了向后兼容，添加 buyTokens 别名
+  const buyTokens = exchangeTokens;
+
+  // 获取当前价格
+  const getCurrentPrice = async () => {
+    if (formattedStats?.currentPrice) {
+      return formattedStats.currentPrice.toString();
+    }
+    return null;
+  };
+
   return {
     exchangeStats: formattedStats,
     exchangeTokens,
+    buyTokens, // 向后兼容
+    getCurrentPrice, // 向后兼容
+    isLoading: isLoadingStats,
     isLoadingStats,
     isExchanging: isExchanging || isWritePending,
     txHash,

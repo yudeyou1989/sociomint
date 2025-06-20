@@ -39,8 +39,8 @@ const mockQueryBuilder = {
   order: jest.fn().mockReturnThis(),
   limit: jest.fn().mockReturnThis(),
   range: jest.fn().mockReturnThis(),
-  single: jest.fn(),
-  maybeSingle: jest.fn(),
+  single: jest.fn().mockResolvedValue({ data: null, error: null }),
+  maybeSingle: jest.fn().mockResolvedValue({ data: null, error: null }),
 };
 
 // 模拟 createClient

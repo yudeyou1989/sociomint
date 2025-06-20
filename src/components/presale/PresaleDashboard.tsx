@@ -4,7 +4,7 @@ import { useState, useEffect, ReactNode, ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { parseEther, formatEther } from 'viem';
 import { FaArrowDown, FaExchangeAlt } from 'react-icons/fa';
-import XPlatformVerification from '../../components/presale/XPlatformVerification';
+import XPlatformVerification from './XPlatformVerification';
 import { usePresaleContract } from '../../hooks/contracts/usePresaleContracts';
 import { useWallet } from '../../contexts/WalletContext';
 

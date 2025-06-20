@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ethers } from 'ethers';
-import { Box, Typography, TextField, Button, Card, CardContent, CircularProgress, Grid } from '@mui/material';
+import { ethers, formatEther, formatUnits } from 'ethers';
+import { Box, Typography, TextField, Button, Card, CardContent, CircularProgress } from '@mui/material';
 import { useWallet } from '@/contexts/WalletContext';
 import contractService, { ContractService } from '@/services/contractService';
 import toast from 'react-hot-toast';
@@ -27,7 +27,7 @@ const SMExchangeInfo: React.FC = () => {
   // 初始加载和自动刷新
   useEffect(() => {
     fetchExchangeStats();
-    
+
     // 设置定时刷新
     const interval = setInterval(() => {
       if (wallet.isConnected) {
@@ -35,8 +35,8 @@ const SMExchangeInfo: React.FC = () => {
         updateBalances();
       }
     }, 30000); // 30秒刷新一次
-    
-    return () => clearInterval(interval);
+
+    return () => clearInterval(interval as unknown as number);
   }, [wallet.isConnected]);
   
   // 获取交易所统计数据
@@ -53,11 +53,11 @@ const SMExchangeInfo: React.FC = () => {
         const stats = await contract.getExchangeStats();
         
         setExchangeStats({
-          totalTokensSold: ethers.utils.formatEther(stats.totalTokensSold),
-          totalTokensRemaining: ethers.utils.formatEther(stats.totalTokensRemaining),
-          totalBnbRaised: ethers.utils.formatEther(stats.totalBnbRaised),
-          currentPrice: ethers.utils.formatUnits(stats.currentPrice, 'gwei'),
-          nextRoundPrice: ethers.utils.formatUnits(stats.nextRoundPrice, 'gwei'),
+          totalTokensSold: formatEther(stats.totalTokensSold),
+          totalTokensRemaining: formatEther(stats.totalTokensRemaining),
+          totalBnbRaised: formatEther(stats.totalBnbRaised),
+          currentPrice: formatUnits(stats.currentPrice, 'gwei'),
+          nextRoundPrice: formatUnits(stats.nextRoundPrice, 'gwei'),
           isActive: !stats.paused,
           currentRound: stats.currentRound
         });
@@ -105,22 +105,33 @@ const SMExchangeInfo: React.FC = () => {
     setTxStatus('waiting');
     try {
       const tx = await contractService.exchangeTokens(amount);
-      
-      setTxHash(tx.hash);
+
+      // 处理不同类型的交易响应
+      const txHash = typeof tx === 'string' ? tx : (tx as any)?.hash || '';
+      setTxHash(txHash);
       setTxStatus('pending');
-      
+
       toast.loading('交易确认中...');
-      
-      const receipt = await tx.wait();
-      if (receipt.status === 1) {
-        toast.success('购买成功！');
+
+      // 如果tx是字符串（hash），则无需等待；如果是交易对象，则等待确认
+      if (typeof tx !== 'string' && (tx as any)?.wait) {
+        const receipt = await (tx as any).wait();
+        if (receipt && receipt.status === 1) {
+          toast.success('购买成功！');
+          setTxStatus('success');
+          // 刷新数据
+          fetchExchangeStats();
+          updateBalances();
+        } else {
+          toast.error('交易失败');
+          setTxStatus('failed');
+        }
+      } else {
+        // 如果是字符串hash，直接认为成功
+        toast.success('交易已提交！');
         setTxStatus('success');
-        // 刷新数据
         fetchExchangeStats();
         updateBalances();
-      } else {
-        toast.error('交易失败');
-        setTxStatus('failed');
       }
     } catch (error) {
       console.error('购买代币失败:', error);
@@ -246,7 +257,9 @@ const SMExchangeInfo: React.FC = () => {
                     fullWidth
                     label="BNB 数量"
                     type="number"
-                    InputProps={{ inputProps: { min: 0.001, step: 0.01 } }}
+                    slotProps={{
+                      htmlInput: { min: 0.001, step: 0.01 }
+                    }}
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                     sx={{ mb: 3 }}

@@ -2,13 +2,12 @@
 
 import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
-import { FaTasks, FaStore, FaExchangeAlt, FaWallet, FaHistory, FaExchange } from 'react-icons/fa';
+import { FaTasks, FaStore, FaExchangeAlt, FaWallet, FaHistory } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
 
 // 动态导入组件，避免SSR问题
-const UserBalanceDisplay = dynamic(() => import('../UserBalanceDisplay'), { ssr: false });
-const TransactionHistory = dynamic(() => import('../TransactionHistory'), { ssr: false });
-const XiaohonghuaExchange = dynamic(() => import('../XiaohonghuaExchange'), { ssr: false });
+const SMExchangeInfo = dynamic(() => import('../components/SMExchangeInfo'), { ssr: false });
+const ExchangeSection = dynamic(() => import('../components/home/ExchangeSection'), { ssr: false });
 
 export default function Home() {
   const { t } = useTranslation();
@@ -74,40 +73,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* User Balance, Transaction History, and Exchange Section */}
+      {/* Exchange Section */}
       <section className="w-full max-w-5xl mb-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="flex flex-col">
+            <div className="flex items-center mb-4">
+              <FaExchangeAlt className="text-[#8b3dff] mr-2" />
+              <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#8b3dff] to-[#0de5ff]">
+                SM 代币兑换
+              </h2>
+            </div>
+            <SMExchangeInfo />
+          </div>
+
           <div className="flex flex-col">
             <div className="flex items-center mb-4">
               <FaWallet className="text-[#0de5ff] mr-2" />
               <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#0de5ff] to-[#8b3dff]">
-                用户资产
+                兑换中心
               </h2>
             </div>
-            <UserBalanceDisplay className="flex-grow" />
-          </div>
-
-          <div className="flex flex-col">
-            <div className="flex items-center mb-4">
-              <FaExchange className="text-[#8b3dff] mr-2" />
-              <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#8b3dff] to-[#0de5ff]">
-                小红花兑换
-              </h2>
-            </div>
-            <XiaohonghuaExchange className="flex-grow" onExchangeComplete={() => {
-              // 刷新页面或重新加载数据
-              window.location.reload();
-            }} />
-          </div>
-
-          <div className="flex flex-col">
-            <div className="flex items-center mb-4">
-              <FaHistory className="text-[#0de5ff] mr-2" />
-              <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#0de5ff] to-[#8b3dff]">
-                交易历史
-              </h2>
-            </div>
-            <TransactionHistory className="flex-grow" maxItems={5} />
+            <ExchangeSection />
           </div>
         </div>
       </section>

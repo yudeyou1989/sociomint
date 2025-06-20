@@ -6,7 +6,7 @@
  * 该服务提供与多签钱包交互的功能，包括查询多签钱包信息、提交交易和查询交易状态等。
  */
 
-import { ethers } from 'ethers';
+import { ethers, formatEther, parseEther } from 'ethers';
 import Logger from './logger';
 import { createClient } from '@supabase/supabase-js';
 
@@ -87,14 +87,14 @@ export interface MultisigTransaction {
 /**
  * 获取多签钱包合约实例
  */
-const getMultisigContract = (provider: ethers.providers.Provider) => {
+const getMultisigContract = (provider: any) => {
   return new ethers.Contract(MULTISIG_ADDRESS, MULTISIG_ABI, provider);
 };
 
 /**
  * 获取多签钱包信息
  */
-export const getMultisigInfo = async (provider: ethers.providers.Provider) => {
+export const getMultisigInfo = async (provider: any) => {
   try {
     const contract = getMultisigContract(provider);
     
@@ -115,7 +115,7 @@ export const getMultisigInfo = async (provider: ethers.providers.Provider) => {
       owners,
       requiredConfirmations: requiredConfirmations.toNumber(),
       transactionCount: transactionCount.toNumber(),
-      balance: ethers.utils.formatEther(balance),
+      balance: formatEther(balance),
     };
   } catch (error) {
     logger.error('获取多签钱包信息失败', {
@@ -130,7 +130,7 @@ export const getMultisigInfo = async (provider: ethers.providers.Provider) => {
  * 获取交易信息
  */
 export const getTransaction = async (
-  provider: ethers.providers.Provider,
+  provider: any,
   transactionId: number
 ): Promise<MultisigTransaction> => {
   try {
@@ -191,7 +191,7 @@ export const getTransaction = async (
     return {
       id: transactionId,
       destination,
-      value: ethers.utils.formatEther(value),
+      value: formatEther(value),
       data,
       executed,
       confirmations: confirmations.toNumber(),
@@ -214,7 +214,7 @@ export const getTransaction = async (
  * 获取所有交易
  */
 export const getAllTransactions = async (
-  provider: ethers.providers.Provider
+  provider: any
 ): Promise<MultisigTransaction[]> => {
   try {
     const contract = getMultisigContract(provider);
@@ -244,7 +244,7 @@ export const getAllTransactions = async (
  * 提交交易
  */
 export const submitTransaction = async (
-  signer: ethers.Signer,
+  signer: any,
   destination: string,
   value: string,
   data: string,
@@ -255,7 +255,7 @@ export const submitTransaction = async (
     const contract = getMultisigContract(signer);
     
     // 转换值为Wei
-    const valueInWei = ethers.utils.parseEther(value);
+    const valueInWei = parseEther(value);
     
     // 提交交易
     const tx = await contract.submitTransaction(destination, valueInWei, data);
@@ -300,7 +300,7 @@ export const submitTransaction = async (
  * 确认交易
  */
 export const confirmTransaction = async (
-  signer: ethers.Signer,
+  signer: any,
   transactionId: number
 ): Promise<boolean> => {
   try {
@@ -329,7 +329,7 @@ export const confirmTransaction = async (
  * 撤销确认
  */
 export const revokeConfirmation = async (
-  signer: ethers.Signer,
+  signer: any,
   transactionId: number
 ): Promise<boolean> => {
   try {
@@ -358,7 +358,7 @@ export const revokeConfirmation = async (
  * 执行交易
  */
 export const executeTransaction = async (
-  signer: ethers.Signer,
+  signer: any,
   transactionId: number
 ): Promise<boolean> => {
   try {

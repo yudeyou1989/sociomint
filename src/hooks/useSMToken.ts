@@ -1,63 +1,107 @@
-import { useState, useEffect } from 'react';
-import { formatUnits } from 'viem';
-import { useAccount, useReadContract } from 'wagmi';
-import { contractAbis, contractAddresses } from '../config/contracts';
+'use client';
+
+import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
+import { CONTRACT_ADDRESSES, SM_TOKEN_ABI } from '@/config/contracts';
+import { keccak256, toBytes } from 'viem';
 
 export function useSMToken() {
   const { address, isConnected } = useAccount();
-  const [balanceData, setBalanceData] = useState<bigint | undefined>(undefined);
-  const [decimals, setDecimals] = useState<number>(18); // 默认小数位数为18
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
-  const [formattedBalance, setFormattedBalance] = useState('0');
 
-  // 使用 wagmi 的 useReadContract 钩子读取代币小数位数
-  const { data: tokenDecimals } = useReadContract({
-    address: contractAddresses.smToken,
-    abi: contractAbis.smToken,
-    functionName: 'decimals',
-    enabled: isConnected,
+  // 安全地计算角色哈希，避免硬编码
+  const MINTER_ROLE = keccak256(toBytes('MINTER_ROLE'));
+
+  // 获取代币信息
+  const { data: tokenName } = useReadContract({
+    address: CONTRACT_ADDRESSES.token as `0x${string}`,
+    abi: SM_TOKEN_ABI,
+    functionName: 'name',
+    query: { enabled: isConnected },
   });
 
-  // 使用 wagmi 的 useReadContract 钩子读取代币余额
-  const { data: tokenBalance, refetch: refetchBalance } = useReadContract({
-    address: contractAddresses.smToken,
-    abi: contractAbis.smToken,
+  const { data: tokenSymbol } = useReadContract({
+    address: CONTRACT_ADDRESSES.token as `0x${string}`,
+    abi: SM_TOKEN_ABI,
+    functionName: 'symbol',
+    query: { enabled: isConnected },
+  });
+
+  // 获取用户余额
+  const { data: balance, refetch: refetchBalance } = useReadContract({
+    address: CONTRACT_ADDRESSES.token as `0x${string}`,
+    abi: SM_TOKEN_ABI,
     functionName: 'balanceOf',
-    args: [address],
-    enabled: isConnected && !!address,
+    args: address ? [address] : undefined,
+    query: { enabled: isConnected && !!address },
   });
 
-  // 当获取到小数位数时更新状态
-  useEffect(() => {
-    if (tokenDecimals !== undefined) {
-      setDecimals(Number(tokenDecimals));
-    }
-  }, [tokenDecimals]);
+  // 检查用户角色
+  const { data: hasMinterRole } = useReadContract({
+    address: CONTRACT_ADDRESSES.token as `0x${string}`,
+    abi: SM_TOKEN_ABI,
+    functionName: 'hasRole',
+    args: address ? [MINTER_ROLE, address] : undefined,
+    query: { enabled: isConnected && !!address },
+  });
 
-  // 当获取到余额时更新状态
-  useEffect(() => {
-    if (tokenBalance !== undefined) {
-      setBalanceData(tokenBalance);
-      
-      // 格式化余额
-      if (decimals !== undefined) {
-        const formatted = formatUnits(tokenBalance, decimals);
-        setFormattedBalance(formatted);
-      }
-    }
-  }, [tokenBalance, decimals]);
+  // 安排铸币函数
+  const {
+    data: scheduleMintData,
+    writeContract: scheduleMint,
+    isPending: isSchedulingMint,
+    isSuccess: isScheduleMintSuccess,
+    error: scheduleMintError
+  } = useWriteContract();
 
-  // 手动刷新功能
-  const refetch = () => {
-    refetchBalance();
-  };
+  // 等待铸币交易确认
+  const {
+    isLoading: isScheduleMintPending,
+    isSuccess: isScheduleMintConfirmed
+  } = useWaitForTransactionReceipt({
+    hash: scheduleMintData,
+  });
+
+  // 执行铸币函数
+  const {
+    data: executeMintData,
+    writeContract: executeMint,
+    isPending: isExecutingMint,
+    isSuccess: isExecuteMintSuccess,
+    error: executeMintError
+  } = useWriteContract();
+
+  // 等待执行铸币交易确认
+  const {
+    isLoading: isExecuteMintPending,
+    isSuccess: isExecuteMintConfirmed
+  } = useWaitForTransactionReceipt({
+    hash: executeMintData,
+  });
 
   return {
-    balance: balanceData,
-    formattedBalance,
-    isLoading,
-    error,
-    refetch,
+    // 代币信息
+    tokenName,
+    tokenSymbol,
+    balance,
+    refetchBalance,
+
+    // 用户角色
+    hasMinterRole,
+
+    // 铸币功能
+    scheduleMint,
+    isSchedulingMint: isSchedulingMint || isScheduleMintPending,
+    isScheduleMintSuccess: isScheduleMintSuccess && isScheduleMintConfirmed,
+    scheduleMintError,
+    scheduleMintTxHash: scheduleMintData,
+
+    executeMint,
+    isExecutingMint: isExecutingMint || isExecuteMintPending,
+    isExecuteMintSuccess: isExecuteMintSuccess && isExecuteMintConfirmed,
+    executeMintError,
+    executeMintTxHash: executeMintData,
+
+    // 连接状态
+    isConnected,
+    address
   };
 }
