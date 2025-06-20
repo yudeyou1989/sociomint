@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 域名配置脚本
-# 为 sociomint.top 配置 DNS 记录指向 Vercel
+# 为 sociomint.top 配置 DNS 记录指向 Cloudflare Pages
 
 set -e
 
@@ -27,7 +27,7 @@ echo
 echo -e "${GREEN}CNAME 记录配置:${NC}"
 echo "类型: CNAME"
 echo "名称: www"
-echo "值: cname.vercel-dns.com"
+echo "值: sociomint.pages.dev"
 echo "TTL: 600"
 echo
 echo -e "${YELLOW}⚠️  注意事项:${NC}"
@@ -43,7 +43,7 @@ echo
 echo -e "${CYAN}🔗 GoDaddy DNS 管理链接:${NC}"
 echo "https://dcc.godaddy.com/manage/sociomint.top/dns"
 echo
-echo -e "${GREEN}✅ 配置完成后，域名将指向 Vercel 部署${NC}"
+echo -e "${GREEN}✅ 配置完成后，域名将指向 Cloudflare Pages 部署${NC}"
 
 # 检查当前 DNS 状态
 echo -e "${BLUE}📊 当前 DNS 状态检查:${NC}"
@@ -58,5 +58,5 @@ echo -e "${YELLOW}🚀 下一步操作:${NC}"
 echo "1. 登录 GoDaddy DNS 管理"
 echo "2. 配置上述 DNS 记录"
 echo "3. 等待 DNS 传播"
-echo "4. 在 Vercel 中添加自定义域名"
+echo "4. 在 Cloudflare Pages 中添加自定义域名"
 echo "5. 验证 SSL 证书自动配置"

@@ -329,24 +329,19 @@ class SecurityChecker {
     }
 
     /**
-     * 检查 Vercel 配置
+     * 检查 Cloudflare Pages 配置
      */
-    checkVercelConfig() {
-        const vercelPath = path.join(__dirname, '../../vercel.json');
-        if (fs.existsSync(vercelPath)) {
-            const config = JSON.parse(fs.readFileSync(vercelPath, 'utf8'));
-            
+    checkCloudflareConfig() {
+        const headersPath = path.join(__dirname, '../../public/_headers');
+        if (fs.existsSync(headersPath)) {
+            const headers = fs.readFileSync(headersPath, 'utf8');
+
             // 检查安全头部
             const requiredHeaders = ['X-Frame-Options', 'X-Content-Type-Options', 'X-XSS-Protection'];
-            const headers = config.headers || [];
-            
+
             requiredHeaders.forEach(header => {
-                const hasHeader = headers.some(h => 
-                    h.headers && h.headers.some(hh => hh.key === header)
-                );
-                
-                if (!hasHeader) {
-                    this.addIssue('MEDIUM', 'MISSING_SECURITY_HEADER', vercelPath,
+                if (!headers.includes(header)) {
+                    this.addIssue('MEDIUM', 'MISSING_SECURITY_HEADER', headersPath,
                         `缺少安全头部: ${header}`);
                 }
             });

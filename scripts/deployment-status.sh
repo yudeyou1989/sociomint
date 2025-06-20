@@ -32,7 +32,8 @@ SECRETS=(
     "DISCORD_CLIENT_SECRET"
     "TWITTER_CLIENT_ID"
     "TWITTER_CLIENT_SECRET"
-    "VERCEL_TOKEN"
+    "CLOUDFLARE_API_TOKEN"
+    "CLOUDFLARE_ACCOUNT_ID"
 )
 
 for secret in "${SECRETS[@]}"; do
@@ -55,10 +56,10 @@ fi
 
 echo "检查 www.sociomint.top CNAME 记录:"
 CNAME_RECORD=$(dig +short www.sociomint.top CNAME)
-if [[ "$CNAME_RECORD" == *"vercel-dns.com"* ]]; then
+if [[ "$CNAME_RECORD" == *"pages.dev"* ]]; then
     echo -e "✅ CNAME 记录正确: $CNAME_RECORD"
 else
-    echo -e "⚠️  CNAME 记录: $CNAME_RECORD (期望: cname.vercel-dns.com)"
+    echo -e "⚠️  CNAME 记录: $CNAME_RECORD (期望: sociomint.pages.dev)"
 fi
 
 # 4. 网站可访问性检查

@@ -84,22 +84,14 @@ function validateEnvVars(env = 'development') {
   return true;
 }
 
-// 同步环境变量到Vercel
-async function syncEnvToVercel(env = 'development') {
-  console.log(chalk.blue(`正在将${env}环境变量同步到Vercel...`));
-  
-  // 检查Vercel CLI是否已安装
-  try {
-    execSync('vercel --version', { stdio: 'ignore' });
-  } catch (error) {
-    console.error(chalk.red('错误: Vercel CLI 未安装。请运行 npm i -g vercel 安装它。'));
-    process.exit(1);
-  }
-  
+// 同步环境变量到Cloudflare Pages
+async function syncEnvToCloudflare(env = 'development') {
+  console.log(chalk.blue(`正在将${env}环境变量同步到Cloudflare Pages...`));
+
   // 加载环境变量
   const envPath = path.resolve(process.cwd(), ENV_FILES[env]);
   let envVars = {};
-  
+
   try {
     if (fs.existsSync(envPath)) {
       envVars = dotenv.parse(fs.readFileSync(envPath));

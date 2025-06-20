@@ -73,9 +73,10 @@ echo "🐦 配置 Twitter OAuth..."
 gh secret set TWITTER_CLIENT_ID --body "dXNNbndMRU1yZy1zRHpfX3haRTA6MTpjaQ" --repo "$REPO"
 gh secret set TWITTER_CLIENT_SECRET --body "PGOyGmIuxTMSGwokvojztPOHuFTTMAf3XULy5iChFxJu74YU6f" --repo "$REPO"
 
-# Vercel 部署
-echo "🚀 配置 Vercel 部署..."
-gh secret set VERCEL_TOKEN --body "O3F0DCvIyw745z1TQOUlAxu4" --repo "$REPO"
+# Cloudflare Pages 部署
+echo "🚀 配置 Cloudflare Pages 部署..."
+gh secret set CLOUDFLARE_API_TOKEN --body "YOUR_CLOUDFLARE_API_TOKEN" --repo "$REPO"
+gh secret set CLOUDFLARE_ACCOUNT_ID --body "ff431aed46e94b0593b8b1ee48842c7a" --repo "$REPO"
 
 # 监控和分析
 echo "📊 配置监控工具..."
