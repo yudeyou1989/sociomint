@@ -249,11 +249,17 @@ describe('Simple Component Tests', () => {
 
       await user.type(nameInput, 'John Doe');
       await user.type(emailInput, 'invalid-email');
-      await user.click(submitButton);
 
+      // 触发表单提交
+      fireEvent.click(submitButton);
+
+      // 等待错误消息出现
       await waitFor(() => {
-        expect(screen.getByTestId('email-error')).toHaveTextContent('Email is invalid');
-      });
+        const errorElement = screen.queryByTestId('email-error');
+        expect(errorElement).toBeInTheDocument();
+        expect(errorElement).toHaveTextContent('Email is invalid');
+      }, { timeout: 3000 });
+
       expect(mockSubmit).not.toHaveBeenCalled();
     });
 

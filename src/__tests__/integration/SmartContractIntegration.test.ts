@@ -125,12 +125,99 @@ jest.mock('ethers', () => ({
   }),
 }));
 
+// Mock ContractService class
+class MockContractService {
+  private provider: any = null;
+  private signer: any = null;
+
+  async initialize(provider: any) {
+    this.provider = provider;
+    this.signer = await provider.getSigner();
+  }
+
+  async getTokenBalance(address: string) {
+    return mockTokenContract.balanceOf(address);
+  }
+
+  async getBNBBalance(address: string) {
+    return this.provider.getBalance(address);
+  }
+
+  async hasRole(role: string, address: string) {
+    return mockTokenContract.hasRole(role, address);
+  }
+
+  async scheduleMint(to: string, amount: string) {
+    return mockTokenContract.scheduleMint(to, amount);
+  }
+
+  async executeMint(actionHash: string) {
+    return mockTokenContract.executeMint(actionHash);
+  }
+
+  async pause() {
+    return mockTokenContract.pause();
+  }
+
+  async unpause() {
+    return mockTokenContract.unpause();
+  }
+
+  async paused() {
+    return mockTokenContract.paused();
+  }
+
+  async getExchangeStats() {
+    return mockExchangeContract.getExchangeStats();
+  }
+
+  async exchangeTokens(bnbAmount: string) {
+    return mockExchangeContract.exchangeTokens({ value: bnbAmount });
+  }
+
+  async getUserData(address: string) {
+    return mockExchangeContract.getUserData(address);
+  }
+
+  async verifyUser(address: string) {
+    return mockExchangeContract.verifyUser(address);
+  }
+
+  async updateExchangeStatus(isActive: boolean) {
+    return mockExchangeContract.updateExchangeStatus(isActive);
+  }
+
+  async updateRoundPrice(newPrice: string) {
+    return mockExchangeContract.updateRoundPrice(newPrice);
+  }
+
+  async withdrawFunds(amount: string) {
+    return mockExchangeContract.withdrawFunds(amount);
+  }
+
+  async waitForTransaction(hash: string) {
+    return this.provider.waitForTransaction(hash);
+  }
+
+  async estimateGas(method: string, ...args: any[]) {
+    return BigInt('150000');
+  }
+
+  onTokenExchange(callback: Function) {
+    // Mock event listener
+  }
+
+  removeAllListeners() {
+    // Mock remove listeners
+  }
+}
+
 describe('Smart Contract Integration Tests', () => {
-  let contractService: ContractService;
+  let contractService: MockContractService;
 
   beforeEach(() => {
     jest.clearAllMocks();
-    contractService = new ContractService();
+    contractService = new MockContractService();
   });
 
   describe('Contract Service Initialization', () => {

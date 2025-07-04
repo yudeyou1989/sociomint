@@ -1,0 +1,49 @@
+# Wrangler ignore file
+# 排除不需要部署的文件和目录
+
+# 缓存文件
+.next/cache/
+cache/
+.cache/
+
+# 开发文件
+node_modules/
+.git/
+.env*
+.DS_Store
+
+# 构建工具
+webpack/
+*.log
+*.map
+
+# 测试文件
+test/
+tests/
+__tests__/
+*.test.*
+*.spec.*
+
+# 文档
+docs/
+README.md
+*.md
+
+# 配置文件
+.eslintrc*
+.prettierrc*
+tsconfig.json
+jest.config.*
+next.config.*
+
+# 源代码（只部署构建后的文件）
+src/
+contracts/
+scripts/
+hardhat.config.js
+package*.json
+
+# 大文件
+*.pack
+*.chunk
+*.bundle

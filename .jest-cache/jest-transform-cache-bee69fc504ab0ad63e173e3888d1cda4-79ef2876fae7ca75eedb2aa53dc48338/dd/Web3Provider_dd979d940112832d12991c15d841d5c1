@@ -1,0 +1,250 @@
+12254bf6fc67d6f4a262c2e164b339c2
+'use client';
+"use strict";
+
+/* istanbul ignore next */
+function cov_t5seklqu5() {
+  var path = "/Users/yudeyou/Desktop/sm/sociomint/src/providers/Web3Provider.tsx";
+  var hash = "d538a84c3cf05c00e10cfd65972597a3c85ca50f";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/yudeyou/Desktop/sm/sociomint/src/providers/Web3Provider.tsx",
+    statementMap: {
+      "0": {
+        start: {
+          line: 3,
+          column: 0
+        },
+        end: {
+          line: 5,
+          column: 3
+        }
+      },
+      "1": {
+        start: {
+          line: 6,
+          column: 0
+        },
+        end: {
+          line: 11,
+          column: 3
+        }
+      },
+      "2": {
+        start: {
+          line: 9,
+          column: 8
+        },
+        end: {
+          line: 9,
+          column: 28
+        }
+      },
+      "3": {
+        start: {
+          line: 12,
+          column: 20
+        },
+        end: {
+          line: 12,
+          column: 48
+        }
+      },
+      "4": {
+        start: {
+          line: 13,
+          column: 15
+        },
+        end: {
+          line: 13,
+          column: 31
+        }
+      },
+      "5": {
+        start: {
+          line: 14,
+          column: 20
+        },
+        end: {
+          line: 14,
+          column: 52
+        }
+      },
+      "6": {
+        start: {
+          line: 15,
+          column: 16
+        },
+        end: {
+          line: 15,
+          column: 42
+        }
+      },
+      "7": {
+        start: {
+          line: 17,
+          column: 20
+        },
+        end: {
+          line: 26,
+          column: 2
+        }
+      },
+      "8": {
+        start: {
+          line: 28,
+          column: 4
+        },
+        end: {
+          line: 34,
+          column: 7
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "(anonymous_0)",
+        decl: {
+          start: {
+            line: 8,
+            column: 9
+          },
+          end: {
+            line: 8,
+            column: 10
+          }
+        },
+        loc: {
+          start: {
+            line: 8,
+            column: 20
+          },
+          end: {
+            line: 10,
+            column: 5
+          }
+        },
+        line: 8
+      },
+      "1": {
+        name: "Web3Provider",
+        decl: {
+          start: {
+            line: 27,
+            column: 9
+          },
+          end: {
+            line: 27,
+            column: 21
+          }
+        },
+        loc: {
+          start: {
+            line: 27,
+            column: 36
+          },
+          end: {
+            line: 35,
+            column: 1
+          }
+        },
+        line: 27
+      }
+    },
+    branchMap: {},
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0
+    },
+    b: {},
+    inputSourceMap: {
+      version: 3,
+      sources: ["/Users/yudeyou/Desktop/sm/sociomint/src/providers/Web3Provider.tsx"],
+      sourcesContent: ["'use client';\n\nimport { ReactNode } from 'react';\nimport { WagmiProvider } from 'wagmi';\nimport { QueryClient, QueryClientProvider } from '@tanstack/react-query';\nimport { config } from '@/config/wagmi';\n\n// \u521B\u5EFA\u4E00\u4E2A\u7A33\u5B9A\u7684React Query\u5BA2\u6237\u7AEF\u5B9E\u4F8B\nconst queryClient = new QueryClient({\n  defaultOptions: {\n    queries: {\n      refetchOnWindowFocus: false,\n      staleTime: 1000 * 60 * 2, // 2\u5206\u949F\n      retry: 1, // \u51CF\u5C11\u91CD\u8BD5\u6B21\u6570\n      gcTime: 1000 * 60 * 10, // 10\u5206\u949F\u7F13\u5B58\n    },\n  },\n});\n\ninterface Web3ProviderProps {\n  children: ReactNode;\n}\n\nexport default function Web3Provider({ children }: Web3ProviderProps) {\n  return (\n    <WagmiProvider config={config}>\n      <QueryClientProvider client={queryClient}>\n        {children}\n      </QueryClientProvider>\n    </WagmiProvider>\n  );\n}\n"],
+      names: ["Web3Provider", "queryClient", "QueryClient", "defaultOptions", "queries", "refetchOnWindowFocus", "staleTime", "retry", "gcTime", "children", "WagmiProvider", "config", "QueryClientProvider", "client"],
+      mappings: "AAAA;;;;;+BAuBA;;;eAAwBA;;;;uBApBM;4BACmB;wBAC1B;AAEvB,0BAA0B;AAC1B,MAAMC,cAAc,IAAIC,uBAAW,CAAC;IAClCC,gBAAgB;QACdC,SAAS;YACPC,sBAAsB;YACtBC,WAAW,OAAO,KAAK;YACvBC,OAAO;YACPC,QAAQ,OAAO,KAAK;QACtB;IACF;AACF;AAMe,SAASR,aAAa,EAAES,QAAQ,EAAqB;IAClE,qBACE,qBAACC,oBAAa;QAACC,QAAQA,cAAM;kBAC3B,cAAA,qBAACC,+BAAmB;YAACC,QAAQZ;sBAC1BQ;;;AAIT"
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "d538a84c3cf05c00e10cfd65972597a3c85ca50f"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_t5seklqu5 = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_t5seklqu5();
+cov_t5seklqu5().s[0]++;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/* istanbul ignore next */
+cov_t5seklqu5().s[1]++;
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function () {
+    /* istanbul ignore next */
+    cov_t5seklqu5().f[0]++;
+    cov_t5seklqu5().s[2]++;
+    return Web3Provider;
+  }
+});
+const _jsxruntime =
+/* istanbul ignore next */
+(cov_t5seklqu5().s[3]++, require("react/jsx-runtime"));
+const _wagmi =
+/* istanbul ignore next */
+(cov_t5seklqu5().s[4]++, require("wagmi"));
+const _reactquery =
+/* istanbul ignore next */
+(cov_t5seklqu5().s[5]++, require("@tanstack/react-query"));
+const _wagmi1 =
+/* istanbul ignore next */
+(cov_t5seklqu5().s[6]++, require("../config/wagmi"));
+// 创建一个稳定的React Query客户端实例
+const queryClient =
+/* istanbul ignore next */
+(cov_t5seklqu5().s[7]++, new _reactquery.QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      staleTime: 1000 * 60 * 2,
+      retry: 1,
+      gcTime: 1000 * 60 * 10
+    }
+  }
+}));
+function Web3Provider({
+  children
+}) {
+  /* istanbul ignore next */
+  cov_t5seklqu5().f[1]++;
+  cov_t5seklqu5().s[8]++;
+  return /*#__PURE__*/(0, _jsxruntime.jsx)(_wagmi.WagmiProvider, {
+    config: _wagmi1.config,
+    children: /*#__PURE__*/(0, _jsxruntime.jsx)(_reactquery.QueryClientProvider, {
+      client: queryClient,
+      children: children
+    })
+  });
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfdDVzZWtscXU1IiwiYWN0dWFsQ292ZXJhZ2UiLCJzIiwiV2ViM1Byb3ZpZGVyIiwicXVlcnlDbGllbnQiLCJfcmVhY3RxdWVyeSIsIlF1ZXJ5Q2xpZW50IiwiZGVmYXVsdE9wdGlvbnMiLCJxdWVyaWVzIiwicmVmZXRjaE9uV2luZG93Rm9jdXMiLCJzdGFsZVRpbWUiLCJyZXRyeSIsImdjVGltZSIsImNoaWxkcmVuIiwiZiIsIl9qc3hydW50aW1lIiwianN4IiwiX3dhZ21pIiwiV2FnbWlQcm92aWRlciIsImNvbmZpZyIsIl93YWdtaTEiLCJRdWVyeUNsaWVudFByb3ZpZGVyIiwiY2xpZW50Il0sInNvdXJjZXMiOlsiL1VzZXJzL3l1ZGV5b3UvRGVza3RvcC9zbS9zb2Npb21pbnQvc3JjL3Byb3ZpZGVycy9XZWIzUHJvdmlkZXIudHN4Il0sInNvdXJjZXNDb250ZW50IjpbIid1c2UgY2xpZW50JztcblxuaW1wb3J0IHsgUmVhY3ROb2RlIH0gZnJvbSAncmVhY3QnO1xuaW1wb3J0IHsgV2FnbWlQcm92aWRlciB9IGZyb20gJ3dhZ21pJztcbmltcG9ydCB7IFF1ZXJ5Q2xpZW50LCBRdWVyeUNsaWVudFByb3ZpZGVyIH0gZnJvbSAnQHRhbnN0YWNrL3JlYWN0LXF1ZXJ5JztcbmltcG9ydCB7IGNvbmZpZyB9IGZyb20gJ0AvY29uZmlnL3dhZ21pJztcblxuLy8g5Yib5bu65LiA5Liq56iz5a6a55qEUmVhY3QgUXVlcnnlrqLmiLfnq6/lrp7kvotcbmNvbnN0IHF1ZXJ5Q2xpZW50ID0gbmV3IFF1ZXJ5Q2xpZW50KHtcbiAgZGVmYXVsdE9wdGlvbnM6IHtcbiAgICBxdWVyaWVzOiB7XG4gICAgICByZWZldGNoT25XaW5kb3dGb2N1czogZmFsc2UsXG4gICAgICBzdGFsZVRpbWU6IDEwMDAgKiA2MCAqIDIsIC8vIDLliIbpkp9cbiAgICAgIHJldHJ5OiAxLCAvLyDlh4/lsJHph43or5XmrKHmlbBcbiAgICAgIGdjVGltZTogMTAwMCAqIDYwICogMTAsIC8vIDEw5YiG6ZKf57yT5a2YXG4gICAgfSxcbiAgfSxcbn0pO1xuXG5pbnRlcmZhY2UgV2ViM1Byb3ZpZGVyUHJvcHMge1xuICBjaGlsZHJlbjogUmVhY3ROb2RlO1xufVxuXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBXZWIzUHJvdmlkZXIoeyBjaGlsZHJlbiB9OiBXZWIzUHJvdmlkZXJQcm9wcykge1xuICByZXR1cm4gKFxuICAgIDxXYWdtaVByb3ZpZGVyIGNvbmZpZz17Y29uZmlnfT5cbiAgICAgIDxRdWVyeUNsaWVudFByb3ZpZGVyIGNsaWVudD17cXVlcnlDbGllbnR9PlxuICAgICAgICB7Y2hpbGRyZW59XG4gICAgICA8L1F1ZXJ5Q2xpZW50UHJvdmlkZXI+XG4gICAgPC9XYWdtaVByb3ZpZGVyPlxuICApO1xufVxuIl0sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0lBT0E7SUFBQUEsYUFBQSxZQUFBQSxDQUFBO01BQUEsT0FBQUMsY0FBQTtJQUFBO0VBQUE7RUFBQSxPQUFBQSxjQUFBO0FBQUE7QUFBQUQsYUFBQTtBQUFBQSxhQUFBLEdBQUFFLENBQUE7Ozs7OzsrQkFnQkE7Ozs7OztXQUF3QkMsWUFBQTs7Ozs7Ozs7aUNBcEJNOzs7aUNBQ21COzs7aUNBQzFCO0FBRXZCO0FBQ0EsTUFBTUMsV0FBQTtBQUFBO0FBQUEsQ0FBQUosYUFBQSxHQUFBRSxDQUFBLE9BQWMsSUFBSUcsV0FBQSxDQUFBQyxXQUFXLENBQUM7RUFDbENDLGNBQUEsRUFBZ0I7SUFDZEMsT0FBQSxFQUFTO01BQ1BDLG9CQUFBLEVBQXNCO01BQ3RCQyxTQUFBLEVBQVcsT0FBTyxLQUFLO01BQ3ZCQyxLQUFBLEVBQU87TUFDUEMsTUFBQSxFQUFRLE9BQU8sS0FBSztJQUN0QjtFQUNGO0FBQ0Y7QUFNZSxTQUFTVCxhQUFhO0VBQUVVO0FBQVEsQ0FBcUI7RUFBQTtFQUFBYixhQUFBLEdBQUFjLENBQUE7RUFBQWQsYUFBQSxHQUFBRSxDQUFBO0VBQ2xFLG9CQUNFLElBQUFhLFdBQUEsQ0FBQUMsR0FBQSxFQUFDQyxNQUFBLENBQUFDLGFBQWE7SUFBQ0MsTUFBQSxFQUFRQyxPQUFBLENBQUFELE1BQU07Y0FDM0IsaUJBQUFKLFdBQUEsQ0FBQUMsR0FBQSxFQUFDWCxXQUFBLENBQUFnQixtQkFBbUI7TUFBQ0MsTUFBQSxFQUFRbEIsV0FBQTtnQkFDMUJTOzs7QUFJVCIsImlnbm9yZUxpc3QiOltdfQ==

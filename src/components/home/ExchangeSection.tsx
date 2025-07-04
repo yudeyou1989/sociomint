@@ -3,12 +3,16 @@
 import { useState, useEffect } from 'react';
 import { FaExchangeAlt, FaGasPump } from 'react-icons/fa';
 import { useWallet } from '@/contexts/WalletContext';
-import { 
-  FaArrowDown, 
-  FaArrowUp 
+import {
+  FaArrowDown,
+  FaArrowUp
 } from 'react-icons/fa';
+import { InputValidator, SecurityConfig } from '@/lib/security';
+import { ExchangeSectionProps } from '@/types/components';
+import { ExchangeStats } from '@/types/global';
 
-export default function ExchangeSection() {
+export default function ExchangeSection(props: Partial<ExchangeSectionProps> = {}) {
+  const { stats, onExchange, isLoading: externalLoading, className, ...otherProps } = props;
   const { wallet, updateBalances } = useWallet();
 
   // 输入值
@@ -39,7 +43,7 @@ export default function ExchangeSection() {
     // 每30秒更新一次汇率
     const interval = setInterval(fetchExchangeRate, 30000);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(interval as NodeJS.Timeout);
   }, []);
 
   // 根据输入计算输出
@@ -58,8 +62,14 @@ export default function ExchangeSection() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
-    // 只允许数字和小数点
-    if (value === '' || /^\d*\.?\d*$/.test(value)) {
+    // 使用安全的输入验证
+    if (value === '' || InputValidator.validateNumber(value)) {
+      // 检查数值范围
+      const numValue = parseFloat(value);
+      if (value !== '' && !InputValidator.validateRange(numValue, SecurityConfig.numberLimits.minAmount, SecurityConfig.numberLimits.maxAmount)) {
+        return; // 超出范围，不更新
+      }
+
       setInputAmount(value);
       setOutputAmount(calculateOutput(value));
     }
@@ -78,7 +88,8 @@ export default function ExchangeSection() {
     }
 
     const bnbAmount = parseFloat(inputAmount);
-    if (bnbAmount > wallet.balance.bnb) {
+    const currentBnbBalance = wallet.balance ? parseFloat(wallet.balance.bnb) : 0;
+    if (bnbAmount > currentBnbBalance) {
       alert('BNB余额不足');
       return;
     }
@@ -93,11 +104,8 @@ export default function ExchangeSection() {
       // 计算SM数量
       const smAmount = bnbAmount * exchangeRate;
 
-      // 更新余额
-      updateBalances({
-        bnb: wallet.balance.bnb - bnbAmount,
-        sm: wallet.balance.sm + smAmount,
-      });
+      // 更新余额 - 调用钱包服务重新获取余额
+      await updateBalances();
 
       // 重置表单
       setInputAmount('');
@@ -117,16 +125,19 @@ export default function ExchangeSection() {
 
   // 最大可兑换金额
   const handleMaxAmount = () => {
-    if (wallet.isConnected && wallet.balance.bnb > 0) {
-      // 保留4位小数
-      const maxAmount = Math.max(0, wallet.balance.bnb).toFixed(4);
-      setInputAmount(maxAmount);
-      setOutputAmount(calculateOutput(maxAmount));
+    if (wallet.isConnected && wallet.balance) {
+      const bnbBalance = parseFloat(wallet.balance.bnb);
+      if (bnbBalance > 0) {
+        // 保留4位小数
+        const maxAmount = Math.max(0, bnbBalance).toFixed(4);
+        setInputAmount(maxAmount);
+        setOutputAmount(calculateOutput(maxAmount));
+      }
     }
   };
 
   return (
-    <div className="glass-card p-6">
+    <div className={`glass-card p-6 ${className || ''}`} {...otherProps}>
       <h2 className="text-2xl font-bold mb-6">BNB兑换SM</h2>
 
       {/* 汇率显示 */}
@@ -146,9 +157,9 @@ export default function ExchangeSection() {
         <div className="bg-black/40 p-4 rounded-lg border border-gray-800">
           <div className="flex justify-between mb-2">
             <label className="text-sm text-gray-400">从</label>
-            {wallet.isConnected && (
+            {wallet.isConnected && wallet.balance && (
               <div className="text-xs text-gray-400">
-                余额: {wallet.balance.bnb.toFixed(4)} BNB
+                余额: {parseFloat(wallet.balance.bnb).toFixed(4)} BNB
                 <button
                   onClick={handleMaxAmount}
                   className="ml-2 text-primary text-xs hover:underline"
@@ -181,9 +192,9 @@ export default function ExchangeSection() {
         <div className="bg-black/40 p-4 rounded-lg border border-gray-800">
           <div className="flex justify-between mb-2">
             <label className="text-sm text-gray-400">至</label>
-            {wallet.isConnected && (
+            {wallet.isConnected && wallet.balance && wallet.balance.sm && (
               <div className="text-xs text-gray-400">
-                余额: {wallet.balance.sm.toFixed(2)} SM
+                余额: {parseFloat(wallet.balance.sm).toFixed(2)} SM
               </div>
             )}
           </div>

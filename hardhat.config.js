@@ -8,7 +8,17 @@ require("@nomicfoundation/hardhat-chai-matchers");
 // 从环境变量获取配置
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const BSC_TESTNET_RPC_URL = process.env.BSC_TESTNET_RPC_URL || "https://bsc-testnet.publicnode.com";
-const BSC_MAINNET_RPC_URL = process.env.BSC_MAINNET_RPC_URL || "https://bsc-dataseed.binance.org/";
+// 多个BSC主网RPC端点，提高连接成功率
+const BSC_MAINNET_RPCS = [
+  "https://bsc-dataseed1.binance.org/",
+  "https://bsc-dataseed2.binance.org/",
+  "https://bsc-dataseed3.binance.org/",
+  "https://bsc-dataseed4.binance.org/",
+  "https://rpc.ankr.com/bsc",
+  "https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3",
+  "https://bsc.publicnode.com"
+];
+const BSC_MAINNET_RPC_URL = process.env.BSC_MAINNET_RPC_URL || BSC_MAINNET_RPCS[0];
 const BSCSCAN_API_KEY = process.env.BSCSCAN_API_KEY;
 
 // 检查必要的环境变量

@@ -5,9 +5,44 @@
 
 import { createClient } from '@supabase/supabase-js';
 
+// 创建一个可链式调用的Mock查询构建器
+const createMockQueryBuilder = () => {
+  const mockQueryBuilder: any = {
+    select: jest.fn(),
+    insert: jest.fn(),
+    update: jest.fn(),
+    delete: jest.fn(),
+    eq: jest.fn(),
+    neq: jest.fn(),
+    gt: jest.fn(),
+    lt: jest.fn(),
+    gte: jest.fn(),
+    lte: jest.fn(),
+    like: jest.fn(),
+    ilike: jest.fn(),
+    in: jest.fn(),
+    order: jest.fn(),
+    limit: jest.fn(),
+    range: jest.fn(),
+    single: jest.fn().mockResolvedValue({ data: null, error: null }),
+    maybeSingle: jest.fn().mockResolvedValue({ data: null, error: null }),
+  };
+
+  // 设置链式调用
+  Object.keys(mockQueryBuilder).forEach(key => {
+    if (!['single', 'maybeSingle'].includes(key)) {
+      mockQueryBuilder[key].mockReturnValue(mockQueryBuilder);
+    }
+  });
+
+  return mockQueryBuilder;
+};
+
+const mockQueryBuilder = createMockQueryBuilder();
+
 // 模拟 Supabase 客户端
 const mockSupabaseClient = {
-  from: jest.fn(),
+  from: jest.fn().mockImplementation(() => createMockQueryBuilder()),
   auth: {
     signUp: jest.fn(),
     signIn: jest.fn(),
@@ -19,28 +54,6 @@ const mockSupabaseClient = {
     from: jest.fn(),
   },
   rpc: jest.fn(),
-};
-
-// 模拟 Supabase 查询构建器
-const mockQueryBuilder = {
-  select: jest.fn().mockReturnThis(),
-  insert: jest.fn().mockReturnThis(),
-  update: jest.fn().mockReturnThis(),
-  delete: jest.fn().mockReturnThis(),
-  eq: jest.fn().mockReturnThis(),
-  neq: jest.fn().mockReturnThis(),
-  gt: jest.fn().mockReturnThis(),
-  lt: jest.fn().mockReturnThis(),
-  gte: jest.fn().mockReturnThis(),
-  lte: jest.fn().mockReturnThis(),
-  like: jest.fn().mockReturnThis(),
-  ilike: jest.fn().mockReturnThis(),
-  in: jest.fn().mockReturnThis(),
-  order: jest.fn().mockReturnThis(),
-  limit: jest.fn().mockReturnThis(),
-  range: jest.fn().mockReturnThis(),
-  single: jest.fn().mockResolvedValue({ data: null, error: null }),
-  maybeSingle: jest.fn().mockResolvedValue({ data: null, error: null }),
 };
 
 // 模拟 createClient

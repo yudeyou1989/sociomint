@@ -9,6 +9,17 @@ const createJestConfig = nextJest({
 const customJestConfig = {
   // 添加更多自定义配置
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+
+  // 解决BigInt序列化问题
+  globals: {
+    'ts-jest': {
+      tsconfig: {
+        compilerOptions: {
+          allowJs: true
+        }
+      }
+    }
+  },
   moduleNameMapper: {
     // 处理模块别名
     '^@/(.*)$': '<rootDir>/src/$1',

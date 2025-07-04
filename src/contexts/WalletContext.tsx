@@ -5,6 +5,7 @@ import { ethers, formatEther } from 'ethers';
 import { WalletType, getConnectedWalletType, disconnectWallet as disconnectWalletService } from '@/services/walletService';
 import contractService from '@/services/contractService';
 import Logger from '@/services/logger';
+import config from '@/lib/config';
 
 // 创建日志记录器
 const logger = Logger.createContextLogger({ component: 'WalletContext' });
@@ -17,6 +18,7 @@ export interface WalletState {
   balance?: {
     bnb: string;
     sm?: string;
+    flowers?: string;
   };
   network?: {
     id: number;

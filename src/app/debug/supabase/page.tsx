@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { checkSupabaseConnection, testSupabaseQuery } from '@/lib/supabaseUtils';
-import { supabase } from '@/lib/supabaseClient';
+import { supabase } from '@/lib/supabase';
 
 export default function SupabaseDebugPage() {
   const [connectionStatus, setConnectionStatus] = useState<{ connected: boolean; error?: string } | null>(null);

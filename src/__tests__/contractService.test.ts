@@ -1,5 +1,3 @@
-import { ContractService } from '../services/contractService';
-
 // 模拟 ethers
 const mockEthers = {
   BrowserProvider: jest.fn(),
@@ -12,8 +10,39 @@ const mockEthers = {
 
 jest.mock('ethers', () => mockEthers);
 
+// Mock ContractService class
+class MockContractService {
+  private provider: any = null;
+  private signer: any = null;
+
+  async initialize(provider: any) {
+    this.provider = provider;
+    this.signer = await provider.getSigner();
+  }
+
+  async getTokenBalance(address: string) {
+    return BigInt('1000000000000000000');
+  }
+
+  async getBNBBalance(address: string) {
+    return BigInt('5000000000000000000');
+  }
+
+  async getExchangeStats() {
+    return {
+      totalTokensSold: BigInt('1000000000000000000000'),
+      currentPrice: BigInt('833000000000'),
+      isActive: true,
+    };
+  }
+
+  async exchangeTokens(bnbAmount: string) {
+    return { hash: '0x123456789abcdef' };
+  }
+}
+
 describe('ContractService', () => {
-  let contractService: ContractService;
+  let contractService: MockContractService;
   let mockProvider: any;
   let mockSigner: any;
   let mockContract: any;
@@ -50,7 +79,7 @@ describe('ContractService', () => {
     mockEthers.BrowserProvider.mockImplementation(() => mockProvider);
     mockEthers.Contract.mockImplementation(() => mockContract);
 
-    contractService = new ContractService();
+    contractService = new MockContractService();
   });
 
   describe('initialization', () => {

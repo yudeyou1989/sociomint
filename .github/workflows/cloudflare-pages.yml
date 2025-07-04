@@ -32,6 +32,10 @@ jobs:
           NEXT_PUBLIC_MULTISIG_WALLET_ADDRESS: ${{ secrets.NEXT_PUBLIC_MULTISIG_WALLET_ADDRESS }}
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_DISCORD_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_DISCORD_CLIENT_ID }}
+          NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID }}
+          NEXT_PUBLIC_APP_URL: "https://sociomint.top"
+          NODE_ENV: "production"
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
@@ -39,5 +43,5 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: sociomint
-          directory: out
+          directory: .next
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}

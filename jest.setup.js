@@ -1,19 +1,27 @@
 // 导入测试库
 import '@testing-library/jest-dom';
 
+// 解决BigInt序列化问题
+BigInt.prototype.toJSON = function() {
+  return this.toString();
+};
+
 // 全局模拟
 global.fetch = jest.fn();
 
-// 模拟 window.ethereum
-Object.defineProperty(window, 'ethereum', {
-  writable: true,
-  value: {
-    request: jest.fn(),
-    on: jest.fn(),
-    removeListener: jest.fn(),
-    isMetaMask: true,
-  },
-});
+// 模拟 window.ethereum (只在未定义时创建)
+if (!window.ethereum) {
+  Object.defineProperty(window, 'ethereum', {
+    writable: true,
+    configurable: true,
+    value: {
+      request: jest.fn(),
+      on: jest.fn(),
+      removeListener: jest.fn(),
+      isMetaMask: true,
+    },
+  });
+}
 
 // 模拟 ResizeObserver
 global.ResizeObserver = jest.fn().mockImplementation(() => ({

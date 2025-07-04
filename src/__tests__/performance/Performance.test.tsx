@@ -307,28 +307,28 @@ describe('Performance Tests', () => {
   describe('Memory Performance', () => {
     it('should not cause memory leaks with repeated renders', () => {
       // 测试重复渲染是否会导致内存泄漏
-      const { unmount } = render(<LargeDataComponent itemCount={100} />);
-      
-      // 记录初始内存使用（如果可用）
       const initialMemory = (performance as any).memory?.usedJSHeapSize || 0;
-      
-      // 多次重新渲染
+
+      // 多次渲染和卸载组件
       for (let i = 0; i < 10; i++) {
+        const { unmount } = render(<LargeDataComponent itemCount={100} />);
         unmount();
-        render(<LargeDataComponent itemCount={100} />);
       }
-      
+
+      // 最后一次渲染用于检查
+      const { container } = render(<LargeDataComponent itemCount={100} />);
+
       // 检查内存使用是否在合理范围内
       const finalMemory = (performance as any).memory?.usedJSHeapSize || 0;
-      
+
       if (initialMemory > 0 && finalMemory > 0) {
         const memoryIncrease = finalMemory - initialMemory;
         // 内存增长应该在合理范围内（比如不超过10MB）
         expect(memoryIncrease).toBeLessThan(10 * 1024 * 1024);
       }
-      
+
       // 至少确保组件能正常渲染
-      expect(screen.getByTestId('large-data-component')).toBeInTheDocument();
+      expect(container.querySelector('[data-testid="large-data-component"]')).toBeInTheDocument();
     });
 
     it('should handle component unmounting cleanly', () => {

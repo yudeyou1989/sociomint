@@ -1,0 +1,317 @@
+0c4f9c6d21d467641c05ea68e0948210
+"use strict";
+
+/* istanbul ignore next */
+function cov_xxn29iajs() {
+  var path = "/Users/yudeyou/Desktop/sm/sociomint/src/components/tasks/BoxCard.tsx";
+  var hash = "88fc2ea87f6445cfe41dbfac2438a8fb4cfea963";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/yudeyou/Desktop/sm/sociomint/src/components/tasks/BoxCard.tsx",
+    statementMap: {
+      "0": {
+        start: {
+          line: 2,
+          column: 0
+        },
+        end: {
+          line: 4,
+          column: 3
+        }
+      },
+      "1": {
+        start: {
+          line: 5,
+          column: 0
+        },
+        end: {
+          line: 10,
+          column: 3
+        }
+      },
+      "2": {
+        start: {
+          line: 8,
+          column: 8
+        },
+        end: {
+          line: 8,
+          column: 24
+        }
+      },
+      "3": {
+        start: {
+          line: 11,
+          column: 20
+        },
+        end: {
+          line: 11,
+          column: 48
+        }
+      },
+      "4": {
+        start: {
+          line: 12,
+          column: 12
+        },
+        end: {
+          line: 12,
+          column: 37
+        }
+      },
+      "5": {
+        start: {
+          line: 13,
+          column: 12
+        },
+        end: {
+          line: 13,
+          column: 37
+        }
+      },
+      "6": {
+        start: {
+          line: 14,
+          column: 16
+        },
+        end: {
+          line: 115,
+          column: 1
+        }
+      },
+      "7": {
+        start: {
+          line: 16,
+          column: 29
+        },
+        end: {
+          line: 16,
+          column: 52
+        }
+      },
+      "8": {
+        start: {
+          line: 17,
+          column: 4
+        },
+        end: {
+          line: 114,
+          column: 7
+        }
+      },
+      "9": {
+        start: {
+          line: 116,
+          column: 17
+        },
+        end: {
+          line: 116,
+          column: 24
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "(anonymous_0)",
+        decl: {
+          start: {
+            line: 7,
+            column: 9
+          },
+          end: {
+            line: 7,
+            column: 10
+          }
+        },
+        loc: {
+          start: {
+            line: 7,
+            column: 20
+          },
+          end: {
+            line: 9,
+            column: 5
+          }
+        },
+        line: 7
+      },
+      "1": {
+        name: "(anonymous_1)",
+        decl: {
+          start: {
+            line: 14,
+            column: 16
+          },
+          end: {
+            line: 14,
+            column: 17
+          }
+        },
+        loc: {
+          start: {
+            line: 14,
+            column: 61
+          },
+          end: {
+            line: 115,
+            column: 1
+          }
+        },
+        line: 14
+      }
+    },
+    branchMap: {},
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0
+    },
+    b: {},
+    inputSourceMap: {
+      version: 3,
+      sources: ["/Users/yudeyou/Desktop/sm/sociomint/src/components/tasks/BoxCard.tsx"],
+      sourcesContent: ["import { FaTwitter } from 'react-icons/fa';\nimport { RiTreasureMapFill } from 'react-icons/ri';\n\ninterface BoxProps {\n  id: string;\n  hashtag: string;\n  reward: number;\n  remaining: number;\n  total: number;\n}\n\nconst BoxCard = ({ id, hashtag, reward, remaining, total }: BoxProps) => {\n  // \u8BA1\u7B97\u5269\u4F59\u767E\u5206\u6BD4\n  const remainingPercent = (remaining / total) * 100;\n\n  return (\n    <div className=\"tech-card relative overflow-hidden\">\n      {/* \u5E73\u53F0\u6807\u8BC6 */}\n      <div className=\"absolute top-3 right-3 p-1.5 rounded-full bg-gray-800/70\">\n        <FaTwitter className=\"w-5 h-5 text-blue-400\" />\n      </div>\n\n      {/* \u5B9D\u7BB1\u5185\u5BB9 */}\n      <div className=\"flex items-start mb-4\">\n        <div className=\"p-2 rounded-md bg-gray-800/50 mr-3\">\n          <RiTreasureMapFill className=\"w-5 h-5 text-yellow-400\" />\n        </div>\n        <div>\n          <h3 className=\"font-medium\">X \u8BDD\u9898\u5B9D\u7BB1</h3>\n          <p className=\"text-sm text-primary mt-1\">{hashtag}</p>\n        </div>\n      </div>\n\n      {/* \u5956\u52B1\u663E\u793A */}\n      <div className=\"mb-4\">\n        <span className=\"text-sm text-gray-300\">\u5355\u4E2A\u5B9D\u7BB1\u5956\u52B1:</span>\n        <span className=\"ml-2 text-primary font-bold\">{reward}</span>\n        <span className=\"ml-1 text-xs text-gray-400\">\u5C0F\u7EA2\u82B1</span>\n      </div>\n\n      {/* \u8FDB\u5EA6\u6761 */}\n      <div className=\"mb-2\">\n        <div className=\"w-full h-2 bg-gray-800 rounded-full overflow-hidden\">\n          <div\n            className=\"h-full bg-gradient-to-r from-primary to-secondary\"\n            style={{ width: `${remainingPercent}%` }}\n          ></div>\n        </div>\n      </div>\n\n      {/* \u5269\u4F59\u60C5\u51B5 */}\n      <div className=\"flex justify-between text-sm\">\n        <span className=\"text-gray-400\">\n          {remaining}/{total} \u5269\u4F59\n        </span>\n        <span className=\"text-gray-400\">ID: {id.substring(0, 6)}...</span>\n      </div>\n\n      {/* \u64CD\u4F5C\u6309\u94AE */}\n      <div className=\"mt-5 flex space-x-2\">\n        <button className=\"w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 rounded-md transition-colors text-sm\">\n          \u53BB X \u67E5\u770B\n        </button>\n        <button className=\"py-2 px-3 bg-gray-800 hover:bg-gray-700 rounded-md border border-gray-700 hover:border-primary/50 transition-colors text-sm\">\n          \u8BE6\u60C5\n        </button>\n      </div>\n    </div>\n  );\n};\n\nexport default BoxCard;\n"],
+      names: ["BoxCard", "id", "hashtag", "reward", "remaining", "total", "remainingPercent", "div", "className", "FaTwitter", "RiTreasureMapFill", "h3", "p", "span", "style", "width", "substring", "button"],
+      mappings: ";;;;+BAuEA;;;eAAA;;;;oBAvE0B;oBACQ;AAUlC,MAAMA,UAAU,CAAC,EAAEC,EAAE,EAAEC,OAAO,EAAEC,MAAM,EAAEC,SAAS,EAAEC,KAAK,EAAY;IAClE,UAAU;IACV,MAAMC,mBAAmB,AAACF,YAAYC,QAAS;IAE/C,qBACE,sBAACE;QAAIC,WAAU;;0BAEb,qBAACD;gBAAIC,WAAU;0BACb,cAAA,qBAACC,aAAS;oBAACD,WAAU;;;0BAIvB,sBAACD;gBAAIC,WAAU;;kCACb,qBAACD;wBAAIC,WAAU;kCACb,cAAA,qBAACE,qBAAiB;4BAACF,WAAU;;;kCAE/B,sBAACD;;0CACC,qBAACI;gCAAGH,WAAU;0CAAc;;0CAC5B,qBAACI;gCAAEJ,WAAU;0CAA6BN;;;;;;0BAK9C,sBAACK;gBAAIC,WAAU;;kCACb,qBAACK;wBAAKL,WAAU;kCAAwB;;kCACxC,qBAACK;wBAAKL,WAAU;kCAA+BL;;kCAC/C,qBAACU;wBAAKL,WAAU;kCAA6B;;;;0BAI/C,qBAACD;gBAAIC,WAAU;0BACb,cAAA,qBAACD;oBAAIC,WAAU;8BACb,cAAA,qBAACD;wBACCC,WAAU;wBACVM,OAAO;4BAAEC,OAAO,GAAGT,iBAAiB,CAAC,CAAC;wBAAC;;;;0BAM7C,sBAACC;gBAAIC,WAAU;;kCACb,sBAACK;wBAAKL,WAAU;;4BACbJ;4BAAU;4BAAEC;4BAAM;;;kCAErB,sBAACQ;wBAAKL,WAAU;;4BAAgB;4BAAKP,GAAGe,SAAS,CAAC,GAAG;4BAAG;;;;;0BAI1D,sBAACT;gBAAIC,WAAU;;kCACb,qBAACS;wBAAOT,WAAU;kCAAsF;;kCAGxG,qBAACS;wBAAOT,WAAU;kCAA8H;;;;;;AAMxJ;MAEA,WAAeR"
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "88fc2ea87f6445cfe41dbfac2438a8fb4cfea963"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_xxn29iajs = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_xxn29iajs();
+cov_xxn29iajs().s[0]++;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/* istanbul ignore next */
+cov_xxn29iajs().s[1]++;
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function () {
+    /* istanbul ignore next */
+    cov_xxn29iajs().f[0]++;
+    cov_xxn29iajs().s[2]++;
+    return _default;
+  }
+});
+const _jsxruntime =
+/* istanbul ignore next */
+(cov_xxn29iajs().s[3]++, require("react/jsx-runtime"));
+const _fa =
+/* istanbul ignore next */
+(cov_xxn29iajs().s[4]++, require("react-icons/fa"));
+const _ri =
+/* istanbul ignore next */
+(cov_xxn29iajs().s[5]++, require("react-icons/ri"));
+/* istanbul ignore next */
+cov_xxn29iajs().s[6]++;
+const BoxCard = ({
+  id,
+  hashtag,
+  reward,
+  remaining,
+  total
+}) => {
+  /* istanbul ignore next */
+  cov_xxn29iajs().f[1]++;
+  // 计算剩余百分比
+  const remainingPercent =
+  /* istanbul ignore next */
+  (cov_xxn29iajs().s[7]++, remaining / total * 100);
+  /* istanbul ignore next */
+  cov_xxn29iajs().s[8]++;
+  return /*#__PURE__*/(0, _jsxruntime.jsxs)("div", {
+    className: "tech-card relative overflow-hidden",
+    children: [/*#__PURE__*/(0, _jsxruntime.jsx)("div", {
+      className: "absolute top-3 right-3 p-1.5 rounded-full bg-gray-800/70",
+      children: /*#__PURE__*/(0, _jsxruntime.jsx)(_fa.FaTwitter, {
+        className: "w-5 h-5 text-blue-400"
+      })
+    }), /*#__PURE__*/(0, _jsxruntime.jsxs)("div", {
+      className: "flex items-start mb-4",
+      children: [/*#__PURE__*/(0, _jsxruntime.jsx)("div", {
+        className: "p-2 rounded-md bg-gray-800/50 mr-3",
+        children: /*#__PURE__*/(0, _jsxruntime.jsx)(_ri.RiTreasureMapFill, {
+          className: "w-5 h-5 text-yellow-400"
+        })
+      }), /*#__PURE__*/(0, _jsxruntime.jsxs)("div", {
+        children: [/*#__PURE__*/(0, _jsxruntime.jsx)("h3", {
+          className: "font-medium",
+          children: "X 话题宝箱"
+        }), /*#__PURE__*/(0, _jsxruntime.jsx)("p", {
+          className: "text-sm text-primary mt-1",
+          children: hashtag
+        })]
+      })]
+    }), /*#__PURE__*/(0, _jsxruntime.jsxs)("div", {
+      className: "mb-4",
+      children: [/*#__PURE__*/(0, _jsxruntime.jsx)("span", {
+        className: "text-sm text-gray-300",
+        children: "单个宝箱奖励:"
+      }), /*#__PURE__*/(0, _jsxruntime.jsx)("span", {
+        className: "ml-2 text-primary font-bold",
+        children: reward
+      }), /*#__PURE__*/(0, _jsxruntime.jsx)("span", {
+        className: "ml-1 text-xs text-gray-400",
+        children: "小红花"
+      })]
+    }), /*#__PURE__*/(0, _jsxruntime.jsx)("div", {
+      className: "mb-2",
+      children: /*#__PURE__*/(0, _jsxruntime.jsx)("div", {
+        className: "w-full h-2 bg-gray-800 rounded-full overflow-hidden",
+        children: /*#__PURE__*/(0, _jsxruntime.jsx)("div", {
+          className: "h-full bg-gradient-to-r from-primary to-secondary",
+          style: {
+            width: `${remainingPercent}%`
+          }
+        })
+      })
+    }), /*#__PURE__*/(0, _jsxruntime.jsxs)("div", {
+      className: "flex justify-between text-sm",
+      children: [/*#__PURE__*/(0, _jsxruntime.jsxs)("span", {
+        className: "text-gray-400",
+        children: [remaining, "/", total, " 剩余"]
+      }), /*#__PURE__*/(0, _jsxruntime.jsxs)("span", {
+        className: "text-gray-400",
+        children: ["ID: ", id.substring(0, 6), "..."]
+      })]
+    }), /*#__PURE__*/(0, _jsxruntime.jsxs)("div", {
+      className: "mt-5 flex space-x-2",
+      children: [/*#__PURE__*/(0, _jsxruntime.jsx)("button", {
+        className: "w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 rounded-md transition-colors text-sm",
+        children: "去 X 查看"
+      }), /*#__PURE__*/(0, _jsxruntime.jsx)("button", {
+        className: "py-2 px-3 bg-gray-800 hover:bg-gray-700 rounded-md border border-gray-700 hover:border-primary/50 transition-colors text-sm",
+        children: "详情"
+      })]
+    })]
+  });
+};
+const _default =
+/* istanbul ignore next */
+(cov_xxn29iajs().s[9]++, BoxCard);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfeHhuMjlpYWpzIiwiYWN0dWFsQ292ZXJhZ2UiLCJzIiwiX2RlZmF1bHQiLCJCb3hDYXJkIiwiaWQiLCJoYXNodGFnIiwicmV3YXJkIiwicmVtYWluaW5nIiwidG90YWwiLCJmIiwicmVtYWluaW5nUGVyY2VudCIsIl9qc3hydW50aW1lIiwianN4cyIsImNsYXNzTmFtZSIsImpzeCIsIl9mYSIsIkZhVHdpdHRlciIsIl9yaSIsIlJpVHJlYXN1cmVNYXBGaWxsIiwic3R5bGUiLCJ3aWR0aCIsInN1YnN0cmluZyJdLCJzb3VyY2VzIjpbIi9Vc2Vycy95dWRleW91L0Rlc2t0b3Avc20vc29jaW9taW50L3NyYy9jb21wb25lbnRzL3Rhc2tzL0JveENhcmQudHN4Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEZhVHdpdHRlciB9IGZyb20gJ3JlYWN0LWljb25zL2ZhJztcbmltcG9ydCB7IFJpVHJlYXN1cmVNYXBGaWxsIH0gZnJvbSAncmVhY3QtaWNvbnMvcmknO1xuXG5pbnRlcmZhY2UgQm94UHJvcHMge1xuICBpZDogc3RyaW5nO1xuICBoYXNodGFnOiBzdHJpbmc7XG4gIHJld2FyZDogbnVtYmVyO1xuICByZW1haW5pbmc6IG51bWJlcjtcbiAgdG90YWw6IG51bWJlcjtcbn1cblxuY29uc3QgQm94Q2FyZCA9ICh7IGlkLCBoYXNodGFnLCByZXdhcmQsIHJlbWFpbmluZywgdG90YWwgfTogQm94UHJvcHMpID0+IHtcbiAgLy8g6K6h566X5Ymp5L2Z55m+5YiG5q+UXG4gIGNvbnN0IHJlbWFpbmluZ1BlcmNlbnQgPSAocmVtYWluaW5nIC8gdG90YWwpICogMTAwO1xuXG4gIHJldHVybiAoXG4gICAgPGRpdiBjbGFzc05hbWU9XCJ0ZWNoLWNhcmQgcmVsYXRpdmUgb3ZlcmZsb3ctaGlkZGVuXCI+XG4gICAgICB7Lyog5bmz5Y+w5qCH6K+GICovfVxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJhYnNvbHV0ZSB0b3AtMyByaWdodC0zIHAtMS41IHJvdW5kZWQtZnVsbCBiZy1ncmF5LTgwMC83MFwiPlxuICAgICAgICA8RmFUd2l0dGVyIGNsYXNzTmFtZT1cInctNSBoLTUgdGV4dC1ibHVlLTQwMFwiIC8+XG4gICAgICA8L2Rpdj5cblxuICAgICAgey8qIOWuneeuseWGheWuuSAqL31cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBpdGVtcy1zdGFydCBtYi00XCI+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicC0yIHJvdW5kZWQtbWQgYmctZ3JheS04MDAvNTAgbXItM1wiPlxuICAgICAgICAgIDxSaVRyZWFzdXJlTWFwRmlsbCBjbGFzc05hbWU9XCJ3LTUgaC01IHRleHQteWVsbG93LTQwMFwiIC8+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8ZGl2PlxuICAgICAgICAgIDxoMyBjbGFzc05hbWU9XCJmb250LW1lZGl1bVwiPlgg6K+d6aKY5a6d566xPC9oMz5cbiAgICAgICAgICA8cCBjbGFzc05hbWU9XCJ0ZXh0LXNtIHRleHQtcHJpbWFyeSBtdC0xXCI+e2hhc2h0YWd9PC9wPlxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvZGl2PlxuXG4gICAgICB7Lyog5aWW5Yqx5pi+56S6ICovfVxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJtYi00XCI+XG4gICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInRleHQtc20gdGV4dC1ncmF5LTMwMFwiPuWNleS4quWuneeuseWlluWKsTo8L3NwYW4+XG4gICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cIm1sLTIgdGV4dC1wcmltYXJ5IGZvbnQtYm9sZFwiPntyZXdhcmR9PC9zcGFuPlxuICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJtbC0xIHRleHQteHMgdGV4dC1ncmF5LTQwMFwiPuWwj+e6ouiKsTwvc3Bhbj5cbiAgICAgIDwvZGl2PlxuXG4gICAgICB7Lyog6L+b5bqm5p2hICovfVxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJtYi0yXCI+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidy1mdWxsIGgtMiBiZy1ncmF5LTgwMCByb3VuZGVkLWZ1bGwgb3ZlcmZsb3ctaGlkZGVuXCI+XG4gICAgICAgICAgPGRpdlxuICAgICAgICAgICAgY2xhc3NOYW1lPVwiaC1mdWxsIGJnLWdyYWRpZW50LXRvLXIgZnJvbS1wcmltYXJ5IHRvLXNlY29uZGFyeVwiXG4gICAgICAgICAgICBzdHlsZT17eyB3aWR0aDogYCR7cmVtYWluaW5nUGVyY2VudH0lYCB9fVxuICAgICAgICAgID48L2Rpdj5cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2Rpdj5cblxuICAgICAgey8qIOWJqeS9meaDheWGtSAqL31cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZmxleCBqdXN0aWZ5LWJldHdlZW4gdGV4dC1zbVwiPlxuICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ0ZXh0LWdyYXktNDAwXCI+XG4gICAgICAgICAge3JlbWFpbmluZ30ve3RvdGFsfSDliankvZlcbiAgICAgICAgPC9zcGFuPlxuICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJ0ZXh0LWdyYXktNDAwXCI+SUQ6IHtpZC5zdWJzdHJpbmcoMCwgNil9Li4uPC9zcGFuPlxuICAgICAgPC9kaXY+XG5cbiAgICAgIHsvKiDmk43kvZzmjInpkq4gKi99XG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cIm10LTUgZmxleCBzcGFjZS14LTJcIj5cbiAgICAgICAgPGJ1dHRvbiBjbGFzc05hbWU9XCJ3LWZ1bGwgcHktMiBweC00IGJnLWJsdWUtNjAwIGhvdmVyOmJnLWJsdWUtNzAwIHJvdW5kZWQtbWQgdHJhbnNpdGlvbi1jb2xvcnMgdGV4dC1zbVwiPlxuICAgICAgICAgIOWOuyBYIOafpeeci1xuICAgICAgICA8L2J1dHRvbj5cbiAgICAgICAgPGJ1dHRvbiBjbGFzc05hbWU9XCJweS0yIHB4LTMgYmctZ3JheS04MDAgaG92ZXI6YmctZ3JheS03MDAgcm91bmRlZC1tZCBib3JkZXIgYm9yZGVyLWdyYXktNzAwIGhvdmVyOmJvcmRlci1wcmltYXJ5LzUwIHRyYW5zaXRpb24tY29sb3JzIHRleHQtc21cIj5cbiAgICAgICAgICDor6bmg4VcbiAgICAgICAgPC9idXR0b24+XG4gICAgICA8L2Rpdj5cbiAgICA8L2Rpdj5cbiAgKTtcbn07XG5cbmV4cG9ydCBkZWZhdWx0IEJveENhcmQ7XG4iXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7SUFhUTtJQUFBQSxhQUFBLFlBQUFBLENBQUE7TUFBQSxPQUFBQyxjQUFBO0lBQUE7RUFBQTtFQUFBLE9BQUFBLGNBQUE7QUFBQTtBQUFBRCxhQUFBO0FBQUFBLGFBQUEsR0FBQUUsQ0FBQTs7Ozs7OytCQTBEUjs7Ozs7O1dBQUFDLFFBQUE7Ozs7Ozs7O2lDQXZFMEI7OztpQ0FDUTtBQUFBO0FBQUFILGFBQUEsR0FBQUUsQ0FBQTtBQVVsQyxNQUFNRSxPQUFBLEdBQVVBLENBQUM7RUFBRUMsRUFBRTtFQUFFQyxPQUFPO0VBQUVDLE1BQU07RUFBRUMsU0FBUztFQUFFQztBQUFLLENBQVk7RUFBQTtFQUFBVCxhQUFBLEdBQUFVLENBQUE7RUFDbEU7RUFDQSxNQUFNQyxnQkFBQTtFQUFBO0VBQUEsQ0FBQVgsYUFBQSxHQUFBRSxDQUFBLE9BQW1CTSxTQUFDLEdBQVlDLEtBQUEsR0FBUztFQUFBO0VBQUFULGFBQUEsR0FBQUUsQ0FBQTtFQUUvQyxvQkFDRSxJQUFBVSxXQUFBLENBQUFDLElBQUEsRUFBQztJQUFJQyxTQUFBLEVBQVU7NEJBRWIsSUFBQUYsV0FBQSxDQUFBRyxHQUFBLEVBQUM7TUFBSUQsU0FBQSxFQUFVO2dCQUNiLGlCQUFBRixXQUFBLENBQUFHLEdBQUEsRUFBQ0MsR0FBQSxDQUFBQyxTQUFTO1FBQUNILFNBQUEsRUFBVTs7cUJBSXZCLElBQUFGLFdBQUEsQ0FBQUMsSUFBQSxFQUFDO01BQUlDLFNBQUEsRUFBVTs4QkFDYixJQUFBRixXQUFBLENBQUFHLEdBQUEsRUFBQztRQUFJRCxTQUFBLEVBQVU7a0JBQ2IsaUJBQUFGLFdBQUEsQ0FBQUcsR0FBQSxFQUFDRyxHQUFBLENBQUFDLGlCQUFpQjtVQUFDTCxTQUFBLEVBQVU7O3VCQUUvQixJQUFBRixXQUFBLENBQUFDLElBQUEsRUFBQztnQ0FDQyxJQUFBRCxXQUFBLENBQUFHLEdBQUEsRUFBQztVQUFHRCxTQUFBLEVBQVU7b0JBQWM7eUJBQzVCLElBQUFGLFdBQUEsQ0FBQUcsR0FBQSxFQUFDO1VBQUVELFNBQUEsRUFBVTtvQkFBNkJSOzs7cUJBSzlDLElBQUFNLFdBQUEsQ0FBQUMsSUFBQSxFQUFDO01BQUlDLFNBQUEsRUFBVTs4QkFDYixJQUFBRixXQUFBLENBQUFHLEdBQUEsRUFBQztRQUFLRCxTQUFBLEVBQVU7a0JBQXdCO3VCQUN4QyxJQUFBRixXQUFBLENBQUFHLEdBQUEsRUFBQztRQUFLRCxTQUFBLEVBQVU7a0JBQStCUDt1QkFDL0MsSUFBQUssV0FBQSxDQUFBRyxHQUFBLEVBQUM7UUFBS0QsU0FBQSxFQUFVO2tCQUE2Qjs7cUJBSS9DLElBQUFGLFdBQUEsQ0FBQUcsR0FBQSxFQUFDO01BQUlELFNBQUEsRUFBVTtnQkFDYixpQkFBQUYsV0FBQSxDQUFBRyxHQUFBLEVBQUM7UUFBSUQsU0FBQSxFQUFVO2tCQUNiLGlCQUFBRixXQUFBLENBQUFHLEdBQUEsRUFBQztVQUNDRCxTQUFBLEVBQVU7VUFDVk0sS0FBQSxFQUFPO1lBQUVDLEtBQUEsRUFBTyxHQUFHVixnQkFBQTtVQUFvQjs7O3FCQU03QyxJQUFBQyxXQUFBLENBQUFDLElBQUEsRUFBQztNQUFJQyxTQUFBLEVBQVU7OEJBQ2IsSUFBQUYsV0FBQSxDQUFBQyxJQUFBLEVBQUM7UUFBS0MsU0FBQSxFQUFVO21CQUNiTixTQUFBLEVBQVUsS0FBRUMsS0FBQSxFQUFNO3VCQUVyQixJQUFBRyxXQUFBLENBQUFDLElBQUEsRUFBQztRQUFLQyxTQUFBLEVBQVU7bUJBQWdCLFFBQUtULEVBQUEsQ0FBR2lCLFNBQVMsQ0FBQyxHQUFHLElBQUc7O3FCQUkxRCxJQUFBVixXQUFBLENBQUFDLElBQUEsRUFBQztNQUFJQyxTQUFBLEVBQVU7OEJBQ2IsSUFBQUYsV0FBQSxDQUFBRyxHQUFBLEVBQUM7UUFBT0QsU0FBQSxFQUFVO2tCQUFzRjt1QkFHeEcsSUFBQUYsV0FBQSxDQUFBRyxHQUFBLEVBQUM7UUFBT0QsU0FBQSxFQUFVO2tCQUE4SDs7OztBQU14SjtNQUVBWCxRQUFBO0FBQUE7QUFBQSxDQUFBSCxhQUFBLEdBQUFFLENBQUEsT0FBZUUsT0FBQSIsImlnbm9yZUxpc3QiOltdfQ==

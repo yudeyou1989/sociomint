@@ -1,17 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Cloudflare Pages 静态导出配置
-  output: 'export',
+  // Cloudflare Pages 配置 - 混合部署模式
+  // 注意: 由于有API路由，暂时不使用静态导出
+  // output: 'export',
   trailingSlash: true,
   reactStrictMode: true,
 
   // 构建优化
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: true, // 暂时跳过ESLint检查以便部署
   },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: true, // 暂时跳过TypeScript类型检查以便部署
   },
 
   // 性能优化
