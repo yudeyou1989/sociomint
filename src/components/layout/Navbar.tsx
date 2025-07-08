@@ -14,7 +14,7 @@ import { useAccount } from 'wagmi';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { t, currentLanguage } = useLanguage();
+  const { t, locale } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const { address, isConnected } = useAccount();
 

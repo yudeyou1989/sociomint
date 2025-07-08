@@ -3,13 +3,8 @@
 import { useState, useEffect } from 'react';
 import { FaExchangeAlt, FaGasPump } from 'react-icons/fa';
 import { useWallet } from '@/contexts/WalletContext';
-import {
-  FaArrowDown,
-  FaArrowUp
-} from 'react-icons/fa';
 import { InputValidator, SecurityConfig } from '@/lib/security';
 import { ExchangeSectionProps } from '@/types/components';
-import { ExchangeStats } from '@/types/global';
 
 export default function ExchangeSection(props: Partial<ExchangeSectionProps> = {}) {
   const { stats, onExchange, isLoading: externalLoading, className, ...otherProps } = props;
@@ -40,8 +35,12 @@ export default function ExchangeSection(props: Partial<ExchangeSectionProps> = {
     };
 
     fetchExchangeRate();
-    // 每30秒更新一次汇率
-    const interval = setInterval(fetchExchangeRate, 30000);
+    // 减少更新频率，避免性能问题
+    const interval = setInterval(() => {
+      if (document.visibilityState === 'visible') {
+        fetchExchangeRate();
+      }
+    }, 120000); // 从30秒改为2分钟更新一次
 
     return () => clearInterval(interval as NodeJS.Timeout);
   }, []);

@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import { injected } from '@wagmi/connectors';
 import { useSMToken } from '../../hooks/useSMToken';
 import { useSMTokenExchange } from '../../hooks/useSMTokenExchange';
+import { LazyTokenExchange } from '@/components/common/LazyComponents';
 
 export default function ExchangePage() {
   const { address, isConnected } = useAccount();

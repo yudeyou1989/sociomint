@@ -5,9 +5,31 @@
  * 整合了simpleWalletService和walletService的功能
  */
 
-import WalletConnectProvider from '@walletconnect/web3-provider';
-import { EthereumProvider } from '@walletconnect/ethereum-provider';
 import Logger from './logger';
+
+// 动态导入钱包连接库以避免SSR问题
+let WalletConnectProvider: any = null;
+let EthereumProvider: any = null;
+
+// 检查是否在浏览器环境
+const isBrowser = typeof window !== 'undefined';
+
+// 动态加载钱包连接库
+const loadWalletConnectLibs = async () => {
+  if (!isBrowser || WalletConnectProvider) return;
+
+  try {
+    const [wcProvider, ethProvider] = await Promise.all([
+      import('@walletconnect/web3-provider'),
+      import('@walletconnect/ethereum-provider')
+    ]);
+
+    WalletConnectProvider = wcProvider.default;
+    EthereumProvider = ethProvider.EthereumProvider;
+  } catch (error) {
+    logger.error('加载WalletConnect库失败:', error);
+  }
+};
 
 // 创建日志记录器
 const logger = Logger.createContextLogger({ component: 'WalletService' });
@@ -57,12 +79,9 @@ const NETWORKS: NetworkInfo[] = [
 let walletConnectProvider: WalletConnectProvider | null = null;
 let ethereumProvider: any = null; // 使用any类型暂时避开类型错误
 
-// 检查是否在浏览器环境
-export const isBrowser = () => typeof window !== 'undefined';
-
 // 安全地访问 window.ethereum
 const getEthereum = () => {
-  if (isBrowser() && typeof window.ethereum !== 'undefined') {
+  if (isBrowser && typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
     return window.ethereum;
   }
   return null;
@@ -76,7 +95,7 @@ export const hasEthereum = (): boolean => {
 // 检查钱包是否安装
 export const isWalletInstalled = (type: WalletType): boolean => {
   try {
-    if (!isBrowser()) return false;
+    if (!isBrowser) return false;
 
     switch (type) {
       case 'metamask':
@@ -318,8 +337,9 @@ export async function connectTokenPocket(callbacks?: WalletCallbacks): Promise<{
 export async function connectWalletConnectV2(callbacks?: WalletCallbacks): Promise<{ address: string; chainId: number } | null> {
   try {
     // 项目ID从环境变量获取
-    const projectId = process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID;
+    const projectId = process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
     if (!projectId) {
+      console.error('WalletConnect项目ID未配置，请检查环境变量 NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID');
       throw new Error('未配置WalletConnect项目ID');
     }
 
@@ -349,10 +369,45 @@ export async function connectWalletConnectV2(callbacks?: WalletCallbacks): Promi
         themeMode: 'dark',
         themeVariables: {
           '--wcm-z-index': '99999999', // 确保QR码模态框在最上层
-          '--wcm-font-family': 'sans-serif',
+          '--wcm-font-family': '"Inter", system-ui, sans-serif',
           '--wcm-background-color': '#1a1a1a',
           '--wcm-accent-color': '#0de5ff',
+          '--wcm-text-color': '#ffffff',
+          '--wcm-border-radius-master': '12px',
         },
+        explorerRecommendedWalletIds: [
+          'c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96', // MetaMask
+          'fd20dc426fb37566d803205b19bbc1d4096b248ac04548e3cfb6b3a38bd033aa', // Coinbase
+          '4622a2b2d6af1c9844944291e5e7351a6aa24cd7b23099efac1b2fd875da31a0', // Trust Wallet
+        ],
+        mobileWallets: [
+          {
+            id: 'c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96',
+            name: 'MetaMask',
+            links: {
+              native: 'metamask://',
+              universal: 'https://metamask.app.link'
+            }
+          },
+          {
+            id: 'fd20dc426fb37566d803205b19bbc1d4096b248ac04548e3cfb6b3a38bd033aa',
+            name: 'Coinbase Wallet',
+            links: {
+              native: 'cbwallet://',
+              universal: 'https://go.cb-w.com'
+            }
+          }
+        ],
+        desktopWallets: [
+          {
+            id: 'c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96',
+            name: 'MetaMask',
+            links: {
+              native: 'metamask://',
+              universal: 'https://metamask.io'
+            }
+          }
+        ]
       }
     });
 
@@ -499,7 +554,7 @@ export async function connectWalletByType(type: WalletType, callbacks?: WalletCa
 
 // 获取当前连接的钱包类型
 export function getConnectedWalletType(): WalletType | null {
-  if (!isBrowser()) return null;
+  if (!isBrowser) return null;
 
   if (ethereumProvider?.connected || walletConnectProvider?.connected) {
     return 'walletconnect';
@@ -535,7 +590,7 @@ export async function disconnectWallet(walletType?: WalletType): Promise<void> {
   }
 
   // 对于浏览器插件钱包，我们可以清除本地存储
-  if (isBrowser()) {
+  if (isBrowser) {
     localStorage.removeItem('walletconnect');
   }
 }

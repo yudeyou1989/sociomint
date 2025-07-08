@@ -24,17 +24,17 @@ const SMExchangeInfo: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [exchangeStats, setExchangeStats] = useState<any>(null);
   
-  // 初始加载和自动刷新
+  // 初始加载和优化的自动刷新
   useEffect(() => {
     fetchExchangeStats();
 
-    // 设置定时刷新
+    // 减少刷新频率，避免性能问题
     const interval = setInterval(() => {
-      if (wallet.isConnected) {
+      if (wallet.isConnected && document.visibilityState === 'visible') {
         fetchExchangeStats();
         updateBalances();
       }
-    }, 30000); // 30秒刷新一次
+    }, 60000); // 从30秒改为60秒刷新一次
 
     return () => clearInterval(interval as unknown as number);
   }, [wallet.isConnected]);

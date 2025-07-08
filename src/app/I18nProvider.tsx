@@ -24,4 +24,4 @@ export function I18nProvider({ children }: I18nProviderProps) {
       </LanguageProvider>
     </I18nextProvider>
   );
-} 
+}

@@ -19,14 +19,12 @@ import {
   Tooltip
 } from '@mui/material';
 import {
-  Twitter as TwitterIcon,
-  Telegram as TelegramIcon,
-  Discord as DiscordIcon,
   Refresh as RefreshIcon,
   CheckCircle as CheckCircleIcon,
   AccessTime as AccessTimeIcon,
-  FlowerOutlined as FlowerIcon
+  LocalFlorist as FlowerIcon
 } from '@mui/icons-material';
+import { FaTwitter, FaTelegram, FaDiscord } from 'react-icons/fa';
 
 // 创建Supabase客户端
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -35,9 +33,9 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // 平台图标映射
 const platformIcons = {
-  twitter: <TwitterIcon />,
-  telegram: <TelegramIcon />,
-  discord: <DiscordIcon />
+  twitter: <FaTwitter className="text-blue-400" />,
+  telegram: <FaTelegram className="text-cyan-400" />,
+  discord: <FaDiscord className="text-purple-400" />
 };
 
 // 任务类型映射
@@ -303,23 +301,23 @@ const SocialTaskList: React.FC<SocialTaskListProps> = ({ className }) => {
         color={selectedPlatform === 'all' ? 'primary' : 'default'} 
         onClick={() => handlePlatformChange('all')} 
       />
-      <Chip 
-        icon={<TwitterIcon />} 
-        label="Twitter" 
-        color={selectedPlatform === 'twitter' ? 'primary' : 'default'} 
-        onClick={() => handlePlatformChange('twitter')} 
+      <Chip
+        icon={<FaTwitter />}
+        label="Twitter"
+        color={selectedPlatform === 'twitter' ? 'primary' : 'default'}
+        onClick={() => handlePlatformChange('twitter')}
       />
-      <Chip 
-        icon={<TelegramIcon />} 
-        label="Telegram" 
-        color={selectedPlatform === 'telegram' ? 'primary' : 'default'} 
-        onClick={() => handlePlatformChange('telegram')} 
+      <Chip
+        icon={<FaTelegram />}
+        label="Telegram"
+        color={selectedPlatform === 'telegram' ? 'primary' : 'default'}
+        onClick={() => handlePlatformChange('telegram')}
       />
-      <Chip 
-        icon={<DiscordIcon />} 
-        label="Discord" 
-        color={selectedPlatform === 'discord' ? 'primary' : 'default'} 
-        onClick={() => handlePlatformChange('discord')} 
+      <Chip
+        icon={<FaDiscord />}
+        label="Discord"
+        color={selectedPlatform === 'discord' ? 'primary' : 'default'}
+        onClick={() => handlePlatformChange('discord')}
       />
     </Box>
   );

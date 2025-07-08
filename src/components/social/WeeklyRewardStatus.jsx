@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useAccount, useContractWrite, useWaitForTransaction } from 'wagmi';
+import { useAccount, useContractWrite, useWaitForTransactionReceipt } from 'wagmi';
 import { createClient } from '@supabase/supabase-js';
 import { ethers } from 'ethers';
 import { 
@@ -25,7 +25,7 @@ import {
 } from '@mui/material';
 import {
   EmojiEvents as TrophyIcon,
-  FlowerOutlined as FlowerIcon,
+  LocalFlorist as FlowerIcon,
   AccessTime as TimeIcon,
   People as PeopleIcon,
   Leaderboard as LeaderboardIcon,
@@ -73,7 +73,7 @@ const WeeklyRewardStatus = () => {
   const { 
     isLoading: isClaimPending,
     isSuccess: isClaimSuccess
-  } = useWaitForTransaction({
+  } = useWaitForTransactionReceipt({
     hash: claimData?.hash,
   });
 

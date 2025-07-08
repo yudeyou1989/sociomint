@@ -13,8 +13,16 @@
   --w3m-background-color: #000000 !important;
   --w3m-text-color: #ffffff !important;
   --w3m-border-radius-master: 12px !important;
-  --w3m-z-index: 10000000 !important;
+  --w3m-z-index: 99999999 !important;
   --w3m-font-family: "Inter", system-ui, sans-serif !important;
+
+  /* WalletConnect Modal 样式变量 */
+  --wcm-z-index: 99999999 !important;
+  --wcm-accent-color: #0de5ff !important;
+  --wcm-background-color: #1a1a1a !important;
+  --wcm-text-color: #ffffff !important;
+  --wcm-font-family: "Inter", system-ui, sans-serif !important;
+  --wcm-border-radius-master: 12px !important;
 }
 
 body {
@@ -272,4 +280,55 @@ body.walletconnect-qrcode-modal-open {
 /* 禁用页面滚动当钱包模态框打开时 */
 body.w3m-modal-open {
   overflow: hidden !important;
+}
+
+/* WalletConnect 模态框样式修复 */
+wcm-modal,
+w3m-modal,
+.wcm-modal,
+.w3m-modal {
+  z-index: 99999999 !important;
+  position: fixed !important;
+}
+
+/* 确保WalletConnect模态框容器正确显示 */
+wcm-modal-container,
+w3m-modal-container,
+.wcm-modal-container,
+.w3m-modal-container {
+  z-index: 99999999 !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+/* 修复WalletConnect模态框内容显示 */
+wcm-modal-content,
+w3m-modal-content,
+.wcm-modal-content,
+.w3m-modal-content {
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+  width: 100% !important;
+  max-width: 400px !important;
+  margin: auto !important;
+  background: var(--wcm-background-color, #1a1a1a) !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+}
+
+/* 确保所有模态框都有正确的z-index */
+.modal-overlay {
+  z-index: 10000000 !important;
+}
+
+.wallet-modal {
+  z-index: 10000001 !important;
 }

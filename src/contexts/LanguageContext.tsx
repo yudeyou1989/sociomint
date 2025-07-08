@@ -1,7 +1,8 @@
 'use client';
 
-import React, { createContext, useContext, useState } from 'react';
-import { Locale, defaultLocale, getTranslation } from '@/lib/i18n';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Locale, defaultLocale } from '@/lib/i18n';
 
 interface LanguageContextType {
   locale: Locale;
@@ -12,8 +13,27 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocale] = useState<Locale>(defaultLocale);
-  const t = (key: string) => getTranslation(locale, key);
+  const { t, i18n } = useTranslation();
+  const [locale, setLocaleState] = useState<Locale>(defaultLocale);
+
+  // 从localStorage恢复语言设置
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedLocale = localStorage.getItem('language') as Locale;
+      if (savedLocale && (savedLocale === 'en' || savedLocale === 'zh')) {
+        setLocaleState(savedLocale);
+        i18n.changeLanguage(savedLocale);
+      }
+    }
+  }, [i18n]);
+
+  const setLocale = (newLocale: Locale) => {
+    setLocaleState(newLocale);
+    i18n.changeLanguage(newLocale);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('language', newLocale);
+    }
+  };
 
   return (
     <LanguageContext.Provider value={{ locale, setLocale, t }}>

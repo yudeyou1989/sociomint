@@ -11,6 +11,9 @@ import Web3Provider from '@/providers/Web3Provider';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import ErrorMonitoringProvider from '@/providers/ErrorMonitoringProvider';
 import BlockchainMonitorProvider from '@/providers/BlockchainMonitorProvider';
+import WalletConnectFixLite from '@/components/wallet/WalletConnectFixLite';
+import WalletConnectDebug from '@/components/wallet/WalletConnectDebug';
+import PerformanceMonitor from '@/components/debug/PerformanceMonitor';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -36,6 +39,13 @@ export default function RootLayout({
                     <WalletProvider>
                       <PageLayout>{children}</PageLayout>
                       <Toaster position="top-center" />
+                      <WalletConnectFixLite />
+                      {process.env.NODE_ENV === 'development' && (
+                        <>
+                          <WalletConnectDebug />
+                          <PerformanceMonitor />
+                        </>
+                      )}
                     </WalletProvider>
                   </GlobalStateProvider>
                 </BlockchainMonitorProvider>

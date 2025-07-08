@@ -2,10 +2,19 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { ethers, formatEther } from 'ethers';
-import { WalletType, getConnectedWalletType, disconnectWallet as disconnectWalletService } from '@/services/walletService';
 import contractService from '@/services/contractService';
 import Logger from '@/services/logger';
 import config from '@/lib/config';
+
+// 动态导入钱包服务以避免SSR问题
+let walletService: any = null;
+const loadWalletService = async () => {
+  if (typeof window !== 'undefined' && !walletService) {
+    const { getConnectedWalletType, disconnectWallet } = await import('@/services/walletService');
+    walletService = { getConnectedWalletType, disconnectWallet };
+  }
+  return walletService;
+};
 
 // 创建日志记录器
 const logger = Logger.createContextLogger({ component: 'WalletContext' });

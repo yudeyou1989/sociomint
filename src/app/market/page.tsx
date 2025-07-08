@@ -1,10 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { FaGavel, FaUser, FaExchangeAlt } from 'react-icons/fa';
-import MerchantSystem from '@/components/market/MerchantSystem';
-import TradeSystem from '@/components/market/TradeSystem';
-import DisputeSystem from '@/components/market/DisputeSystem';
+import dynamic from 'next/dynamic';
+import { LoadingFallback } from '@/components/common/LazyComponents';
+
+// 懒加载组件
+const MerchantSystem = dynamic(() => import('@/components/market/MerchantSystem'), {
+  loading: () => <LoadingFallback message="加载商户系统..." />,
+  ssr: false
+});
+
+const TradeSystem = dynamic(() => import('@/components/market/TradeSystem'), {
+  loading: () => <LoadingFallback message="加载交易系统..." />,
+  ssr: false
+});
+
+const DisputeSystem = dynamic(() => import('@/components/market/DisputeSystem'), {
+  loading: () => <LoadingFallback message="加载争议系统..." />,
+  ssr: false
+});
 
 // 标签页类型
 type TabType = 'merchant' | 'trade' | 'dispute';

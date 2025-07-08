@@ -34,7 +34,7 @@ import {
   People as PeopleIcon,
   Bolt as BoltIcon,
   EmojiEvents as TrophyIcon,
-  FlowerOutlined as FlowerIcon,
+  LocalFlorist as FlowerIcon,
   TokenOutlined as TokenIcon,
   Close as CloseIcon,
   Refresh as RefreshIcon
