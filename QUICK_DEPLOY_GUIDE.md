@@ -55,6 +55,7 @@ Root directory: (留空)
 #### 2.3 添加环境变量
 在项目设置中添加以下环境变量 (复制粘贴):
 
+**基础配置变量:**
 ```
 NEXT_PUBLIC_SUPABASE_URL=https://kiyyhitozmezuppziomx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtpeXloaXRvem1lenVwcHppb214Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM2OTA4NjgsImV4cCI6MjA1OTI2Njg2OH0.djjofAxZdg7EeRUixmhUomMOyIDkKU0exxhkW_PtBrg
@@ -62,9 +63,48 @@ NEXT_PUBLIC_SM_TOKEN_ADDRESS=0xd7d7dd989642222B6f685aF0220dc0065F489ae0
 NEXT_PUBLIC_SM_TOKEN_EXCHANGE_ADDRESS=0xF0c4729f07d7B2F03E2E2F2feED36386Dc8bFb8E
 NEXT_PUBLIC_RPC_URL=https://data-seed-prebsc-1-s1.binance.org:8545/
 NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=fced525820007c9c024132cf432ffcae
+```
+
+**社交平台配置变量:**
+```
 DISCORD_CLIENT_SECRET=hSBZpLfwQPLJQipTHleiry0PzBADlWBC
 TELEGRAM_BOT_TOKEN=7560632858:AAF_gn5n9I-5NeSI1xnqYGcatVkbXR6Vx6s
+NEXT_PUBLIC_TWITTER_CLIENT_ID=dXNNbndMRU1yZy1zRHpfX3haRTA6MTpjaQ
+TWITTER_CLIENT_SECRET=PGOyGmIuxTMSGwokvojztPOHuFTTMAf3XULy5iChFxJu74YU6f
+TWITTER_ACCESS_TOKEN=1517814177359753216-avZNfz2TQULAOoRnlh4SYIX9bWuhvi
+TWITTER_ACCESS_TOKEN_SECRET=cOIsVBdLgaHjJ63XsNhltGDkpvIFfKl9ZXJvlsX7PXCKo
 ```
+
+> **📝 重要提示**:
+> - 请逐个添加每个环境变量，确保变量名和值完全正确
+> - Twitter配置是必需的，用于社交任务系统和OAuth登录
+> - 所有变量都必须添加，缺少任何一个都可能导致功能异常
+
+#### 2.4 环境变量配置详解
+
+**如何在Cloudflare Pages中添加环境变量:**
+
+1. 在Cloudflare Pages项目页面，点击 "Settings" 标签
+2. 找到 "Environment variables" 部分
+3. 点击 "Add variable" 按钮
+4. 输入变量名和对应的值
+5. 点击 "Save" 保存
+6. 重复步骤3-5，直到添加完所有变量
+
+**各变量说明:**
+- `NEXT_PUBLIC_SUPABASE_*`: 数据库连接配置
+- `NEXT_PUBLIC_SM_TOKEN_*`: 智能合约地址 (BSC测试网)
+- `NEXT_PUBLIC_RPC_URL`: BSC测试网RPC节点
+- `NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID`: 钱包连接服务
+- `DISCORD_CLIENT_SECRET`: Discord OAuth认证
+- `TELEGRAM_BOT_TOKEN`: Telegram机器人API
+- `TWITTER_*`: X平台(Twitter) OAuth和API配置
+
+**⚠️ 常见错误:**
+- 变量名拼写错误 (区分大小写)
+- 值前后有多余空格
+- 缺少必需的变量
+- Token值不完整或过期
 
 ---
 
@@ -91,8 +131,32 @@ git push -f origin main
 ### 问题2: Cloudflare构建失败
 - 在环境变量中添加: `NODE_VERSION=18`
 - 确认构建命令是: `npm run build`
+- 检查所有环境变量是否正确添加
 
-### 问题3: 网站无法访问
+### 问题3: 环境变量配置错误
+**症状**: 网站部署成功但功能异常 (钱包连接失败、社交登录不工作等)
+
+**解决方案**:
+1. 检查变量名是否完全正确 (区分大小写)
+2. 确认所有16个环境变量都已添加
+3. 检查值是否完整，没有多余空格
+4. 重新部署项目: Settings → Functions → Redeploy
+
+**快速检查清单**:
+- [ ] NEXT_PUBLIC_SUPABASE_URL
+- [ ] NEXT_PUBLIC_SUPABASE_ANON_KEY
+- [ ] NEXT_PUBLIC_SM_TOKEN_ADDRESS
+- [ ] NEXT_PUBLIC_SM_TOKEN_EXCHANGE_ADDRESS
+- [ ] NEXT_PUBLIC_RPC_URL
+- [ ] NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID
+- [ ] DISCORD_CLIENT_SECRET
+- [ ] TELEGRAM_BOT_TOKEN
+- [ ] NEXT_PUBLIC_TWITTER_CLIENT_ID
+- [ ] TWITTER_CLIENT_SECRET
+- [ ] TWITTER_ACCESS_TOKEN
+- [ ] TWITTER_ACCESS_TOKEN_SECRET
+
+### 问题4: 网站无法访问
 - 等待DNS传播 (最多24小时)
 - 清除浏览器缓存
 - 检查SSL证书状态
