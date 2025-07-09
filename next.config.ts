@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true, // 暂时跳过TypeScript类型检查以便部署
   },
 
+  // 减少构建文件大小
+  generateBuildId: async () => {
+    return 'build-' + Date.now()
+  },
+
   // 性能优化
   experimental: {
     optimizePackageImports: [
@@ -55,7 +60,7 @@ const nextConfig: NextConfig = {
   },
 
   // Webpack优化
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, dev }) => {
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
@@ -66,30 +71,40 @@ const nextConfig: NextConfig = {
       };
     }
 
-    // 代码分割优化
-    config.optimization.splitChunks = {
-      chunks: 'all',
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-          priority: 10,
+    // 生产环境优化
+    if (!dev) {
+      // 禁用webpack缓存以减少文件大小
+      config.cache = false;
+
+      // 代码分割优化
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        maxSize: 244000, // 限制chunk大小
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+            priority: 10,
+            maxSize: 244000,
+          },
+          mui: {
+            test: /[\\/]node_modules[\\/]@mui[\\/]/,
+            name: 'mui',
+            chunks: 'all',
+            priority: 20,
+            maxSize: 244000,
+          },
+          web3: {
+            test: /[\\/]node_modules[\\/](ethers|@wagmi|viem)[\\/]/,
+            name: 'web3',
+            chunks: 'all',
+            priority: 15,
+            maxSize: 244000,
+          },
         },
-        mui: {
-          test: /[\\/]node_modules[\\/]@mui[\\/]/,
-          name: 'mui',
-          chunks: 'all',
-          priority: 20,
-        },
-        web3: {
-          test: /[\\/]node_modules[\\/](ethers|@wagmi|viem)[\\/]/,
-          name: 'web3',
-          chunks: 'all',
-          priority: 15,
-        },
-      },
-    };
+      };
+    }
 
     return config;
   },
