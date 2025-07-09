@@ -234,3 +234,58 @@ git push -f origin main
 - [ ] 功能测试验证
 
 **🚀 准备好开始了吗？按照上面的步骤，40分钟后您的SocioMint就会正式上线！**
+
+---
+
+## 🛠️ 最新修复状态 (2025-07-09 20:30)
+
+### ✅ 已解决的构建问题
+我们刚刚修复了以下关键问题：
+
+1. **依赖冲突问题**:
+   - ✅ 修复ethers.js版本冲突
+   - ✅ 添加`NPM_FLAGS=--legacy-peer-deps`支持
+
+2. **Next.js配置问题**:
+   - ✅ 移除缺失的@next/bundle-analyzer依赖
+   - ✅ 修复重复的webpack配置
+   - ✅ 简化构建脚本
+
+3. **构建脚本优化**:
+   - ✅ 更新构建流程，使用主package.json
+   - ✅ 添加缓存清理和环境变量设置
+
+### 📦 最新代码版本
+- **Commit Hash**: `a9bc721`
+- **提交信息**: "fix: 修复Next.js配置和构建脚本问题"
+- **推送状态**: ✅ 已成功推送到GitHub
+- **Cloudflare状态**: 🔄 等待自动检测并重新部署
+
+### 🔧 关键修复内容
+如果Cloudflare Pages仍然显示构建错误，请确保：
+
+1. **环境变量设置**:
+   ```
+   NPM_FLAGS=--legacy-peer-deps
+   NODE_VERSION=18
+   NODE_ENV=production
+   ```
+
+2. **构建命令确认**:
+   ```
+   npm run build:prod
+   ```
+
+3. **输出目录确认**:
+   ```
+   .next
+   ```
+
+### 🚨 如果仍有问题
+如果Cloudflare Pages没有自动使用最新代码，请：
+
+1. 在Cloudflare Pages项目中点击"重新部署"
+2. 确认使用的是最新commit `a9bc721`
+3. 检查环境变量是否包含`NPM_FLAGS=--legacy-peer-deps`
+
+**现在的构建应该会成功！** 🎉
