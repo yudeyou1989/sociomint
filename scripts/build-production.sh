@@ -3,24 +3,22 @@
 # 生产环境构建脚本
 echo "🚀 开始生产环境构建..."
 
-# 备份原始package.json
-cp package.json package.json.backup
+# 设置环境变量
+export NODE_ENV=production
 
-# 使用生产环境package.json
-cp package.production.json package.json
+# 清理缓存
+echo "🧹 清理构建缓存..."
+rm -rf .next
+rm -rf node_modules/.cache
 
-# 清理node_modules
-rm -rf node_modules
-
-# 安装生产依赖
-echo "📦 安装生产依赖..."
-npm install --legacy-peer-deps --production
+# 安装依赖（如果需要）
+if [ ! -d "node_modules" ]; then
+  echo "📦 安装项目依赖..."
+  npm install --legacy-peer-deps
+fi
 
 # 构建项目
 echo "🔨 构建项目..."
 npm run build
-
-# 恢复原始package.json
-mv package.json.backup package.json
 
 echo "✅ 生产环境构建完成！"
