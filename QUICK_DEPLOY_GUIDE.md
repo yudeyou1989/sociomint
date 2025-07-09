@@ -47,10 +47,15 @@ git push origin main
 #### 2.2 配置构建设置
 ```
 Framework preset: Next.js
-Build command: npm run build
+Build command: npm run build:prod
 Build output directory: .next
 Root directory: (留空)
+Node.js version: 18
 ```
+
+> **🔧 重要**: 如果构建失败，请在环境变量中添加:
+> - `NODE_VERSION=18`
+> - `NPM_FLAGS=--legacy-peer-deps`
 
 #### 2.3 添加环境变量
 在项目设置中添加以下环境变量 (复制粘贴):
@@ -128,10 +133,24 @@ git remote add origin https://github.com/yudeyou1989/sociomint.git
 git push -f origin main
 ```
 
-### 问题2: Cloudflare构建失败
-- 在环境变量中添加: `NODE_VERSION=18`
-- 确认构建命令是: `npm run build`
-- 检查所有环境变量是否正确添加
+### 问题2: Cloudflare构建失败 - 依赖冲突
+**症状**: 出现 "ERESOLVE could not resolve" 或 "ethers" 版本冲突错误
+
+**解决方案**:
+1. **更新构建设置**:
+   - Build command 改为: `npm run build:prod`
+   - 添加环境变量: `NODE_VERSION=18`
+   - 添加环境变量: `NPM_FLAGS=--legacy-peer-deps`
+
+2. **如果仍然失败，手动触发重新部署**:
+   - 进入Cloudflare Pages项目
+   - 点击 "Deployments" 标签
+   - 点击 "Retry deployment" 按钮
+
+3. **检查构建日志**:
+   - 确认使用了正确的Node.js版本 (18.x)
+   - 确认没有hardhat相关的依赖冲突
+   - 确认所有环境变量都已正确设置
 
 ### 问题3: 环境变量配置错误
 **症状**: 网站部署成功但功能异常 (钱包连接失败、社交登录不工作等)
