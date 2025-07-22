@@ -1,96 +1,14 @@
 'use client';
 
-import React, { useEffect } from 'react';
-import { Button, Container, Typography, Box, Paper } from '@mui/material';
-import ErrorMonitoring from '@/services/errorMonitoring';
-
-/**
- * 全局错误处理组件
- * 
- * 这个组件会捕获并显示应用程序中的错误
- * 在 Next.js App Router 中，这个文件必须命名为 error.tsx
- */
-export default function GlobalError({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
-  useEffect(() => {
-    // 记录错误
-    ErrorMonitoring.captureError(error, ErrorMonitoring.ErrorSeverity.HIGH, {
-      component: 'GlobalError',
-      path: window.location.pathname,
-    });
-  }, [error]);
-
+export default function Error({ error, reset }: { error: Error; reset: () => void }) {
   return (
-    <Container maxWidth="md" sx={{ py: 8 }}>
-      <Paper 
-        elevation={3} 
-        sx={{ 
-          p: 4, 
-          borderRadius: 2,
-          border: '1px solid',
-          borderColor: 'error.light',
-          bgcolor: 'error.lighter'
-        }}
-      >
-        <Box sx={{ textAlign: 'center', mb: 4 }}>
-          <Typography variant="h4" component="h1" color="error" gutterBottom>
-            出现了一些问题
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            应用程序遇到了错误。我们已记录此问题并将尽快修复。
-          </Typography>
-        </Box>
-
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-            错误详情:
-          </Typography>
-          <Paper 
-            variant="outlined" 
-            sx={{ 
-              p: 2, 
-              bgcolor: 'background.paper',
-              overflowX: 'auto'
-            }}
-          >
-            <Typography variant="body2" component="pre" sx={{ fontFamily: 'monospace' }}>
-              {error.message}
-              {error.stack && (
-                <>
-                  <br />
-                  <br />
-                  {error.stack}
-                </>
-              )}
-            </Typography>
-          </Paper>
-        </Box>
-
-        <Box sx={{ textAlign: 'center' }}>
-          <Button 
-            variant="contained" 
-            color="primary" 
-            onClick={reset}
-            size="large"
-          >
-            重试
-          </Button>
-          <Button 
-            variant="outlined" 
-            color="primary" 
-            onClick={() => window.location.href = '/'}
-            size="large"
-            sx={{ ml: 2 }}
-          >
-            返回首页
-          </Button>
-        </Box>
-      </Paper>
-    </Container>
+    <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4">
+      <div className="max-w-md w-full bg-gray-800 rounded-lg p-8 text-center">
+        <div className="text-6xl mb-4">⚠️</div>
+        <h1 className="text-2xl font-semibold text-white mb-4">出现了错误</h1>
+        <p className="text-gray-400 mb-8">应用程序遇到了意外错误</p>
+        <button onClick={reset} className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded">重试</button>
+      </div>
+    </div>
   );
 }
