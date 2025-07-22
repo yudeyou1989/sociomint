@@ -3,9 +3,11 @@ import { useState } from 'react';
 import { FaBars, FaTimes, FaUser } from 'react-icons/fa';
 import ConnectWalletButton from '../wallet/ConnectWalletButton';
 import LanguageSwitcher from '../common/LanguageSwitcher';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -30,25 +32,25 @@ export default function Header() {
             href="/tasks"
             className="text-gray-300 hover:text-white transition-colors"
           >
-            任务中心
+            {t('navigation.tasks')}
           </Link>
           <Link
             href="/exchange"
             className="text-gray-300 hover:text-white transition-colors"
           >
-            代币兑换
+            {t('exchange.title')}
           </Link>
           <Link
             href="/market"
             className="text-gray-300 hover:text-white transition-colors"
           >
-            小红花市场
+            {t('navigation.market')}
           </Link>
           <Link
             href="/profile"
             className="text-gray-300 hover:text-white transition-colors"
           >
-            我的账户
+            {t('navigation.assets')}
           </Link>
           <Link
             href="/about"
@@ -77,7 +79,7 @@ export default function Header() {
         <button
           className="md:hidden p-2 text-gray-300 hover:text-white"
           onClick={toggleMenu}
-          aria-label={menuOpen ? '关闭菜单' : '打开菜单'}
+          aria-label={menuOpen ? t('common.closeMenu') : t('common.openMenu')}
         >
           {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </button>
@@ -93,25 +95,25 @@ export default function Header() {
               href="/tasks"
               className="text-gray-300 hover:text-white transition-colors py-2"
             >
-              任务中心
+              {t('navigation.tasks')}
             </Link>
             <Link
               href="/exchange"
               className="text-gray-300 hover:text-white transition-colors py-2"
             >
-              代币兑换
+              {t('exchange.title')}
             </Link>
             <Link
               href="/market"
               className="text-gray-300 hover:text-white transition-colors py-2"
             >
-              小红花市场
+              {t('navigation.market')}
             </Link>
             <Link
               href="/profile"
               className="text-gray-300 hover:text-white transition-colors py-2"
             >
-              我的账户
+              {t('navigation.assets')}
             </Link>
             <Link
               href="/about"

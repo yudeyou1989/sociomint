@@ -132,14 +132,14 @@ class IndexedDBCache<T = any> {
 
   private initDB(): Promise<IDBDatabase> {
     if (this.dbPromise) return this.dbPromise;
-    
+
     this.dbPromise = new Promise((resolve, reject) => {
-      if (!window.indexedDB) {
-        reject(new Error('IndexedDB is not supported in this browser'));
+      if (typeof window === 'undefined' || !window.indexedDB) {
+        reject(new Error('IndexedDB is not supported in this environment'));
         return;
       }
-      
-      const request = indexedDB.open(this.config.dbName, 1);
+
+      const request = window.indexedDB.open(this.config.dbName, 1);
       
       request.onerror = () => {
         reject(request.error);

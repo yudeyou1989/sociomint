@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { FaTwitter, FaTelegram, FaDiscord } from 'react-icons/fa';
+// // import { "🐦", "📱", "💬" } from 'react-icons/fa'; // 临时注释以修复构建 // 临时注释以修复构建
 
 const TaskCreateForm = () => {
   const [platform, setPlatform] = useState<'x' | 'telegram' | 'discord'>('x');
@@ -110,7 +110,7 @@ const TaskCreateForm = () => {
                   : 'bg-gray-800 border border-gray-700 text-gray-400'
               }`}
             >
-              <FaTwitter className="mr-2" />X (Twitter)
+              🐦X (Twitter)
             </button>
 
             <button
@@ -122,7 +122,7 @@ const TaskCreateForm = () => {
                   : 'bg-gray-800 border border-gray-700 text-gray-400'
               }`}
             >
-              <FaTelegram className="mr-2" />
+              📱
               Telegram
             </button>
 
@@ -135,7 +135,7 @@ const TaskCreateForm = () => {
                   : 'bg-gray-800 border border-gray-700 text-gray-400'
               }`}
             >
-              <FaDiscord className="mr-2" />
+              💬
               Discord
             </button>
           </div>

@@ -1,20 +1,20 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import {
-  FaCoins,
-  FaArrowRight,
+// // // import {
+  "🪙",
+  "➡️",
   FaWallet,
   FaWeixin,
   FaAlipay,
   FaEthereum,
   FaCheck,
-  FaTimes,
+  "✕",
   FaUpload,
   FaMoneyBill,
-  FaClock,
+  "⏰",
   FaFileImage,
-} from 'react-icons/fa';
+} from 'react-icons/fa'; // 临时注释以修复构建 // 临时注释以修复构建 // 临时注释以修复构建
 import { toast } from 'react-hot-toast';
 import { useWallet } from '@/contexts/WalletContext';
 
@@ -474,7 +474,7 @@ const TradeProcess = ({ order, onClose, onSuccess }: TradeProcessProps) => {
                   : 'border-gray-700 bg-gray-800 hover:border-gray-600'
               }`}
             >
-              {method === 'sm' && <FaCoins className="mr-2 text-primary" />}
+              {method === 'sm' && 🪙}
               {method === 'wechat' && (
                 <FaWeixin className="mr-2 text-green-500" />
               )}
@@ -539,7 +539,7 @@ const TradeProcess = ({ order, onClose, onSuccess }: TradeProcessProps) => {
             <div className="flex items-center justify-between mb-3">
               <span className="text-gray-300">支付方式</span>
               <span className="font-medium flex items-center">
-                <FaCoins className="mr-1 text-primary" /> SM代币
+                🪙 SM代币
               </span>
             </div>
 
@@ -577,7 +577,7 @@ const TradeProcess = ({ order, onClose, onSuccess }: TradeProcessProps) => {
 
           <div className="mb-6 text-center">
             <div className="text-sm flex items-center justify-center text-yellow-500 mb-2">
-              <FaClock className="mr-1" /> 订单将在 {formatCountdown()}{' '}
+              ⏰ 订单将在 {formatCountdown()}{' '}
               后自动取消
             </div>
           </div>
@@ -676,7 +676,7 @@ const TradeProcess = ({ order, onClose, onSuccess }: TradeProcessProps) => {
                     }}
                     className="absolute top-2 right-2 bg-red-500/80 p-1 rounded-full"
                   >
-                    <FaTimes size={12} />
+                    ✕
                   </button>
                 </div>
               ) : (
@@ -697,7 +697,7 @@ const TradeProcess = ({ order, onClose, onSuccess }: TradeProcessProps) => {
             </div>
 
             <div className="text-sm flex items-center justify-center text-yellow-500 mb-2">
-              <FaClock className="mr-1" /> 订单将在 {formatCountdown()}{' '}
+              ⏰ 订单将在 {formatCountdown()}{' '}
               后自动取消
             </div>
           </div>
@@ -769,7 +769,7 @@ const TradeProcess = ({ order, onClose, onSuccess }: TradeProcessProps) => {
               <span className="text-gray-300">支付方式</span>
               <span className="font-medium flex items-center">
                 {transaction.paymentMethod === 'sm' && (
-                  <FaCoins className="mr-1 text-primary" />
+                  🪙
                 )}
                 {transaction.paymentMethod === 'wechat' && (
                   <FaWeixin className="mr-1 text-green-500" />
@@ -790,7 +790,7 @@ const TradeProcess = ({ order, onClose, onSuccess }: TradeProcessProps) => {
           </div>
 
           <div className="text-sm flex items-center justify-center text-yellow-500">
-            <FaClock className="mr-1" /> 预计确认时间: {formatCountdown()}
+            ⏰ 预计确认时间: {formatCountdown()}
           </div>
         </div>
 
@@ -816,7 +816,7 @@ const TradeProcess = ({ order, onClose, onSuccess }: TradeProcessProps) => {
             disabled={isProcessing}
             className="flex-1 py-2.5 bg-red-900/40 hover:bg-red-900/60 text-red-300 rounded-md transition-colors flex items-center justify-center"
           >
-            <FaTimes className="mr-1" /> 提出争议
+            ✕ 提出争议
           </button>
         </div>
       </div>
@@ -845,7 +845,7 @@ const TradeProcess = ({ order, onClose, onSuccess }: TradeProcessProps) => {
           onClick={onClose}
           className="absolute top-3 right-3 text-gray-400 hover:text-white"
         >
-          <FaTimes />
+          ✕
         </button>
 
         {/* 步骤指示器 */}

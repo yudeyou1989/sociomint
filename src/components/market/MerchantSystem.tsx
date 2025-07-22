@@ -3,14 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useWallet } from '@/contexts/WalletContext';
 import {
-  FaCoins,
-  FaExchangeAlt,
   FaUser,
-  FaShieldAlt,
-  FaHistory,
-  FaClock,
   FaMedal,
-  FaTimes,
 } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 
@@ -245,7 +239,7 @@ const MerchantSystem = () => {
       <div className="tech-card mb-8">
         <div className="flex items-start">
           <div className="p-3 rounded-md bg-gray-800/70 mr-4">
-            <FaUser className="w-6 h-6 text-primary" />
+            <FaUser />
           </div>
           <div className="flex-1">
             <h2 className="text-xl font-bold mb-2">商人</h2>
@@ -267,7 +261,7 @@ const MerchantSystem = () => {
                       onClick={() => setShowCancelModal(true)}
                       className="text-red-400 text-sm hover:text-red-300 flex items-center"
                     >
-                      <FaTimes className="mr-1" /> 取消商人资格
+                      取消商人资格
                     </button>
                   </div>
                 </div>
@@ -275,7 +269,7 @@ const MerchantSystem = () => {
                 <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div className="p-3 bg-gray-800/50 rounded-md border border-gray-700">
                     <div className="flex items-center text-gray-400 text-sm mb-1">
-                      <FaCoins className="mr-2 text-primary" /> 质押数量
+                      质押数量
                     </div>
                     <div className="font-bold">
                       {merchantStatus.pledgeAmount} SM
@@ -284,7 +278,7 @@ const MerchantSystem = () => {
 
                   <div className="p-3 bg-gray-800/50 rounded-md border border-gray-700">
                     <div className="flex items-center text-gray-400 text-sm mb-1">
-                      <FaClock className="mr-2 text-primary" /> 到期日期
+                      到期日期
                     </div>
                     <div className="font-bold">{merchantStatus.expiryDate}</div>
                     <div className="text-xs mt-1 text-gray-400">
@@ -294,7 +288,7 @@ const MerchantSystem = () => {
 
                   <div className="p-3 bg-gray-800/50 rounded-md border border-gray-700">
                     <div className="flex items-center text-gray-400 text-sm mb-1">
-                      <FaHistory className="mr-2 text-primary" /> 开始日期
+                      开始日期
                     </div>
                     <div className="font-bold">{merchantStatus.startDate}</div>
                   </div>
@@ -358,7 +352,7 @@ const MerchantSystem = () => {
               onClick={() => setShowStakeModal(false)}
               className="absolute top-3 right-3 text-gray-400 hover:text-white"
             >
-              <FaTimes />
+              ×
             </button>
 
             <h3 className="text-xl font-bold mb-4">成为商人</h3>
@@ -434,7 +428,7 @@ const MerchantSystem = () => {
               onClick={() => setShowCancelModal(false)}
               className="absolute top-3 right-3 text-gray-400 hover:text-white"
             >
-              <FaTimes />
+              ×
             </button>
 
             <h3 className="text-xl font-bold mb-4 text-red-400">

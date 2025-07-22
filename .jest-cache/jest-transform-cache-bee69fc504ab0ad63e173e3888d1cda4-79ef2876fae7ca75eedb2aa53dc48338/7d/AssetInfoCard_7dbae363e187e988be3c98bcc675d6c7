@@ -1,0 +1,268 @@
+0f8eab42441364898cc26a807c71e27c
+// // import { FaWallet, "🪙", FaSeedling } from 'react-icons/fa'; // 临时注释以修复构建 // 临时注释以修复构建
+"use strict";
+
+/* istanbul ignore next */
+function cov_cjhnbdosw() {
+  var path = "/Users/yudeyou/Desktop/sm/sociomint/src/components/assets/AssetInfoCard.tsx";
+  var hash = "bf946e6fa474b0ac1e26264d86b9d2329b213377";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/yudeyou/Desktop/sm/sociomint/src/components/assets/AssetInfoCard.tsx",
+    statementMap: {
+      "0": {
+        start: {
+          line: 3,
+          column: 0
+        },
+        end: {
+          line: 5,
+          column: 3
+        }
+      },
+      "1": {
+        start: {
+          line: 6,
+          column: 0
+        },
+        end: {
+          line: 11,
+          column: 3
+        }
+      },
+      "2": {
+        start: {
+          line: 9,
+          column: 8
+        },
+        end: {
+          line: 9,
+          column: 24
+        }
+      },
+      "3": {
+        start: {
+          line: 12,
+          column: 20
+        },
+        end: {
+          line: 12,
+          column: 48
+        }
+      },
+      "4": {
+        start: {
+          line: 13,
+          column: 22
+        },
+        end: {
+          line: 109,
+          column: 1
+        }
+      },
+      "5": {
+        start: {
+          line: 14,
+          column: 4
+        },
+        end: {
+          line: 108,
+          column: 7
+        }
+      },
+      "6": {
+        start: {
+          line: 110,
+          column: 17
+        },
+        end: {
+          line: 110,
+          column: 30
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "(anonymous_0)",
+        decl: {
+          start: {
+            line: 8,
+            column: 9
+          },
+          end: {
+            line: 8,
+            column: 10
+          }
+        },
+        loc: {
+          start: {
+            line: 8,
+            column: 20
+          },
+          end: {
+            line: 10,
+            column: 5
+          }
+        },
+        line: 8
+      },
+      "1": {
+        name: "(anonymous_1)",
+        decl: {
+          start: {
+            line: 13,
+            column: 22
+          },
+          end: {
+            line: 13,
+            column: 23
+          }
+        },
+        loc: {
+          start: {
+            line: 13,
+            column: 69
+          },
+          end: {
+            line: 109,
+            column: 1
+          }
+        },
+        line: 13
+      }
+    },
+    branchMap: {},
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0
+    },
+    f: {
+      "0": 0,
+      "1": 0
+    },
+    b: {},
+    inputSourceMap: {
+      version: 3,
+      sources: ["/Users/yudeyou/Desktop/sm/sociomint/src/components/assets/AssetInfoCard.tsx"],
+      sourcesContent: ["// // import { FaWallet, \"\uD83E\uDE99\", FaSeedling } from 'react-icons/fa'; // \u4E34\u65F6\u6CE8\u91CA\u4EE5\u4FEE\u590D\u6784\u5EFA // \u4E34\u65F6\u6CE8\u91CA\u4EE5\u4FEE\u590D\u6784\u5EFA\n\ninterface AssetInfoCardProps {\n  walletAddress: string;\n  smBalance: number;\n  flowerBalance: number;\n}\n\nconst AssetInfoCard = ({\n  walletAddress,\n  smBalance,\n  flowerBalance,\n}: AssetInfoCardProps) => {\n  return (\n    <div className=\"tech-card mb-8\">\n      <h2 className=\"text-xl font-bold mb-6\">\u8D44\u4EA7\u4FE1\u606F</h2>\n\n      <div className=\"space-y-4\">\n        {/* \u94B1\u5305\u5730\u5740 */}\n        <div className=\"flex items-center p-4 bg-gray-800/50 rounded-md border border-gray-700\">\n          <div className=\"p-2 rounded-md bg-gray-800 mr-4\">\n            <FaWallet className=\"w-5 h-5 text-primary\" />\n          </div>\n          <div>\n            <div className=\"text-sm text-gray-400\">\u94B1\u5305\u5730\u5740</div>\n            <div className=\"font-mono text-white\">{walletAddress}</div>\n          </div>\n        </div>\n\n        {/* SM \u4F59\u989D */}\n        <div className=\"flex items-center p-4 bg-gray-800/50 rounded-md border border-gray-700\">\n          <div className=\"p-2 rounded-md bg-gray-800 mr-4\">\n            \uD83E\uDE99\n          </div>\n          <div>\n            <div className=\"text-sm text-gray-400\">SM \u4F59\u989D</div>\n            <div className=\"text-white font-bold text-xl\">\n              {smBalance} <span className=\"text-primary\">SM</span>\n            </div>\n          </div>\n        </div>\n\n        {/* \u5C0F\u7EA2\u82B1\u4F59\u989D */}\n        <div className=\"flex items-center p-4 bg-gray-800/50 rounded-md border border-gray-700\">\n          <div className=\"p-2 rounded-md bg-gray-800 mr-4\">\n            <FaSeedling className=\"w-5 h-5 text-primary\" />\n          </div>\n          <div>\n            <div className=\"text-sm text-gray-400\">\u5C0F\u7EA2\u82B1\u4F59\u989D</div>\n            <div className=\"text-white font-bold text-xl\">\n              {flowerBalance} <span className=\"text-primary\">\u5C0F\u7EA2\u82B1</span>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default AssetInfoCard;\n"],
+      names: ["AssetInfoCard", "walletAddress", "smBalance", "flowerBalance", "div", "className", "h2", "FaWallet", "span", "FaSeedling"],
+      mappings: "AAAA,4FAA4F;;;;;+BA2D5F;;;eAAA;;;;AAnDA,MAAMA,gBAAgB,CAAC,EACrBC,aAAa,EACbC,SAAS,EACTC,aAAa,EACM;IACnB,qBACE,sBAACC;QAAIC,WAAU;;0BACb,qBAACC;gBAAGD,WAAU;0BAAyB;;0BAEvC,sBAACD;gBAAIC,WAAU;;kCAEb,sBAACD;wBAAIC,WAAU;;0CACb,qBAACD;gCAAIC,WAAU;0CACb,cAAA,qBAACE;oCAASF,WAAU;;;0CAEtB,sBAACD;;kDACC,qBAACA;wCAAIC,WAAU;kDAAwB;;kDACvC,qBAACD;wCAAIC,WAAU;kDAAwBJ;;;;;;kCAK3C,sBAACG;wBAAIC,WAAU;;0CACb,qBAACD;gCAAIC,WAAU;0CAAkC;;0CAGjD,sBAACD;;kDACC,qBAACA;wCAAIC,WAAU;kDAAwB;;kDACvC,sBAACD;wCAAIC,WAAU;;4CACZH;4CAAU;0DAAC,qBAACM;gDAAKH,WAAU;0DAAe;;;;;;;;kCAMjD,sBAACD;wBAAIC,WAAU;;0CACb,qBAACD;gCAAIC,WAAU;0CACb,cAAA,qBAACI;oCAAWJ,WAAU;;;0CAExB,sBAACD;;kDACC,qBAACA;wCAAIC,WAAU;kDAAwB;;kDACvC,sBAACD;wCAAIC,WAAU;;4CACZF;4CAAc;0DAAC,qBAACK;gDAAKH,WAAU;0DAAe;;;;;;;;;;;;AAO7D;MAEA,WAAeL"
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "bf946e6fa474b0ac1e26264d86b9d2329b213377"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_cjhnbdosw = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_cjhnbdosw();
+cov_cjhnbdosw().s[0]++;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/* istanbul ignore next */
+cov_cjhnbdosw().s[1]++;
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function () {
+    /* istanbul ignore next */
+    cov_cjhnbdosw().f[0]++;
+    cov_cjhnbdosw().s[2]++;
+    return _default;
+  }
+});
+const _jsxruntime =
+/* istanbul ignore next */
+(cov_cjhnbdosw().s[3]++, require("react/jsx-runtime"));
+/* istanbul ignore next */
+cov_cjhnbdosw().s[4]++;
+const AssetInfoCard = ({
+  walletAddress,
+  smBalance,
+  flowerBalance
+}) => {
+  /* istanbul ignore next */
+  cov_cjhnbdosw().f[1]++;
+  cov_cjhnbdosw().s[5]++;
+  return /*#__PURE__*/(0, _jsxruntime.jsxs)("div", {
+    className: "tech-card mb-8",
+    children: [/*#__PURE__*/(0, _jsxruntime.jsx)("h2", {
+      className: "text-xl font-bold mb-6",
+      children: "资产信息"
+    }), /*#__PURE__*/(0, _jsxruntime.jsxs)("div", {
+      className: "space-y-4",
+      children: [/*#__PURE__*/(0, _jsxruntime.jsxs)("div", {
+        className: "flex items-center p-4 bg-gray-800/50 rounded-md border border-gray-700",
+        children: [/*#__PURE__*/(0, _jsxruntime.jsx)("div", {
+          className: "p-2 rounded-md bg-gray-800 mr-4",
+          children: /*#__PURE__*/(0, _jsxruntime.jsx)(FaWallet, {
+            className: "w-5 h-5 text-primary"
+          })
+        }), /*#__PURE__*/(0, _jsxruntime.jsxs)("div", {
+          children: [/*#__PURE__*/(0, _jsxruntime.jsx)("div", {
+            className: "text-sm text-gray-400",
+            children: "钱包地址"
+          }), /*#__PURE__*/(0, _jsxruntime.jsx)("div", {
+            className: "font-mono text-white",
+            children: walletAddress
+          })]
+        })]
+      }), /*#__PURE__*/(0, _jsxruntime.jsxs)("div", {
+        className: "flex items-center p-4 bg-gray-800/50 rounded-md border border-gray-700",
+        children: [/*#__PURE__*/(0, _jsxruntime.jsx)("div", {
+          className: "p-2 rounded-md bg-gray-800 mr-4",
+          children: "\uD83E\uDE99"
+        }), /*#__PURE__*/(0, _jsxruntime.jsxs)("div", {
+          children: [/*#__PURE__*/(0, _jsxruntime.jsx)("div", {
+            className: "text-sm text-gray-400",
+            children: "SM 余额"
+          }), /*#__PURE__*/(0, _jsxruntime.jsxs)("div", {
+            className: "text-white font-bold text-xl",
+            children: [smBalance, " ", /*#__PURE__*/(0, _jsxruntime.jsx)("span", {
+              className: "text-primary",
+              children: "SM"
+            })]
+          })]
+        })]
+      }), /*#__PURE__*/(0, _jsxruntime.jsxs)("div", {
+        className: "flex items-center p-4 bg-gray-800/50 rounded-md border border-gray-700",
+        children: [/*#__PURE__*/(0, _jsxruntime.jsx)("div", {
+          className: "p-2 rounded-md bg-gray-800 mr-4",
+          children: /*#__PURE__*/(0, _jsxruntime.jsx)(FaSeedling, {
+            className: "w-5 h-5 text-primary"
+          })
+        }), /*#__PURE__*/(0, _jsxruntime.jsxs)("div", {
+          children: [/*#__PURE__*/(0, _jsxruntime.jsx)("div", {
+            className: "text-sm text-gray-400",
+            children: "小红花余额"
+          }), /*#__PURE__*/(0, _jsxruntime.jsxs)("div", {
+            className: "text-white font-bold text-xl",
+            children: [flowerBalance, " ", /*#__PURE__*/(0, _jsxruntime.jsx)("span", {
+              className: "text-primary",
+              children: "小红花"
+            })]
+          })]
+        })]
+      })]
+    })]
+  });
+};
+const _default =
+/* istanbul ignore next */
+(cov_cjhnbdosw().s[6]++, AssetInfoCard);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJfZGVmYXVsdCIsIkFzc2V0SW5mb0NhcmQiLCJ3YWxsZXRBZGRyZXNzIiwic21CYWxhbmNlIiwiZmxvd2VyQmFsYW5jZSIsImNvdl9jamhuYmRvc3ciLCJmIiwicyIsIl9qc3hydW50aW1lIiwianN4cyIsImNsYXNzTmFtZSIsImpzeCIsIkZhV2FsbGV0IiwiRmFTZWVkbGluZyJdLCJzb3VyY2VzIjpbIi9Vc2Vycy95dWRleW91L0Rlc2t0b3Avc20vc29jaW9taW50L3NyYy9jb21wb25lbnRzL2Fzc2V0cy9Bc3NldEluZm9DYXJkLnRzeCJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyAvLyBpbXBvcnQgeyBGYVdhbGxldCwgXCLwn6qZXCIsIEZhU2VlZGxpbmcgfSBmcm9tICdyZWFjdC1pY29ucy9mYSc7IC8vIOS4tOaXtuazqOmHiuS7peS/ruWkjeaehOW7uiAvLyDkuLTml7bms6jph4rku6Xkv67lpI3mnoTlu7pcblxuaW50ZXJmYWNlIEFzc2V0SW5mb0NhcmRQcm9wcyB7XG4gIHdhbGxldEFkZHJlc3M6IHN0cmluZztcbiAgc21CYWxhbmNlOiBudW1iZXI7XG4gIGZsb3dlckJhbGFuY2U6IG51bWJlcjtcbn1cblxuY29uc3QgQXNzZXRJbmZvQ2FyZCA9ICh7XG4gIHdhbGxldEFkZHJlc3MsXG4gIHNtQmFsYW5jZSxcbiAgZmxvd2VyQmFsYW5jZSxcbn06IEFzc2V0SW5mb0NhcmRQcm9wcykgPT4ge1xuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPVwidGVjaC1jYXJkIG1iLThcIj5cbiAgICAgIDxoMiBjbGFzc05hbWU9XCJ0ZXh0LXhsIGZvbnQtYm9sZCBtYi02XCI+6LWE5Lqn5L+h5oGvPC9oMj5cblxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJzcGFjZS15LTRcIj5cbiAgICAgICAgey8qIOmSseWMheWcsOWdgCAqL31cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGl0ZW1zLWNlbnRlciBwLTQgYmctZ3JheS04MDAvNTAgcm91bmRlZC1tZCBib3JkZXIgYm9yZGVyLWdyYXktNzAwXCI+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJwLTIgcm91bmRlZC1tZCBiZy1ncmF5LTgwMCBtci00XCI+XG4gICAgICAgICAgICA8RmFXYWxsZXQgY2xhc3NOYW1lPVwidy01IGgtNSB0ZXh0LXByaW1hcnlcIiAvPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIDxkaXY+XG4gICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInRleHQtc20gdGV4dC1ncmF5LTQwMFwiPumSseWMheWcsOWdgDwvZGl2PlxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmb250LW1vbm8gdGV4dC13aGl0ZVwiPnt3YWxsZXRBZGRyZXNzfTwvZGl2PlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L2Rpdj5cblxuICAgICAgICB7LyogU00g5L2Z6aKdICovfVxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXggaXRlbXMtY2VudGVyIHAtNCBiZy1ncmF5LTgwMC81MCByb3VuZGVkLW1kIGJvcmRlciBib3JkZXItZ3JheS03MDBcIj5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInAtMiByb3VuZGVkLW1kIGJnLWdyYXktODAwIG1yLTRcIj5cbiAgICAgICAgICAgIPCfqplcbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICA8ZGl2PlxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJ0ZXh0LXNtIHRleHQtZ3JheS00MDBcIj5TTSDkvZnpop08L2Rpdj5cbiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidGV4dC13aGl0ZSBmb250LWJvbGQgdGV4dC14bFwiPlxuICAgICAgICAgICAgICB7c21CYWxhbmNlfSA8c3BhbiBjbGFzc05hbWU9XCJ0ZXh0LXByaW1hcnlcIj5TTTwvc3Bhbj5cbiAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L2Rpdj5cblxuICAgICAgICB7Lyog5bCP57qi6Iqx5L2Z6aKdICovfVxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXggaXRlbXMtY2VudGVyIHAtNCBiZy1ncmF5LTgwMC81MCByb3VuZGVkLW1kIGJvcmRlciBib3JkZXItZ3JheS03MDBcIj5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInAtMiByb3VuZGVkLW1kIGJnLWdyYXktODAwIG1yLTRcIj5cbiAgICAgICAgICAgIDxGYVNlZWRsaW5nIGNsYXNzTmFtZT1cInctNSBoLTUgdGV4dC1wcmltYXJ5XCIgLz5cbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICA8ZGl2PlxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJ0ZXh0LXNtIHRleHQtZ3JheS00MDBcIj7lsI/nuqLoirHkvZnpop08L2Rpdj5cbiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidGV4dC13aGl0ZSBmb250LWJvbGQgdGV4dC14bFwiPlxuICAgICAgICAgICAgICB7Zmxvd2VyQmFsYW5jZX0gPHNwYW4gY2xhc3NOYW1lPVwidGV4dC1wcmltYXJ5XCI+5bCP57qi6IqxPC9zcGFuPlxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG4gICAgPC9kaXY+XG4gICk7XG59O1xuXG5leHBvcnQgZGVmYXVsdCBBc3NldEluZm9DYXJkO1xuIl0sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OzsrQkEyREE7Ozs7OztXQUFBQSxRQUFBOzs7Ozs7OztBQW5EQSxNQUFNQyxhQUFBLEdBQWdCQSxDQUFDO0VBQ3JCQyxhQUFhO0VBQ2JDLFNBQVM7RUFDVEM7QUFBYSxDQUNNO0VBQUE7RUFBQUMsYUFBQSxHQUFBQyxDQUFBO0VBQUFELGFBQUEsR0FBQUUsQ0FBQTtFQUNuQixvQkFDRSxJQUFBQyxXQUFBLENBQUFDLElBQUEsRUFBQztJQUFJQyxTQUFBLEVBQVU7NEJBQ2IsSUFBQUYsV0FBQSxDQUFBRyxHQUFBLEVBQUM7TUFBR0QsU0FBQSxFQUFVO2dCQUF5QjtxQkFFdkMsSUFBQUYsV0FBQSxDQUFBQyxJQUFBLEVBQUM7TUFBSUMsU0FBQSxFQUFVOzhCQUViLElBQUFGLFdBQUEsQ0FBQUMsSUFBQSxFQUFDO1FBQUlDLFNBQUEsRUFBVTtnQ0FDYixJQUFBRixXQUFBLENBQUFHLEdBQUEsRUFBQztVQUFJRCxTQUFBLEVBQVU7b0JBQ2IsaUJBQUFGLFdBQUEsQ0FBQUcsR0FBQSxFQUFDQyxRQUFBO1lBQVNGLFNBQUEsRUFBVTs7eUJBRXRCLElBQUFGLFdBQUEsQ0FBQUMsSUFBQSxFQUFDO2tDQUNDLElBQUFELFdBQUEsQ0FBQUcsR0FBQSxFQUFDO1lBQUlELFNBQUEsRUFBVTtzQkFBd0I7MkJBQ3ZDLElBQUFGLFdBQUEsQ0FBQUcsR0FBQSxFQUFDO1lBQUlELFNBQUEsRUFBVTtzQkFBd0JSOzs7dUJBSzNDLElBQUFNLFdBQUEsQ0FBQUMsSUFBQSxFQUFDO1FBQUlDLFNBQUEsRUFBVTtnQ0FDYixJQUFBRixXQUFBLENBQUFHLEdBQUEsRUFBQztVQUFJRCxTQUFBLEVBQVU7b0JBQWtDO3lCQUdqRCxJQUFBRixXQUFBLENBQUFDLElBQUEsRUFBQztrQ0FDQyxJQUFBRCxXQUFBLENBQUFHLEdBQUEsRUFBQztZQUFJRCxTQUFBLEVBQVU7c0JBQXdCOzJCQUN2QyxJQUFBRixXQUFBLENBQUFDLElBQUEsRUFBQztZQUFJQyxTQUFBLEVBQVU7dUJBQ1pQLFNBQUEsRUFBVSxLLGFBQUMsSUFBQUssV0FBQSxDQUFBRyxHQUFBLEVBQUM7Y0FBS0QsU0FBQSxFQUFVO3dCQUFlOzs7O3VCQU1qRCxJQUFBRixXQUFBLENBQUFDLElBQUEsRUFBQztRQUFJQyxTQUFBLEVBQVU7Z0NBQ2IsSUFBQUYsV0FBQSxDQUFBRyxHQUFBLEVBQUM7VUFBSUQsU0FBQSxFQUFVO29CQUNiLGlCQUFBRixXQUFBLENBQUFHLEdBQUEsRUFBQ0UsVUFBQTtZQUFXSCxTQUFBLEVBQVU7O3lCQUV4QixJQUFBRixXQUFBLENBQUFDLElBQUEsRUFBQztrQ0FDQyxJQUFBRCxXQUFBLENBQUFHLEdBQUEsRUFBQztZQUFJRCxTQUFBLEVBQVU7c0JBQXdCOzJCQUN2QyxJQUFBRixXQUFBLENBQUFDLElBQUEsRUFBQztZQUFJQyxTQUFBLEVBQVU7dUJBQ1pOLGFBQUEsRUFBYyxLLGFBQUMsSUFBQUksV0FBQSxDQUFBRyxHQUFBLEVBQUM7Y0FBS0QsU0FBQSxFQUFVO3dCQUFlOzs7Ozs7O0FBTzdEO01BRUFWLFFBQUE7QUFBQTtBQUFBLENBQUFLLGFBQUEsR0FBQUUsQ0FBQSxPQUFlTixhQUFBIiwiaWdub3JlTGlzdCI6W119

@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import {
+// // // import {
   FaShieldAlt,
-  FaLock,
-  FaExclamationTriangle,
-  FaCheckCircle,
-  FaTimes,
-  FaInfoCircle,
-} from 'react-icons/fa';
+  "🔒",
+  "⚠️",
+  "✅",
+  "✕",
+  "ℹ️",
+} from 'react-icons/fa'; // 临时注释以修复构建 // 临时注释以修复构建 // 临时注释以修复构建
 
 // 交易安全组件
 const TradeSafety = () => {
@@ -38,7 +38,7 @@ const TradeSafety = () => {
       <div className="tech-card">
         <div className="flex items-start">
           <div className="p-3 rounded-md bg-gray-800/70 mr-4">
-            <FaShieldAlt className="w-6 h-6 text-primary" />
+            🛡️
           </div>
           <div className="flex-1">
             <div className="flex justify-between items-center">
@@ -55,7 +55,7 @@ const TradeSafety = () => {
               {/* 担保交易机制 */}
               <div className="p-4 bg-gray-800/50 rounded-md border border-gray-700">
                 <div className="flex items-center text-primary mb-2">
-                  <FaLock className="mr-2" />
+                  🔒
                   <span className="font-medium">担保交易</span>
                 </div>
                 <p className="text-sm text-gray-300">
@@ -73,7 +73,7 @@ const TradeSafety = () => {
               {/* 安全验证 */}
               <div className="p-4 bg-gray-800/50 rounded-md border border-gray-700">
                 <div className="flex items-center text-primary mb-2">
-                  <FaCheckCircle className="mr-2" />
+                  ✅
                   <span className="font-medium">安全验证</span>
                 </div>
 
@@ -100,7 +100,7 @@ const TradeSafety = () => {
 
                 {verificationStatus === 'success' && (
                   <div className="flex flex-col items-center justify-center py-2">
-                    <FaCheckCircle className="text-green-500 w-5 h-5 mb-2" />
+                    ✅
                     <p className="text-xs text-green-500">
                       验证通过，可放心交易
                     </p>
@@ -115,7 +115,7 @@ const TradeSafety = () => {
 
                 {verificationStatus === 'failed' && (
                   <div className="flex flex-col items-center justify-center py-2">
-                    <FaExclamationTriangle className="text-yellow-500 w-5 h-5 mb-2" />
+                    ⚠️
                     <p className="text-xs text-yellow-500">
                       存在风险提示，谨慎交易
                     </p>
@@ -132,7 +132,7 @@ const TradeSafety = () => {
               {/* 风险提示 */}
               <div className="p-4 bg-gray-800/50 rounded-md border border-gray-700">
                 <div className="flex items-center text-primary mb-2">
-                  <FaExclamationTriangle className="mr-2" />
+                  ⚠️
                   <span className="font-medium">风险提示</span>
                 </div>
                 <p className="text-sm text-gray-300 mb-3">
@@ -171,11 +171,11 @@ const TradeSafety = () => {
               onClick={() => setShowRiskModal(false)}
               className="absolute top-3 right-3 text-gray-400 hover:text-white"
             >
-              <FaTimes />
+              ✕
             </button>
 
             <h3 className="text-xl font-bold mb-4 flex items-center">
-              <FaExclamationTriangle className="text-yellow-500 mr-2" />
+              ⚠️
               交易风险提示
             </h3>
 

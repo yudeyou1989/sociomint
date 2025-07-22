@@ -3,7 +3,7 @@
 import { useState, useEffect, ReactNode, ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { parseEther, formatEther } from 'viem';
-import { FaArrowDown, FaExchangeAlt } from 'react-icons/fa';
+import { FaArrowDown } from 'react-icons/fa';
 import XPlatformVerification from './XPlatformVerification';
 import { usePresaleContract } from '../../hooks/contracts/usePresaleContracts';
 import { useWallet } from '../../contexts/WalletContext';
@@ -352,7 +352,7 @@ export default function PresaleDashboard() {
           {/* 汇率显示 */}
           <div className="flex items-center justify-between mb-6 p-3 bg-black/30 rounded-lg border border-gray-800">
             <div className="flex items-center gap-2">
-              <FaExchangeAlt className="text-primary" />
+              🔄
               <span className="text-sm text-gray-300">{t('exchange.currentRate')}</span>
             </div>
             <div className="font-medium">

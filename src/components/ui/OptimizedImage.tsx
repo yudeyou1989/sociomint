@@ -26,6 +26,10 @@ interface OptimizedImageProps {
   fallbackSrc?: string;
   showPlaceholder?: boolean;
   placeholderColor?: string;
+  webpSupport?: boolean;
+  avifSupport?: boolean;
+  lazyBoundary?: string;
+  unoptimized?: boolean;
 }
 
 // 默认占位符SVG

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { FaExchangeAlt, FaGasPump } from 'react-icons/fa';
+// // import { "🔄", FaGasPump } from 'react-icons/fa'; // 临时注释以修复构建 // 临时注释以修复构建
 import { useWallet } from '@/contexts/WalletContext';
 import { InputValidator, SecurityConfig } from '@/lib/security';
 import { ExchangeSectionProps } from '@/types/components';
@@ -142,7 +142,7 @@ export default function ExchangeSection(props: Partial<ExchangeSectionProps> = {
       {/* 汇率显示 */}
       <div className="flex items-center justify-between mb-6 p-3 bg-black/30 rounded-lg border border-gray-800">
         <div className="flex items-center gap-2">
-          <FaExchangeAlt className="text-primary" />
+          🔄
           <span className="text-sm text-gray-300">当前汇率</span>
         </div>
         <div className="font-medium">

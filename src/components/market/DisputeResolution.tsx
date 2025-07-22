@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import {
-  FaGavel,
+// // // import {
+  "🔨",
   FaUpload,
   FaFileAlt,
-  FaTimes,
-  FaInfoCircle,
-} from 'react-icons/fa';
+  "✕",
+  "ℹ️",
+} from 'react-icons/fa'; // 临时注释以修复构建 // 临时注释以修复构建 // 临时注释以修复构建
 
 // 纠纷状态类型
 type DisputeStatus = 'pending' | 'reviewing' | 'decided' | 'closed';
@@ -192,7 +192,7 @@ const DisputeResolution = () => {
       <div className="tech-card">
         <div className="flex items-start">
           <div className="p-3 rounded-md bg-gray-800/70 mr-4">
-            <FaGavel className="w-6 h-6 text-primary" />
+            🔨
           </div>
           <div className="flex-1">
             <div className="flex justify-between items-center mb-6">
@@ -201,7 +201,7 @@ const DisputeResolution = () => {
                 onClick={() => setShowGuide(!showGuide)}
                 className="flex items-center text-primary text-sm"
               >
-                <FaInfoCircle className="mr-1" />
+                ℹ️
                 {showGuide ? '隐藏指南' : '纠纷指南'}
               </button>
             </div>
@@ -349,7 +349,7 @@ const DisputeResolution = () => {
                                 onClick={() => removeFile(index)}
                                 className="text-red-400 hover:text-red-300"
                               >
-                                <FaTimes />
+                                ✕
                               </button>
                             </div>
                           ))}

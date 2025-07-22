@@ -3,17 +3,17 @@ import '../lib/polyfills';
 import { Toaster } from 'react-hot-toast';
 import type { Metadata } from 'next';
 import PageLayout from '@/components/layout/PageLayout';
-import { WalletProvider } from '@/contexts/WalletContext';
 import { GlobalStateProvider } from '@/contexts/GlobalStateContext';
 import { Inter } from 'next/font/google';
 import { I18nProvider } from './I18nProvider';
-import Web3Provider from '@/providers/Web3Provider';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import ErrorMonitoringProvider from '@/providers/ErrorMonitoringProvider';
-import BlockchainMonitorProvider from '@/providers/BlockchainMonitorProvider';
-import WalletConnectFixLite from '@/components/wallet/WalletConnectFixLite';
-import WalletConnectDebug from '@/components/wallet/WalletConnectDebug';
+import ClientProviders from '@/components/providers/ClientProviders';
 import PerformanceMonitor from '@/components/debug/PerformanceMonitor';
+import ResourcePreloader from '@/components/common/ResourcePreloader';
+import MobileOptimizer from '@/components/common/MobileOptimizer';
+import { LoadingStateProvider, PageLoadingOverlay } from '@/components/common/LoadingStateManager';
+import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -33,23 +33,21 @@ export default function RootLayout({
         <ErrorMonitoringProvider>
           <ErrorBoundary componentName="RootLayout">
             <I18nProvider>
-              <Web3Provider>
-                <BlockchainMonitorProvider>
-                  <GlobalStateProvider>
-                    <WalletProvider>
-                      <PageLayout>{children}</PageLayout>
-                      <Toaster position="top-center" />
-                      <WalletConnectFixLite />
-                      {process.env.NODE_ENV === 'development' && (
-                        <>
-                          <WalletConnectDebug />
-                          <PerformanceMonitor />
-                        </>
-                      )}
-                    </WalletProvider>
-                  </GlobalStateProvider>
-                </BlockchainMonitorProvider>
-              </Web3Provider>
+              <GlobalStateProvider>
+                <LoadingStateProvider>
+                  <ClientProviders>
+                    <ResourcePreloader />
+                    <MobileOptimizer />
+                    <PageLayout>{children}</PageLayout>
+                    <PageLoadingOverlay />
+                    <Toaster position="top-center" />
+                    <GoogleAnalytics />
+                    {process.env.NODE_ENV === 'development' && (
+                      <PerformanceMonitor />
+                    )}
+                  </ClientProviders>
+                </LoadingStateProvider>
+              </GlobalStateProvider>
             </I18nProvider>
           </ErrorBoundary>
         </ErrorMonitoringProvider>

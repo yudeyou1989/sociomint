@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, Suspense } from 'react';
-import { FaGavel, FaUser, FaExchangeAlt } from 'react-icons/fa';
+import { FaHammer, FaUser, FaSync } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
 import { LoadingFallback } from '@/components/common/LazyComponents';
 
@@ -43,7 +43,7 @@ export default function MarketPage() {
             className={`px-4 py-2 rounded-md transition-colors ${activeTab === 'merchant' ? 'bg-primary/20 text-primary' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
           >
             <div className="flex items-center gap-2">
-              <FaUser />
+              👤
               <span>商人系统</span>
             </div>
           </button>
@@ -52,7 +52,7 @@ export default function MarketPage() {
             className={`px-4 py-2 rounded-md transition-colors ${activeTab === 'trade' ? 'bg-primary/20 text-primary' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
           >
             <div className="flex items-center gap-2">
-              <FaExchangeAlt />
+              🔄
               <span>交易市场</span>
             </div>
           </button>
@@ -61,7 +61,7 @@ export default function MarketPage() {
             className={`px-4 py-2 rounded-md transition-colors ${activeTab === 'dispute' ? 'bg-primary/20 text-primary' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
           >
             <div className="flex items-center gap-2">
-              <FaGavel />
+              🔨
               <span>纠纷处理</span>
             </div>
           </button>

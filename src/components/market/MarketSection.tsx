@@ -1,13 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import {
+// // import {
   FaStore,
-  FaExchangeAlt,
+  "🔄",
   FaArrowDown,
   FaArrowUp,
-  FaTimes,
-} from 'react-icons/fa';
+  "✕",
+} from 'react-icons/fa'; // 临时注释以修复构建 // 临时注释以修复构建
 
 // 定义订单类型接口
 interface Order {
@@ -155,7 +155,7 @@ const MarketSection = () => {
       <div className="tech-card">
         <div className="flex items-center mb-6">
           <div className="p-2 rounded-md bg-gray-800/70 mr-3">
-            <FaExchangeAlt className="w-5 h-5 text-primary" />
+            🔄
           </div>
           <h2 className="text-xl font-bold">小红花交易市场</h2>
           <div className="ml-auto text-sm text-gray-400">
@@ -303,7 +303,7 @@ const MarketSection = () => {
               onClick={() => setShowTradeModal(false)}
               className="absolute top-3 right-3 text-gray-400 hover:text-white"
             >
-              <FaTimes />
+              ✕
             </button>
 
             <h3 className="text-xl font-bold mb-4">

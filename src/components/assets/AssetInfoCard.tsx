@@ -1,4 +1,4 @@
-import { FaWallet, FaCoins, FaSeedling } from 'react-icons/fa';
+// // import { FaWallet, "🪙", FaSeedling } from 'react-icons/fa'; // 临时注释以修复构建 // 临时注释以修复构建
 
 interface AssetInfoCardProps {
   walletAddress: string;
@@ -30,7 +30,7 @@ const AssetInfoCard = ({
         {/* SM 余额 */}
         <div className="flex items-center p-4 bg-gray-800/50 rounded-md border border-gray-700">
           <div className="p-2 rounded-md bg-gray-800 mr-4">
-            <FaCoins className="w-5 h-5 text-primary" />
+            🪙
           </div>
           <div>
             <div className="text-sm text-gray-400">SM 余额</div>

@@ -250,36 +250,11 @@ export interface ValidationError {
   value?: any;
 }
 
-// 组件Props类型
+// 基础组件Props类型 - 这些类型已在 components.ts 中定义，这里保留引用
 export interface BaseComponentProps {
   className?: string;
   children?: React.ReactNode;
   testId?: string;
-}
-
-export interface LoadingProps extends BaseComponentProps {
-  size?: 'small' | 'medium' | 'large';
-  text?: string;
-}
-
-export interface ButtonProps extends BaseComponentProps {
-  variant?: 'primary' | 'secondary' | 'danger' | 'ghost';
-  size?: 'small' | 'medium' | 'large';
-  disabled?: boolean;
-  loading?: boolean;
-  onClick?: () => void;
-  type?: 'button' | 'submit' | 'reset';
-}
-
-export interface InputProps extends BaseComponentProps {
-  type?: 'text' | 'number' | 'email' | 'password' | 'url';
-  value?: string;
-  placeholder?: string;
-  disabled?: boolean;
-  required?: boolean;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 // 配置类型
@@ -308,12 +283,6 @@ export interface AppConfig {
 // 扩展全局类型
 declare global {
   interface Window {
-    ethereum?: {
-      isMetaMask?: boolean;
-      request: (args: { method: string; params?: any[] }) => Promise<any>;
-      on: (event: string, handler: (...args: any[]) => void) => void;
-      removeListener: (event: string, handler: (...args: any[]) => void) => void;
-    };
     gtag?: (...args: any[]) => void;
     dataLayer?: any[];
   }

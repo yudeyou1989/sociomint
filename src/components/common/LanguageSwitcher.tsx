@@ -4,16 +4,16 @@ import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function LanguageSwitcher() {
-  const { currentLanguage, changeLanguage } = useLanguage();
-  
+  const { locale, setLocale } = useLanguage();
+
   // 切换语言
   const toggleLanguage = () => {
-    const newLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
-    changeLanguage(newLanguage);
+    const newLanguage = locale === 'zh' ? 'en' : 'zh';
+    setLocale(newLanguage);
   };
 
   // 显示当前语言标签
-  const displayLabel = currentLanguage === 'zh' ? '中/EN' : 'ZH/en';
+  const displayLabel = locale === 'zh' ? '中/EN' : 'ZH/en';
 
   return (
     <button

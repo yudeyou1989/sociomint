@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代币兑换 - SocioMint</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, #0de5ff, #8b3dff);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen gradient-bg text-white">
+    <!-- 导航栏 -->
+    <nav class="p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">SocioMint</h1>
+            <div class="space-x-4">
+                <a href="/" class="hover:text-blue-300">首页</a>
+                <a href="/exchange.html" class="hover:text-blue-300">兑换</a>
+                <a href="/tasks.html" class="hover:text-blue-300">任务</a>
+                <a href="/assets.html" class="hover:text-blue-300">资产</a>
+                <a href="/social-tasks.html" class="hover:text-blue-300">社交任务</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="container mx-auto px-4 py-8">
+        
+    <div class="max-w-2xl mx-auto">
+        <h1 class="text-4xl font-bold text-center mb-8">BNB兑换SM</h1>
+        <div class="glass-card p-8 rounded-lg">
+            <div class="mb-6">
+                <h3 class="text-xl mb-4">当前汇率: 1 BNB = 1100 SM</h3>
+            </div>
+            <div class="space-y-6">
+                <div>
+                    <label class="block mb-2 text-lg">输入BNB数量</label>
+                    <input type="number" step="0.001" placeholder="0.000" 
+                           class="w-full p-4 text-xl rounded bg-gray-800 border border-gray-600">
+                </div>
+                <div>
+                    <label class="block mb-2 text-lg">将获得SM代币</label>
+                    <input type="text" placeholder="0" readonly 
+                           class="w-full p-4 text-xl rounded bg-gray-700 border border-gray-600">
+                </div>
+                <button class="btn-primary w-full py-4 text-xl rounded-lg font-medium">
+                    确认兑换
+                </button>
+            </div>
+        </div>
+    </div>
+
+    </main>
+
+    <!-- 钱包连接脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <script>
+        async function connectWallet() {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    const provider = new ethers.providers.Web3Provider(window.ethereum);
+                    const signer = provider.getSigner();
+                    const address = await signer.getAddress();
+                    document.getElementById('walletInfo').innerHTML = 
+                        '<div class="glass-card p-4 rounded-lg"><p>已连接钱包: ' + address.substring(0, 6) + '...' + address.substring(38) + '</p></div>';
+                } catch (error) {
+                    console.error('连接钱包失败:', error);
+                    alert('连接钱包失败');
+                }
+            } else {
+                alert('请安装MetaMask钱包');
+            }
+        }
+    </script>
+</body>
+</html>

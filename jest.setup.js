@@ -78,3 +78,50 @@ console.error = (...args) => {
   }
   originalConsoleError(...args);
 };
+
+// 模拟 Next.js 路由
+jest.mock('next/router', () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+    replace: jest.fn(),
+    back: jest.fn(),
+    pathname: '/',
+    query: {},
+    asPath: '/',
+  }),
+}));
+
+// 模拟 Next.js 导航
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+    replace: jest.fn(),
+    back: jest.fn(),
+    pathname: '/',
+    searchParams: new URLSearchParams(),
+  }),
+  usePathname: () => '/',
+  useSearchParams: () => new URLSearchParams(),
+}));
+
+// 模拟 Web3 相关
+jest.mock('@wagmi/core', () => ({
+  useAccount: () => ({ address: undefined, isConnected: false }),
+  useConnect: () => ({ connect: jest.fn(), connectors: [] }),
+  useDisconnect: () => ({ disconnect: jest.fn() }),
+  useBalance: () => ({ data: undefined }),
+}));
+
+// 模拟 ethers
+jest.mock('ethers', () => ({
+  ethers: {
+    providers: {
+      JsonRpcProvider: jest.fn(),
+    },
+    Contract: jest.fn(),
+    utils: {
+      formatEther: jest.fn(),
+      parseEther: jest.fn(),
+    },
+  },
+}));

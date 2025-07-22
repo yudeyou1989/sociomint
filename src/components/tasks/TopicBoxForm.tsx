@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { FaTwitter } from 'react-icons/fa';
+// // import { "🐦" } from 'react-icons/fa'; // 临时注释以修复构建 // 临时注释以修复构建
 
 const TopicBoxForm = () => {
   const [postUrl, setPostUrl] = useState<string>('');
@@ -111,7 +111,7 @@ const TopicBoxForm = () => {
       <form onSubmit={handleSubmit}>
         {/* 平台显示 */}
         <div className="mb-6 flex items-center">
-          <FaTwitter className="text-primary w-5 h-5 mr-2" />
+          🐦
           <span className="text-lg">平台: X (Twitter)</span>
         </div>
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FaChartLine, FaCalendarAlt } from 'react-icons/fa';
+// // import { "📈", FaCalendarAlt } from 'react-icons/fa'; // 临时注释以修复构建 // 临时注释以修复构建
 
 // 价格数据点类型
 interface PriceDataPoint {
@@ -193,7 +193,7 @@ const TokenChart = () => {
     <div className="bg-gray-800/30 border border-gray-700 rounded-md p-4">
       <div className="flex justify-between items-center mb-6">
         <h3 className="font-medium flex items-center">
-          <FaChartLine className="mr-2 text-primary" />
+          📈
           通证价格历史
         </h3>
 
@@ -263,7 +263,7 @@ const TokenChart = () => {
           {renderChart()}
 
           <div className="mt-4 text-xs text-gray-500 flex items-center justify-center">
-            <FaCalendarAlt className="mr-1" />
+            📅
             数据更新时间: {new Date().toLocaleString()}
           </div>
         </>

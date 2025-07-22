@@ -2,7 +2,7 @@
 
 import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
-import { FaArrowRight, FaExchangeAlt } from 'react-icons/fa';
+// // import { "➡️", "🔄" } from 'react-icons/fa'; // 临时注释以修复构建 // 临时注释以修复构建
 import { usePresaleContract } from '../../hooks/contracts/usePresaleContracts';
 import { formatEther } from 'viem';
 import { useEffect, useState } from 'react';
@@ -56,7 +56,7 @@ export default function ExchangePreview() {
           <p className="text-gray-300 text-sm md:text-base">{t('common.exchangeDescription')}</p>
         </div>
         <div className="flex items-center space-x-2 mt-2 md:mt-0">
-          <FaExchangeAlt className="text-primary" />
+          🔄
           <span className="text-white">
             1 BNB = <span className="text-primary font-medium">{exchangeRate}</span> SM
           </span>
@@ -98,7 +98,7 @@ export default function ExchangePreview() {
         <Link href="/presale">
           <button className="flex items-center space-x-2 bg-gradient-to-r from-[#0de5ff] to-[#8b3dff] px-4 py-2 rounded-lg text-white hover:opacity-90 transition-opacity">
             <span>{t('presale.purchaseButton')}</span>
-            <FaArrowRight />
+            ➡️
           </button>
         </Link>
       </div>

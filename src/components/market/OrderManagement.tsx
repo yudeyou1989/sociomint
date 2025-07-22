@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
-import {
-  FaSearch,
+// // // import {
+  "🔍",
   FaFilter,
   FaSort,
   FaEye,
-  FaCheckCircle,
-  FaTimesCircle,
-  FaClock,
+  "✅",
+  "❌",
+  "⏰",
   FaTruck,
   FaClipboardList,
-} from 'react-icons/fa';
+} from 'react-icons/fa'; // 临时注释以修复构建 // 临时注释以修复构建 // 临时注释以修复构建
 
 // 订单状态
 type OrderStatus =
@@ -170,21 +170,21 @@ const OrderManagement = () => {
   const getStatusIcon = (status: OrderStatus) => {
     switch (status) {
       case 'pending':
-        return <FaClock />;
+        return ⏰;
       case 'paid':
-        return <FaCheckCircle />;
+        return ✅;
       case 'processing':
         return <FaTruck />;
       case 'completed':
-        return <FaCheckCircle />;
+        return ✅;
       case 'cancelled':
-        return <FaTimesCircle />;
+        return ✕;
       case 'refunded':
-        return <FaTimesCircle />;
+        return ✕;
       case 'disputed':
-        return <FaTimesCircle />;
+        return ✕;
       default:
-        return <FaClock />;
+        return ⏰;
     }
   };
 
@@ -393,7 +393,7 @@ const OrderManagement = () => {
                     placeholder="搜索订单号、商品名或交易对象"
                     className="w-full bg-black/30 border border-gray-700 rounded-md py-2 pl-9 pr-3 text-white text-sm"
                   />
-                  <FaSearch className="absolute left-3 top-2.5 text-gray-500" />
+                  "🔍"
                 </div>
 
                 <div className="flex items-center space-x-2">

@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import {
+// // // import {
   FaCog,
-  FaExclamationTriangle,
-  FaInfoCircle,
+  "⚠️",
+  "ℹ️",
   FaSave,
-  FaTimes,
-} from 'react-icons/fa';
+  "✕",
+} from 'react-icons/fa'; // 临时注释以修复构建 // 临时注释以修复构建 // 临时注释以修复构建
 
 // 稳定机制类型
 type MechanismType = 'buyback' | 'dynamic-rate' | 'staking';
@@ -183,7 +183,7 @@ const StabilizationConfig = () => {
       </div>
 
       <div className="mb-4 p-3 bg-blue-500/10 border border-blue-500/30 rounded-md flex items-start">
-        <FaInfoCircle className="text-blue-400 mt-0.5 mr-2 flex-shrink-0" />
+        ℹ️
         <p className="text-sm text-gray-300">
           配置不同的价格触发条件，当通证价格达到设定阈值时，系统将自动执行相应的稳定机制。合理设置触发条件和冷却时间，可以有效维持通证价值稳定。
         </p>
@@ -213,7 +213,7 @@ const StabilizationConfig = () => {
                       onClick={cancelEditing}
                       className="text-gray-400 hover:text-white"
                     >
-                      <FaTimes />
+                      ✕
                     </button>
                   </div>
 
@@ -440,7 +440,7 @@ const StabilizationConfig = () => {
       )}
 
       <div className="mt-6 p-3 bg-yellow-500/10 border border-yellow-500/30 rounded-md flex items-start">
-        <FaExclamationTriangle className="text-yellow-400 mt-0.5 mr-2 flex-shrink-0" />
+        ⚠️
         <p className="text-sm text-gray-300">
           注意：自动触发机制可能会影响系统储备金和流动性。请确保设置合理的触发阈值和操作数量，避免过度干预市场。建议配置多级触发条件，形成梯度保护机制。
         </p>

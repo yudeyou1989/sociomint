@@ -1,0 +1,220 @@
+57bf86a020a790f11b41fdade46b367d
+// 区块链配置
+"use strict";
+
+/* istanbul ignore next */
+function cov_1yoaz5mcmk() {
+  var path = "/Users/yudeyou/Desktop/sm/sociomint/src/config/chain.ts";
+  var hash = "1d43fbf180ea567b2eadc10d1949a34704e3eb0b";
+  var global = new Function("return this")();
+  var gcv = "__coverage__";
+  var coverageData = {
+    path: "/Users/yudeyou/Desktop/sm/sociomint/src/config/chain.ts",
+    statementMap: {
+      "0": {
+        start: {
+          line: 3,
+          column: 0
+        },
+        end: {
+          line: 5,
+          column: 3
+        }
+      },
+      "1": {
+        start: {
+          line: 6,
+          column: 0
+        },
+        end: {
+          line: 11,
+          column: 3
+        }
+      },
+      "2": {
+        start: {
+          line: 9,
+          column: 8
+        },
+        end: {
+          line: 9,
+          column: 27
+        }
+      },
+      "3": {
+        start: {
+          line: 12,
+          column: 20
+        },
+        end: {
+          line: 58,
+          column: 1
+        }
+      }
+    },
+    fnMap: {
+      "0": {
+        name: "(anonymous_0)",
+        decl: {
+          start: {
+            line: 8,
+            column: 9
+          },
+          end: {
+            line: 8,
+            column: 10
+          }
+        },
+        loc: {
+          start: {
+            line: 8,
+            column: 20
+          },
+          end: {
+            line: 10,
+            column: 5
+          }
+        },
+        line: 8
+      }
+    },
+    branchMap: {
+      "0": {
+        loc: {
+          start: {
+            line: 44,
+            column: 13
+          },
+          end: {
+            line: 44,
+            column: 82
+          }
+        },
+        type: "cond-expr",
+        locations: [{
+          start: {
+            line: 44,
+            column: 61
+          },
+          end: {
+            line: 44,
+            column: 70
+          }
+        }, {
+          start: {
+            line: 44,
+            column: 73
+          },
+          end: {
+            line: 44,
+            column: 82
+          }
+        }],
+        line: 44
+      }
+    },
+    s: {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0
+    },
+    f: {
+      "0": 0
+    },
+    b: {
+      "0": [0, 0]
+    },
+    inputSourceMap: {
+      version: 3,
+      sources: ["/Users/yudeyou/Desktop/sm/sociomint/src/config/chain.ts"],
+      sourcesContent: ["// \u533A\u5757\u94FE\u914D\u7F6E\nexport const chainConfig = {\n  // BNB Smart Chain \u4E3B\u7F51\u914D\u7F6E\n  mainnet: {\n    id: 56,\n    name: 'BNB Smart Chain',\n    rpcUrl: 'https://bsc-dataseed.binance.org/',\n    currency: {\n      name: 'BNB',\n      symbol: 'BNB',\n      decimals: 18\n    },\n    explorer: {\n      url: 'https://bscscan.com',\n      apiUrl: 'https://api.bscscan.com/api'\n    }\n  },\n  // BNB Smart Chain \u6D4B\u8BD5\u7F51\u914D\u7F6E\n  testnet: {\n    id: 97,\n    name: 'BNB Smart Chain Testnet',\n    rpcUrl: 'https://data-seed-prebsc-1-s1.binance.org:8545/',\n    currency: {\n      name: 'tBNB',\n      symbol: 'tBNB',\n      decimals: 18\n    },\n    explorer: {\n      url: 'https://testnet.bscscan.com',\n      apiUrl: 'https://api-testnet.bscscan.com/api'\n    }\n  },\n  // \u5F53\u524D\u4F7F\u7528\u7684\u7F51\u7EDC (\u53EF\u6839\u636E\u73AF\u5883\u53D8\u91CF\u5207\u6362)\n  current: process.env.NEXT_PUBLIC_NETWORK === 'mainnet' ? 'mainnet' : 'testnet',\n  \n  // \u9884\u552E\u5408\u7EA6\u5730\u5740\n  contracts: {\n    // \u6D4B\u8BD5\u7F51\u5408\u7EA6\u5730\u5740\n    testnet: {\n      presale: '0x123456789abcdef123456789abcdef123456789a', // \u9884\u552E\u5408\u7EA6\uFF08\u6D4B\u8BD5\u7F51\uFF09\n      token: '0xabcdef123456789abcdef123456789abcdef1234'    // \u4EE3\u5E01\u5408\u7EA6\uFF08\u6D4B\u8BD5\u7F51\uFF09\n    },\n    // \u4E3B\u7F51\u5408\u7EA6\u5730\u5740\n    mainnet: {\n      presale: '0x987654321abcdef987654321abcdef987654321a', // \u9884\u552E\u5408\u7EA6\uFF08\u4E3B\u7F51\uFF09\n      token: '0xfedcba987654321fedcba987654321fedcba9876'    // \u4EE3\u5E01\u5408\u7EA6\uFF08\u4E3B\u7F51\uFF09\n    }\n  }\n}; "],
+      names: ["chainConfig", "mainnet", "id", "name", "rpcUrl", "currency", "symbol", "decimals", "explorer", "url", "apiUrl", "testnet", "current", "process", "env", "NEXT_PUBLIC_NETWORK", "contracts", "presale", "token"],
+      mappings: "AAAA,QAAQ;;;;;+BACKA;;;eAAAA;;;AAAN,MAAMA,cAAc;IACzB,uBAAuB;IACvBC,SAAS;QACPC,IAAI;QACJC,MAAM;QACNC,QAAQ;QACRC,UAAU;YACRF,MAAM;YACNG,QAAQ;YACRC,UAAU;QACZ;QACAC,UAAU;YACRC,KAAK;YACLC,QAAQ;QACV;IACF;IACA,wBAAwB;IACxBC,SAAS;QACPT,IAAI;QACJC,MAAM;QACNC,QAAQ;QACRC,UAAU;YACRF,MAAM;YACNG,QAAQ;YACRC,UAAU;QACZ;QACAC,UAAU;YACRC,KAAK;YACLC,QAAQ;QACV;IACF;IACA,sBAAsB;IACtBE,SAASC,QAAQC,GAAG,CAACC,mBAAmB,KAAK,YAAY,YAAY;IAErE,SAAS;IACTC,WAAW;QACT,UAAU;QACVL,SAAS;YACPM,SAAS;YACTC,OAAO,6CAAgD,YAAY;QACrE;QACA,SAAS;QACTjB,SAAS;YACPgB,SAAS;YACTC,OAAO,6CAAgD,WAAW;QACpE;IACF;AACF"
+    },
+    _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    hash: "1d43fbf180ea567b2eadc10d1949a34704e3eb0b"
+  };
+  var coverage = global[gcv] || (global[gcv] = {});
+  if (!coverage[path] || coverage[path].hash !== hash) {
+    coverage[path] = coverageData;
+  }
+  var actualCoverage = coverage[path];
+  {
+    // @ts-ignore
+    cov_1yoaz5mcmk = function () {
+      return actualCoverage;
+    };
+  }
+  return actualCoverage;
+}
+cov_1yoaz5mcmk();
+cov_1yoaz5mcmk().s[0]++;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/* istanbul ignore next */
+cov_1yoaz5mcmk().s[1]++;
+Object.defineProperty(exports, "chainConfig", {
+  enumerable: true,
+  get: function () {
+    /* istanbul ignore next */
+    cov_1yoaz5mcmk().f[0]++;
+    cov_1yoaz5mcmk().s[2]++;
+    return chainConfig;
+  }
+});
+const chainConfig =
+/* istanbul ignore next */
+(cov_1yoaz5mcmk().s[3]++, {
+  // BNB Smart Chain 主网配置
+  mainnet: {
+    id: 56,
+    name: 'BNB Smart Chain',
+    rpcUrl: 'https://bsc-dataseed.binance.org/',
+    currency: {
+      name: 'BNB',
+      symbol: 'BNB',
+      decimals: 18
+    },
+    explorer: {
+      url: 'https://bscscan.com',
+      apiUrl: 'https://api.bscscan.com/api'
+    }
+  },
+  // BNB Smart Chain 测试网配置
+  testnet: {
+    id: 97,
+    name: 'BNB Smart Chain Testnet',
+    rpcUrl: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
+    currency: {
+      name: 'tBNB',
+      symbol: 'tBNB',
+      decimals: 18
+    },
+    explorer: {
+      url: 'https://testnet.bscscan.com',
+      apiUrl: 'https://api-testnet.bscscan.com/api'
+    }
+  },
+  // 当前使用的网络 (可根据环境变量切换)
+  current: process.env.NEXT_PUBLIC_NETWORK === 'mainnet' ?
+  /* istanbul ignore next */
+  (cov_1yoaz5mcmk().b[0][0]++, 'mainnet') :
+  /* istanbul ignore next */
+  (cov_1yoaz5mcmk().b[0][1]++, 'testnet'),
+  // 预售合约地址
+  contracts: {
+    // 测试网合约地址
+    testnet: {
+      presale: '0x123456789abcdef123456789abcdef123456789a',
+      token: '0xabcdef123456789abcdef123456789abcdef1234' // 代币合约（测试网）
+    },
+    // 主网合约地址
+    mainnet: {
+      presale: '0x987654321abcdef987654321abcdef987654321a',
+      token: '0xfedcba987654321fedcba987654321fedcba9876' // 代币合约（主网）
+    }
+  }
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjb3ZfMXlvYXo1bWNtayIsImFjdHVhbENvdmVyYWdlIiwicyIsImNoYWluQ29uZmlnIiwibWFpbm5ldCIsImlkIiwibmFtZSIsInJwY1VybCIsImN1cnJlbmN5Iiwic3ltYm9sIiwiZGVjaW1hbHMiLCJleHBsb3JlciIsInVybCIsImFwaVVybCIsInRlc3RuZXQiLCJjdXJyZW50IiwicHJvY2VzcyIsImVudiIsIk5FWFRfUFVCTElDX05FVFdPUksiLCJiIiwiY29udHJhY3RzIiwicHJlc2FsZSIsInRva2VuIl0sInNvdXJjZXMiOlsiL1VzZXJzL3l1ZGV5b3UvRGVza3RvcC9zbS9zb2Npb21pbnQvc3JjL2NvbmZpZy9jaGFpbi50cyJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyDljLrlnZfpk77phY3nva5cbmV4cG9ydCBjb25zdCBjaGFpbkNvbmZpZyA9IHtcbiAgLy8gQk5CIFNtYXJ0IENoYWluIOS4u+e9kemFjee9rlxuICBtYWlubmV0OiB7XG4gICAgaWQ6IDU2LFxuICAgIG5hbWU6ICdCTkIgU21hcnQgQ2hhaW4nLFxuICAgIHJwY1VybDogJ2h0dHBzOi8vYnNjLWRhdGFzZWVkLmJpbmFuY2Uub3JnLycsXG4gICAgY3VycmVuY3k6IHtcbiAgICAgIG5hbWU6ICdCTkInLFxuICAgICAgc3ltYm9sOiAnQk5CJyxcbiAgICAgIGRlY2ltYWxzOiAxOFxuICAgIH0sXG4gICAgZXhwbG9yZXI6IHtcbiAgICAgIHVybDogJ2h0dHBzOi8vYnNjc2Nhbi5jb20nLFxuICAgICAgYXBpVXJsOiAnaHR0cHM6Ly9hcGkuYnNjc2Nhbi5jb20vYXBpJ1xuICAgIH1cbiAgfSxcbiAgLy8gQk5CIFNtYXJ0IENoYWluIOa1i+ivlee9kemFjee9rlxuICB0ZXN0bmV0OiB7XG4gICAgaWQ6IDk3LFxuICAgIG5hbWU6ICdCTkIgU21hcnQgQ2hhaW4gVGVzdG5ldCcsXG4gICAgcnBjVXJsOiAnaHR0cHM6Ly9kYXRhLXNlZWQtcHJlYnNjLTEtczEuYmluYW5jZS5vcmc6ODU0NS8nLFxuICAgIGN1cnJlbmN5OiB7XG4gICAgICBuYW1lOiAndEJOQicsXG4gICAgICBzeW1ib2w6ICd0Qk5CJyxcbiAgICAgIGRlY2ltYWxzOiAxOFxuICAgIH0sXG4gICAgZXhwbG9yZXI6IHtcbiAgICAgIHVybDogJ2h0dHBzOi8vdGVzdG5ldC5ic2NzY2FuLmNvbScsXG4gICAgICBhcGlVcmw6ICdodHRwczovL2FwaS10ZXN0bmV0LmJzY3NjYW4uY29tL2FwaSdcbiAgICB9XG4gIH0sXG4gIC8vIOW9k+WJjeS9v+eUqOeahOe9kee7nCAo5Y+v5qC55o2u546v5aKD5Y+Y6YeP5YiH5o2iKVxuICBjdXJyZW50OiBwcm9jZXNzLmVudi5ORVhUX1BVQkxJQ19ORVRXT1JLID09PSAnbWFpbm5ldCcgPyAnbWFpbm5ldCcgOiAndGVzdG5ldCcsXG4gIFxuICAvLyDpooTllK7lkIjnuqblnLDlnYBcbiAgY29udHJhY3RzOiB7XG4gICAgLy8g5rWL6K+V572R5ZCI57qm5Zyw5Z2AXG4gICAgdGVzdG5ldDoge1xuICAgICAgcHJlc2FsZTogJzB4MTIzNDU2Nzg5YWJjZGVmMTIzNDU2Nzg5YWJjZGVmMTIzNDU2Nzg5YScsIC8vIOmihOWUruWQiOe6pu+8iOa1i+ivlee9ke+8iVxuICAgICAgdG9rZW46ICcweGFiY2RlZjEyMzQ1Njc4OWFiY2RlZjEyMzQ1Njc4OWFiY2RlZjEyMzQnICAgIC8vIOS7o+W4geWQiOe6pu+8iOa1i+ivlee9ke+8iVxuICAgIH0sXG4gICAgLy8g5Li7572R5ZCI57qm5Zyw5Z2AXG4gICAgbWFpbm5ldDoge1xuICAgICAgcHJlc2FsZTogJzB4OTg3NjU0MzIxYWJjZGVmOTg3NjU0MzIxYWJjZGVmOTg3NjU0MzIxYScsIC8vIOmihOWUruWQiOe6pu+8iOS4u+e9ke+8iVxuICAgICAgdG9rZW46ICcweGZlZGNiYTk4NzY1NDMyMWZlZGNiYTk4NzY1NDMyMWZlZGNiYTk4NzYnICAgIC8vIOS7o+W4geWQiOe6pu+8iOS4u+e9ke+8iVxuICAgIH1cbiAgfVxufTsgIl0sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztJQUtJO0lBQUFBLGNBQUEsWUFBQUEsQ0FBQTtNQUFBLE9BQUFDLGNBQUE7SUFBQTtFQUFBO0VBQUEsT0FBQUEsY0FBQTtBQUFBO0FBQUFELGNBQUE7QUFBQUEsY0FBQSxHQUFBRSxDQUFBOzs7Ozs7K0JBSlM7Ozs7OztXQUFBQyxXQUFBOzs7QUFBTixNQUFNQSxXQUFBO0FBQUE7QUFBQSxDQUFBSCxjQUFBLEdBQUFFLENBQUEsT0FBYztFQUN6QjtFQUNBRSxPQUFBLEVBQVM7SUFDUEMsRUFBQSxFQUFJO0lBQ0pDLElBQUEsRUFBTTtJQUNOQyxNQUFBLEVBQVE7SUFDUkMsUUFBQSxFQUFVO01BQ1JGLElBQUEsRUFBTTtNQUNORyxNQUFBLEVBQVE7TUFDUkMsUUFBQSxFQUFVO0lBQ1o7SUFDQUMsUUFBQSxFQUFVO01BQ1JDLEdBQUEsRUFBSztNQUNMQyxNQUFBLEVBQVE7SUFDVjtFQUNGO0VBQ0E7RUFDQUMsT0FBQSxFQUFTO0lBQ1BULEVBQUEsRUFBSTtJQUNKQyxJQUFBLEVBQU07SUFDTkMsTUFBQSxFQUFRO0lBQ1JDLFFBQUEsRUFBVTtNQUNSRixJQUFBLEVBQU07TUFDTkcsTUFBQSxFQUFRO01BQ1JDLFFBQUEsRUFBVTtJQUNaO0lBQ0FDLFFBQUEsRUFBVTtNQUNSQyxHQUFBLEVBQUs7TUFDTEMsTUFBQSxFQUFRO0lBQ1Y7RUFDRjtFQUNBO0VBQ0FFLE9BQUEsRUFBU0MsT0FBQSxDQUFRQyxHQUFHLENBQUNDLG1CQUFtQixLQUFLO0VBQUE7RUFBQSxDQUFBbEIsY0FBQSxHQUFBbUIsQ0FBQSxVQUFZO0VBQUE7RUFBQSxDQUFBbkIsY0FBQSxHQUFBbUIsQ0FBQSxVQUFZO0VBRXJFO0VBQ0FDLFNBQUEsRUFBVztJQUNUO0lBQ0FOLE9BQUEsRUFBUztNQUNQTyxPQUFBLEVBQVM7TUFDVEMsS0FBQSxFQUFPLDZDQUFnRDtJQUN6RDtJQUNBO0lBQ0FsQixPQUFBLEVBQVM7TUFDUGlCLE9BQUEsRUFBUztNQUNUQyxLQUFBLEVBQU8sNkNBQWdEO0lBQ3pEO0VBQ0Y7QUFDRiIsImlnbm9yZUxpc3QiOltdfQ==

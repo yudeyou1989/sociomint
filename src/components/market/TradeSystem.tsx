@@ -4,12 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useWallet } from '@/contexts/WalletContext';
 import {
   FaStore,
-  FaExchangeAlt,
-  FaTimes,
-  FaCheckCircle,
-  FaShieldAlt,
   FaUpload,
-  FaClock,
 } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 // import { Button, Card, Tabs, Table, Modal, Input, Select, Badge, Avatar, Rate, message, Space, Tag } from 'antd';
@@ -403,7 +398,7 @@ const TradeSystem = () => {
       <div className="tech-card">
         <div className="flex items-center mb-6">
           <div className="p-2 rounded-md bg-gray-800/70 mr-3">
-            <FaExchangeAlt className="w-5 h-5 text-primary" />
+            <FaStore />
           </div>
           <h2 className="text-xl font-bold">交易市场</h2>
           <div className="ml-auto text-sm text-gray-400">
@@ -500,7 +495,7 @@ const TradeSystem = () => {
                         {order.merchantName}
                         {order.isMedalist && (
                           <span className="ml-2 text-xs bg-yellow-500/20 text-yellow-400 px-1 py-0.5 rounded flex items-center">
-                            <FaShieldAlt className="mr-1 w-3 h-3" /> 金牌商人
+                            金牌商人
                           </span>
                         )}
                       </span>
@@ -547,7 +542,6 @@ const TradeSystem = () => {
                   <div className="md:col-span-2 flex items-center">
                     <span className="mr-3">成交: {order.tradeCount}笔</span>
                     <span className="flex items-center">
-                      <FaClock className="text-gray-500 mr-1 w-3 h-3" />
                       平均完成时间: {order.avgCompletionTime}分钟
                     </span>
                   </div>
@@ -580,7 +574,7 @@ const TradeSystem = () => {
               onClick={closeAllModals}
               className="absolute top-3 right-3 text-gray-400 hover:text-white"
             >
-              <FaTimes />
+              ×
             </button>
 
             <h3 className="text-xl font-bold mb-4">
@@ -671,7 +665,7 @@ const TradeSystem = () => {
               onClick={closeAllModals}
               className="absolute top-3 right-3 text-gray-400 hover:text-white"
             >
-              <FaTimes />
+              ×
             </button>
 
             <h3 className="text-xl font-bold mb-4">请完成支付</h3>
@@ -762,21 +756,21 @@ const TradeSystem = () => {
               onClick={closeAllModals}
               className="absolute top-3 right-3 text-gray-400 hover:text-white"
             >
-              <FaTimes />
+              ×
             </button>
 
             <div className="text-center mb-6">
               {currentTransaction.status === 'completed' ? (
                 <>
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/20 text-green-400 mb-4">
-                    <FaCheckCircle className="w-8 h-8" />
+                    ✓
                   </div>
                   <h3 className="text-xl font-bold mb-2">交易完成</h3>
                 </>
               ) : (
                 <>
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-yellow-500/20 text-yellow-400 mb-4">
-                    <FaClock className="w-8 h-8" />
+                    ⏳
                   </div>
                   <h3 className="text-xl font-bold mb-2">待商人确认</h3>
                 </>

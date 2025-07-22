@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
-import {
-  FaCoins,
+// // // import {
+  "🪙",
   FaShieldAlt,
   FaUserCheck,
   FaCog,
-  FaChartLine,
-  FaHistory,
-  FaExchangeAlt,
-  FaPlus,
-  FaTimes,
-} from 'react-icons/fa';
+  "📈",
+  "📜",
+  "🔄",
+  "➕",
+  "✕",
+} from 'react-icons/fa'; // 临时注释以修复构建 // 临时注释以修复构建 // 临时注释以修复构建
 import TokenChart from './TokenChart';
 import StabilizationConfig from './StabilizationConfig';
 
@@ -233,7 +233,7 @@ const TokenVault = () => {
       <div className="tech-card">
         <div className="flex items-start">
           <div className="p-3 rounded-md bg-gray-800/70 mr-4">
-            <FaCoins className="w-6 h-6 text-primary" />
+            🪙
           </div>
           <div className="flex-1">
             <div className="flex justify-between items-center">
@@ -247,21 +247,21 @@ const TokenVault = () => {
                   onClick={() => setActiveTab('overview')}
                   className={`py-2 px-4 flex items-center ${activeTab === 'overview' ? 'text-primary border-b-2 border-primary' : 'text-gray-400'}`}
                 >
-                  <FaChartLine className="mr-2" />
+                  📈
                   <span>概览</span>
                 </button>
                 <button
                   onClick={() => setActiveTab('whitelist')}
                   className={`py-2 px-4 flex items-center ${activeTab === 'whitelist' ? 'text-primary border-b-2 border-primary' : 'text-gray-400'}`}
                 >
-                  <FaUserCheck className="mr-2" />
+                  👤
                   <span>白名单</span>
                 </button>
                 <button
                   onClick={() => setActiveTab('mechanisms')}
                   className={`py-2 px-4 flex items-center ${activeTab === 'mechanisms' ? 'text-primary border-b-2 border-primary' : 'text-gray-400'}`}
                 >
-                  <FaShieldAlt className="mr-2" />
+                  🛡️
                   <span>稳定机制</span>
                 </button>
                 <button
@@ -353,7 +353,7 @@ const TokenVault = () => {
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
                         <div className="flex items-center">
-                          <FaShieldAlt className="text-primary mr-2" />
+                          🛡️
                           <span>价格稳定机制</span>
                         </div>
                         <div className="text-green-400">运行中</div>
@@ -361,7 +361,7 @@ const TokenVault = () => {
 
                       <div className="flex justify-between items-center">
                         <div className="flex items-center">
-                          <FaUserCheck className="text-primary mr-2" />
+                          👤
                           <span>白名单系统</span>
                         </div>
                         <div
@@ -377,7 +377,7 @@ const TokenVault = () => {
 
                       <div className="flex justify-between items-center">
                         <div className="flex items-center">
-                          <FaShieldAlt className="text-primary mr-2" />
+                          🛡️
                           <span>自动回购</span>
                         </div>
                         <div className="text-yellow-400">准备触发中</div>

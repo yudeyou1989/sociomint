@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useCallback, useRef, useEffect } from 'react';
-import { Box, Skeleton } from '@mui/material';
+import Image from 'next/image';
+import { useState } from 'react';
 
 interface OptimizedImageProps {
   src: string;
@@ -10,206 +10,125 @@ interface OptimizedImageProps {
   height?: number;
   className?: string;
   priority?: boolean;
-  quality?: number;
   placeholder?: 'blur' | 'empty';
   blurDataURL?: string;
+  sizes?: string;
+  fill?: boolean;
+  quality?: number;
   onLoad?: () => void;
   onError?: () => void;
-  lazy?: boolean;
-  sizes?: string;
 }
 
-export const OptimizedImage: React.FC<OptimizedImageProps> = ({
+export default function OptimizedImage({
   src,
   alt,
   width,
   height,
   className = '',
   priority = false,
-  quality = 75,
   placeholder = 'empty',
   blurDataURL,
+  sizes,
+  fill = false,
+  quality = 75,
   onLoad,
   onError,
-  lazy = true,
-  sizes = '100vw',
-}) => {
+}: OptimizedImageProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const [isInView, setIsInView] = useState(!lazy || priority);
-  const imgRef = useRef<HTMLImageElement>(null);
-  const observerRef = useRef<IntersectionObserver | null>(null);
 
-  // 懒加载观察器
-  useEffect(() => {
-    if (!lazy || priority || isInView) return;
-
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsInView(true);
-            observerRef.current?.disconnect();
-          }
-        });
-      },
-      {
-        rootMargin: '50px',
-        threshold: 0.1,
-      }
-    );
-
-    if (imgRef.current) {
-      observerRef.current.observe(imgRef.current);
-    }
-
-    return () => {
-      observerRef.current?.disconnect();
-    };
-  }, [lazy, priority, isInView]);
-
-  // 图片加载处理
-  const handleLoad = useCallback(() => {
+  const handleLoad = () => {
     setIsLoading(false);
     onLoad?.();
-  }, [onLoad]);
+  };
 
-  const handleError = useCallback(() => {
+  const handleError = () => {
     setIsLoading(false);
     setHasError(true);
     onError?.();
-  }, [onError]);
-
-  // 生成响应式图片URL
-  const generateSrcSet = (baseSrc: string) => {
-    const sizes = [640, 750, 828, 1080, 1200, 1920, 2048, 3840];
-    return sizes
-      .map((size) => `${baseSrc}?w=${size}&q=${quality} ${size}w`)
-      .join(', ');
   };
 
-  // 如果还没有进入视口且启用了懒加载，显示占位符
-  if (!isInView && lazy && !priority) {
-    return (
-      <Box
-        ref={imgRef}
-        sx={{
-          width: width || '100%',
-          height: height || 'auto',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: 'grey.100',
-        }}
-        className={className}
-      >
-        <Skeleton
-          variant="rectangular"
-          width={width || '100%'}
-          height={height || 200}
-          animation="wave"
-        />
-      </Box>
-    );
-  }
-
-  // 错误状态
+  // 错误状态显示
   if (hasError) {
     return (
-      <Box
-        sx={{
-          width: width || '100%',
-          height: height || 200,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: 'grey.100',
-          color: 'text.secondary',
-          fontSize: '0.875rem',
-        }}
-        className={className}
+      <div 
+        className={`bg-gray-200 flex items-center justify-center ${className}`}
+        style={{ width, height }}
       >
-        图片加载失败
-      </Box>
+        <span className="text-gray-500 text-sm">图片加载失败</span>
+      </div>
     );
   }
 
+  // 默认的响应式尺寸
+  const defaultSizes = sizes || '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw';
+
   return (
-    <Box
-      sx={{
-        position: 'relative',
-        width: width || '100%',
-        height: height || 'auto',
-        overflow: 'hidden',
-      }}
-      className={className}
-    >
-      {/* 加载状态 */}
-      {isLoading && (
-        <Skeleton
-          variant="rectangular"
-          width="100%"
-          height={height || 200}
-          animation="wave"
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            zIndex: 1,
-          }}
-        />
-      )}
-
-      {/* 模糊占位符 */}
-      {placeholder === 'blur' && blurDataURL && isLoading && (
-        <img
-          src={blurDataURL}
-          alt=""
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            filter: 'blur(10px)',
-            zIndex: 0,
-          }}
-        />
-      )}
-
-      {/* 主图片 */}
-      <img
-        ref={imgRef}
-        src={`${src}?w=${width || 1200}&q=${quality}`}
-        srcSet={generateSrcSet(src)}
-        sizes={sizes}
+    <div className={`relative ${isLoading ? 'animate-pulse bg-gray-200' : ''}`}>
+      <Image
+        src={src}
         alt={alt}
-        width={width}
-        height={height}
-        loading={priority ? 'eager' : 'lazy'}
-        decoding="async"
+        width={fill ? undefined : width}
+        height={fill ? undefined : height}
+        fill={fill}
+        className={className}
+        priority={priority}
+        placeholder={placeholder}
+        blurDataURL={blurDataURL}
+        sizes={defaultSizes}
+        quality={quality}
         onLoad={handleLoad}
         onError={handleError}
         style={{
-          width: '100%',
-          height: '100%',
           objectFit: 'cover',
-          transition: 'opacity 0.3s ease-in-out',
-          opacity: isLoading ? 0 : 1,
+          ...(isLoading && { opacity: 0 }),
         }}
       />
-    </Box>
+      
+      {/* 加载状态 */}
+      {isLoading && (
+        <div 
+          className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center"
+          style={{ width, height }}
+        >
+          <div className="w-8 h-8 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+        </div>
+      )}
+    </div>
   );
-};
+}
 
-// 头像组件优化版本
-export const OptimizedAvatar: React.FC<{
-  src: string;
-  alt: string;
-  size?: number;
-  className?: string;
-}> = ({ src, alt, size = 40, className = '' }) => {
+// 预设的图片组件
+export function HeroImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  return (
+    <OptimizedImage
+      src={src}
+      alt={alt}
+      width={1920}
+      height={1080}
+      className={className}
+      priority={true}
+      placeholder="blur"
+      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+      sizes="100vw"
+    />
+  );
+}
+
+export function ThumbnailImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  return (
+    <OptimizedImage
+      src={src}
+      alt={alt}
+      width={300}
+      height={200}
+      className={className}
+      sizes="(max-width: 768px) 50vw, 300px"
+    />
+  );
+}
+
+export function AvatarImage({ src, alt, size = 64, className }: { src: string; alt: string; size?: number; className?: string }) {
   return (
     <OptimizedImage
       src={src}
@@ -217,66 +136,7 @@ export const OptimizedAvatar: React.FC<{
       width={size}
       height={size}
       className={`rounded-full ${className}`}
-      quality={90}
-      priority={false}
-      lazy={true}
+      sizes={`${size}px`}
     />
   );
-};
-
-// 背景图片组件
-export const OptimizedBackgroundImage: React.FC<{
-  src: string;
-  alt: string;
-  children: React.ReactNode;
-  className?: string;
-  overlay?: boolean;
-}> = ({ src, alt, children, className = '', overlay = false }) => {
-  return (
-    <Box
-      sx={{
-        position: 'relative',
-        width: '100%',
-        height: '100%',
-        overflow: 'hidden',
-      }}
-      className={className}
-    >
-      <OptimizedImage
-        src={src}
-        alt={alt}
-        priority={true}
-        quality={80}
-        lazy={false}
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-      
-      {overlay && (
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.4)',
-            zIndex: 1,
-          }}
-        />
-      )}
-      
-      <Box
-        sx={{
-          position: 'relative',
-          zIndex: 2,
-          width: '100%',
-          height: '100%',
-        }}
-      >
-        {children}
-      </Box>
-    </Box>
-  );
-};
-
-export default OptimizedImage;
+}

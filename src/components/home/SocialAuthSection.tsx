@@ -2,9 +2,6 @@
 
 import { useState } from 'react';
 import {
-  FaTwitter,
-  FaTelegram,
-  FaDiscord,
   FaCheck,
   FaSpinner,
 } from 'react-icons/fa';
@@ -35,21 +32,21 @@ export default function SocialAuthSection() {
     {
       id: 'x' as SocialPlatform,
       name: 'X (Twitter)',
-      icon: <FaTwitter className="w-8 h-8 text-blue-400" />,
+      icon: "🐦",
       reward: 200,
       description: '连接并认证您的X (Twitter)账号，获得200小红花奖励',
     },
     {
       id: 'telegram' as SocialPlatform,
       name: 'Telegram',
-      icon: <FaTelegram className="w-8 h-8 text-cyan-400" />,
+      icon: "📱",
       reward: 150,
       description: '连接并认证您的Telegram账号，获得150小红花奖励',
     },
     {
       id: 'discord' as SocialPlatform,
       name: 'Discord',
-      icon: <FaDiscord className="w-8 h-8 text-purple-400" />,
+      icon: "💬",
       reward: 180,
       description: '连接并认证您的Discord账号，获得180小红花奖励',
     },

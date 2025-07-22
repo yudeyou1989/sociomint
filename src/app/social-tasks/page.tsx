@@ -36,9 +36,9 @@ export default function SocialTasksPage() {
   }
 
   const tabs = [
-    { id: 'tasks', name: t('socialTasks.tabs.tasks'), icon: <FaTasks className="w-5 h-5" /> },
-    { id: 'referrals', name: t('socialTasks.tabs.referrals'), icon: <FaUsers className="w-5 h-5" /> },
-    { id: 'rewards', name: t('socialTasks.tabs.rewards'), icon: <FaGift className="w-5 h-5" /> },
+    { id: 'tasks', name: t('socialTasks.tabs.tasks'), icon: "📋" },
+    { id: 'referrals', name: t('socialTasks.tabs.referrals'), icon: "👤" },
+    { id: 'rewards', name: t('socialTasks.tabs.rewards'), icon: "🎁" },
   ];
 
   return (
@@ -81,7 +81,7 @@ export default function SocialTasksPage() {
         {activeTab === 'tasks' && (
           <div>
             <h2 className="text-2xl font-bold mb-6 flex items-center">
-              <FaTasks className="mr-3 text-[#0de5ff]" />
+              📋
               {t('socialTasks.sections.availableTasks')}
             </h2>
             <SocialTaskList />
@@ -91,7 +91,7 @@ export default function SocialTasksPage() {
         {activeTab === 'referrals' && (
           <div>
             <h2 className="text-2xl font-bold mb-6 flex items-center">
-              <FaUsers className="mr-3 text-[#8b3dff]" />
+              👤
               {t('socialTasks.sections.referralSystem')}
             </h2>
             <ReferralSystem />
@@ -101,7 +101,7 @@ export default function SocialTasksPage() {
         {activeTab === 'rewards' && (
           <div>
             <h2 className="text-2xl font-bold mb-6 flex items-center">
-              <FaGift className="mr-3 text-[#0de5ff]" />
+              🎁
               {t('socialTasks.sections.weeklyRewards')}
             </h2>
             <WeeklyRewardStatus />
@@ -121,17 +121,17 @@ export default function SocialTasksPage() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="text-center p-4 bg-gray-800/30 rounded-lg">
-              <FaTasks className="text-2xl text-[#0de5ff] mx-auto mb-2" />
+              📋
               <h4 className="font-semibold mb-1">{t('socialTasks.redFlower.earn.title')}</h4>
               <p className="text-sm text-gray-400">{t('socialTasks.redFlower.earn.description')}</p>
             </div>
             <div className="text-center p-4 bg-gray-800/30 rounded-lg">
-              <FaUsers className="text-2xl text-[#8b3dff] mx-auto mb-2" />
+              👤
               <h4 className="font-semibold mb-1">{t('socialTasks.redFlower.share.title')}</h4>
               <p className="text-sm text-gray-400">{t('socialTasks.redFlower.share.description')}</p>
             </div>
             <div className="text-center p-4 bg-gray-800/30 rounded-lg">
-              <FaGift className="text-2xl text-[#0de5ff] mx-auto mb-2" />
+              🎁
               <h4 className="font-semibold mb-1">{t('socialTasks.redFlower.exchange.title')}</h4>
               <p className="text-sm text-gray-400">{t('socialTasks.redFlower.exchange.description')}</p>
             </div>

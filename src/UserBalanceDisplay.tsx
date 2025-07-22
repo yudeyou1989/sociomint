@@ -51,14 +51,17 @@ export default function UserBalanceDisplay() {
           totalSpent: '41.65',
           averagePrice: '0.000833',
           profitLoss: '+8.35',
-          profitLossPercentage: '+20.05'
+          profitLossPercentage: '+20.05',
+          transactionCount: 15,
+          firstPurchaseDate: Date.now() - 30 * 24 * 60 * 60 * 1000 // 30天前
         };
         
         const mockFlowerBalance: FlowerBalance = {
           available: 1500,
           locked: 200,
           earned: 2000,
-          spent: 300
+          spent: 300,
+          pending: 50
         };
         
         setUserStats(mockStats);

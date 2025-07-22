@@ -8,12 +8,27 @@ import config from '@/lib/config';
 
 // 动态导入钱包服务以避免SSR问题
 let walletService: any = null;
+let walletServicePromise: Promise<any> | null = null;
+
 const loadWalletService = async () => {
-  if (typeof window !== 'undefined' && !walletService) {
-    const { getConnectedWalletType, disconnectWallet } = await import('@/services/walletService');
-    walletService = { getConnectedWalletType, disconnectWallet };
-  }
-  return walletService;
+  if (typeof window === 'undefined') return null;
+
+  // 避免重复加载
+  if (walletService) return walletService;
+
+  // 如果正在加载，返回现有的Promise
+  if (walletServicePromise) return walletServicePromise;
+
+  walletServicePromise = import('@/services/walletService').then(service => {
+    walletService = service;
+    return service;
+  }).catch(error => {
+    console.error('Failed to load wallet service:', error);
+    walletServicePromise = null; // 重置Promise以允许重试
+    throw error;
+  });
+
+  return walletServicePromise;
 };
 
 // 创建日志记录器
@@ -201,7 +216,112 @@ export function WalletProvider({ children }: WalletProviderProps) {
 
   // 按类型连接钱包 - 为了保持API兼容性
   const connectWallet = async (type: WalletType) => {
-    return connect(type);
+    if (isConnecting) {
+      logger.warn('钱包连接已在进行中', { action: 'connectWallet', walletType: type });
+      return;
+    }
+
+    setIsConnecting(true);
+
+    try {
+      logger.info(`正在连接 ${type} 钱包...`, {
+        action: 'connectWallet',
+        additionalData: { walletType: type }
+      });
+
+      // 加载钱包服务，增加超时处理
+      const service = await Promise.race([
+        loadWalletService(),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('钱包服务加载超时')), 10000)
+        )
+      ]);
+
+      if (!service) {
+        throw new Error('钱包服务加载失败');
+      }
+
+      // 使用钱包服务连接指定类型的钱包，增加超时处理
+      const result = await Promise.race([
+        service.connectWalletByType(type),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('钱包连接超时')), 30000)
+        )
+      ]);
+
+      if (!result) {
+        throw new Error(`连接 ${type} 钱包失败`);
+      }
+
+      const { address, chainId } = result;
+
+      // 初始化合约服务
+      try {
+        const provider = service.getEthereumProvider();
+        await contractService.initialize(provider);
+      } catch (error) {
+        logger.warn('合约服务初始化失败', { error });
+        // 继续执行，不阻断钱包连接
+      }
+
+      // 获取余额信息，增加错误处理
+      let bnbBalance;
+      try {
+        const provider = service.getEthereumProvider();
+        bnbBalance = await provider.getBalance(address);
+      } catch (error) {
+        logger.warn('获取BNB余额失败', { error });
+        bnbBalance = 0n;
+      }
+
+      let smBalance = '0';
+      try {
+        smBalance = await contractService.getTokenBalance(address);
+      } catch (error) {
+        logger.warn('获取SM代币余额失败', { error });
+      }
+
+      const network = service.getNetworkInfo(chainId) || {
+        id: chainId,
+        name: chainId === 56 ? 'BSC Mainnet' :
+              chainId === 97 ? 'BSC Testnet' :
+              chainId === 1 ? 'Ethereum Mainnet' :
+              'Unknown Network'
+      };
+
+      const connectedWallet: WalletState = {
+        isConnected: true,
+        address,
+        chainId,
+        balance: {
+          bnb: formatEther(bnbBalance),
+          sm: smBalance
+        },
+        network,
+        account: { address }
+      };
+
+      setWallet(connectedWallet);
+
+      logger.info('钱包已连接', {
+        action: 'connectWallet',
+        additionalData: { address, walletType: type }
+      });
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : '未知错误';
+      logger.error('连接钱包失败', {
+        action: 'connectWallet',
+        additionalData: { error: errorMessage, walletType: type }
+      });
+
+      // 重置钱包状态
+      setWallet(defaultWalletState);
+
+      // 重新抛出错误供UI处理
+      throw new Error(`连接${type}钱包失败: ${errorMessage}`);
+    } finally {
+      setIsConnecting(false);
+    }
   };
 
   // 断开连接 - 统一的断开连接函数

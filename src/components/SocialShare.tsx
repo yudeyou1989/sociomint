@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
-import { 
-  FaTwitter, 
-  FaFacebook, 
-  FaTelegram, 
-  FaLinkedin, 
-  FaReddit, 
-  FaLink, 
-  FaWeibo,
+import {
+  FaLink,
   FaQq,
   FaShareAlt
 } from 'react-icons/fa';
@@ -160,47 +154,47 @@ const SocialShare: React.FC<SocialShareProps> = ({
 
   // 定义支持的平台列表
   const allPlatforms = [
-    { 
-      id: 'twitter', 
-      name: 'Twitter', 
-      icon: <FaTwitter />, 
+    {
+      id: 'twitter',
+      name: 'Twitter',
+      icon: "🐦",
       color: 'hover:text-blue-400 hover:bg-blue-400/10',
       getUrl: getTwitterShareUrl
     },
-    { 
-      id: 'facebook', 
-      name: 'Facebook', 
-      icon: <FaFacebook />, 
+    {
+      id: 'facebook',
+      name: 'Facebook',
+      icon: "📘",
       color: 'hover:text-blue-600 hover:bg-blue-600/10',
-      getUrl: getFacebookShareUrl 
+      getUrl: getFacebookShareUrl
     },
-    { 
-      id: 'telegram', 
-      name: 'Telegram', 
-      icon: <FaTelegram />, 
+    {
+      id: 'telegram',
+      name: 'Telegram',
+      icon: "📱",
       color: 'hover:text-blue-500 hover:bg-blue-500/10',
-      getUrl: getTelegramShareUrl 
+      getUrl: getTelegramShareUrl
     },
-    { 
-      id: 'linkedin', 
-      name: 'LinkedIn', 
-      icon: <FaLinkedin />, 
+    {
+      id: 'linkedin',
+      name: 'LinkedIn',
+      icon: "💼",
       color: 'hover:text-blue-700 hover:bg-blue-700/10',
-      getUrl: getLinkedinShareUrl 
+      getUrl: getLinkedinShareUrl
     },
-    { 
-      id: 'reddit', 
-      name: 'Reddit', 
-      icon: <FaReddit />, 
+    {
+      id: 'reddit',
+      name: 'Reddit',
+      icon: "🔴",
       color: 'hover:text-orange-600 hover:bg-orange-600/10',
-      getUrl: getRedditShareUrl 
+      getUrl: getRedditShareUrl
     },
-    { 
-      id: 'weibo', 
-      name: '微博', 
-      icon: <FaWeibo />, 
+    {
+      id: 'weibo',
+      name: '微博',
+      icon: "🌐",
       color: 'hover:text-red-600 hover:bg-red-600/10',
-      getUrl: getWeiboShareUrl 
+      getUrl: getWeiboShareUrl
     },
     { 
       id: 'qq', 

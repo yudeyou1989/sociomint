@@ -17,7 +17,7 @@ const BoxCard = ({ id, hashtag, reward, remaining, total }: BoxProps) => {
     <div className="tech-card relative overflow-hidden">
       {/* 平台标识 */}
       <div className="absolute top-3 right-3 p-1.5 rounded-full bg-gray-800/70">
-        <FaTwitter className="w-5 h-5 text-blue-400" />
+        <FaTwitter className="w-4 h-4 text-blue-400" />
       </div>
 
       {/* 宝箱内容 */}

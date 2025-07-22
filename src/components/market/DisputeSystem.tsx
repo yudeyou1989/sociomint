@@ -3,13 +3,14 @@
 import { useState, useEffect } from 'react';
 import { useWallet } from '@/contexts/WalletContext';
 import {
-  FaGavel,
+  FaHammer,
   FaFileUpload,
   FaUserShield,
   FaTimes,
-  FaCheckCircle,
+  FaCheck,
   FaTimesCircle,
   FaBalanceScale,
+  FaUser,
 } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 
@@ -301,7 +302,7 @@ const DisputeSystem = () => {
       <div className="tech-card mb-8">
         <div className="flex items-start">
           <div className="p-3 rounded-md bg-gray-800/70 mr-4">
-            <FaGavel className="w-6 h-6 text-primary" />
+            <FaHammer />
           </div>
           <div className="flex-1">
             <div className="flex justify-between items-center mb-4">
@@ -683,9 +684,7 @@ const DisputeSystem = () => {
                       : 'border-gray-700 bg-gray-800 hover:border-gray-600'
                   }`}
                 >
-                  <FaCheckCircle
-                    className={`w-8 h-8 mb-2 ${voteFor === 'plaintiff' ? 'text-green-500' : 'text-gray-600'}`}
-                  />
+                  <FaCheck />
                   <span className="font-medium">支持发起方</span>
                   <span className="text-xs text-gray-400 mt-1">
                     {selectedDispute.createdByName}
@@ -700,9 +699,7 @@ const DisputeSystem = () => {
                       : 'border-gray-700 bg-gray-800 hover:border-gray-600'
                   }`}
                 >
-                  <FaTimesCircle
-                    className={`w-8 h-8 mb-2 ${voteFor === 'defendant' ? 'text-red-500' : 'text-gray-600'}`}
-                  />
+                  <FaTimes />
                   <span className="font-medium">支持对方</span>
                   <span className="text-xs text-gray-400 mt-1">
                     {selectedDispute.opponentName}
@@ -713,7 +710,7 @@ const DisputeSystem = () => {
 
             <div className="mb-6 p-3 bg-gray-800/40 rounded-md border border-gray-700">
               <div className="flex items-center mb-2">
-                <FaUserShield className="text-primary mr-2" />
+                <FaUser />
                 <span className="text-primary font-medium">参与条件</span>
               </div>
               <ul className="text-xs text-gray-300 space-y-1">

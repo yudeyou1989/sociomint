@@ -1,5 +1,5 @@
-import { FaTwitter, FaTelegram, FaDiscord } from 'react-icons/fa';
-import { BiLike, BiComment, BiUserPlus } from 'react-icons/bi';
+import { FaTwitter, FaTelegram, FaDiscord, FaHeart, FaComment } from 'react-icons/fa';
+import { BiUserPlus, BiLike } from 'react-icons/bi';
 import { RiRepeatFill } from 'react-icons/ri';
 import { HiOutlineChevronRight } from 'react-icons/hi';
 
@@ -20,8 +20,8 @@ interface TaskProps {
 // 平台图标映射
 const platformIcons = {
   x: <FaTwitter className="w-5 h-5 text-blue-400" />,
-  telegram: <FaTelegram className="w-5 h-5 text-cyan-400" />,
-  discord: <FaDiscord className="w-5 h-5 text-purple-400" />,
+  telegram: <FaTelegram className="w-5 h-5 text-blue-500" />,
+  discord: <FaDiscord className="w-5 h-5 text-indigo-500" />,
 };
 
 // 行动图标映射
@@ -29,7 +29,7 @@ const actionIcons = {
   follow: <BiUserPlus className="w-5 h-5" />,
   like: <BiLike className="w-5 h-5" />,
   retweet: <RiRepeatFill className="w-5 h-5" />,
-  comment: <BiComment className="w-5 h-5" />,
+  comment: <FaComment className="w-5 h-5" />,
 };
 
 // 行动文本映射

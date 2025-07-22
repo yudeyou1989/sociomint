@@ -1,0 +1,103 @@
+STDOUT:
+   ▲ Next.js 15.2.4
+   - Environments: .env.local, .env.production, .env
+   - Experiments (use with caution):
+     ✓ scrollRestoration
+
+   Creating an optimized production build ...
+
+
+STDERR:
+Failed to compile.
+
+./src/app/profile/page.tsx
+Error:   [31mx[0m Expression expected
+    ,-[[36;1;4m/Users/yudeyou/Desktop/sm/sociomint/src/app/profile/page.tsx[0m:14:1]
+ [2m11[0m |   "📋",
+ [2m12[0m |   "🔗",
+ [2m13[0m |   "🔑",
+ [2m14[0m | } from 'react-icons/fa'; // 临时注释以修复构建 // 临时注释以修复构建 // 临时注释以修复构建 // 临时注释以修复构建
+    : [35;1m^[0m
+ [2m15[0m | import { getNetworkInfo } from '@/services/walletService';
+ [2m16[0m | import NetworkSwitcher from '@/components/wallet/NetworkSwitcher';
+ [2m17[0m | import { toast } from 'react-hot-toast';
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/profile/page.tsx
+./src/components/common/LazyComponents.tsx
+./src/app/market/page.tsx
+
+./src/app/social-tasks/page.tsx
+Error:   [31mx[0m Unexpected character '📋'
+    ,-[[36;1;4m/Users/yudeyou/Desktop/sm/sociomint/src/app/social-tasks/page.tsx[0m:39:1]
+ [2m36[0m |   }
+ [2m37[0m | 
+ [2m38[0m |   const tabs = [
+ [2m39[0m |     { id: 'tasks', name: t('socialTasks.tabs.tasks'), icon: 📋 },
+    : [35;1m                                                            ^[0m
+ [2m40[0m |     { id: 'referrals', name: t('socialTasks.tabs.referrals'), icon: 👤 },
+ [2m41[0m |     { id: 'rewards', name: t('socialTasks.tabs.rewards'), icon: 🎁 },
+ [2m42[0m |   ];
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/social-tasks/page.tsx
+./src/components/common/LazyComponents.tsx
+./src/app/market/page.tsx
+
+./src/app/tasks/page.tsx
+Error:   [31mx[0m Expression expected
+    ,-[[36;1;4m/Users/yudeyou/Desktop/sm/sociomint/src/app/tasks/page.tsx[0m:15:1]
+ [2m12[0m |   "💬",
+ [2m13[0m |   "📷",
+ [2m14[0m |   "🔴",
+ [2m15[0m | } from 'react-icons/fa'; // 临时注释以修复构建 // 临时注释以修复构建
+    : [35;1m^[0m
+ [2m16[0m | import TaskCard from '@/components/tasks/TaskCard';
+ [2m17[0m | import { useWallet } from '@/contexts/WalletContext';
+ [2m18[0m | import { useLanguage } from '@/contexts/LanguageContext';
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/tasks/page.tsx
+./src/components/common/LazyComponents.tsx
+./src/app/market/page.tsx
+
+./src/app/vault/page.tsx
+Error:   [31mx[0m Expression expected
+    ,-[[36;1;4m/Users/yudeyou/Desktop/sm/sociomint/src/app/vault/page.tsx[0m:12:1]
+ [2m 9[0m |   "📜",
+ [2m10[0m |   "ℹ️",
+ [2m11[0m |   "⏰",
+ [2m12[0m | } from 'react-icons/fa'; // 临时注释以修复构建 // 临时注释以修复构建
+    : [35;1m^[0m
+ [2m13[0m | import { useWallet } from '@/contexts/WalletContext';
+ [2m14[0m | 
+ [2m15[0m | // 质押期限选项
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/vault/page.tsx
+./src/components/common/LazyComponents.tsx
+./src/app/market/page.tsx
+
+./src/components/common/ResourcePreloader.tsx
+Module not found: Can't resolve '@/components/UserBalanceDisplay'
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+> Build failed because of webpack errors

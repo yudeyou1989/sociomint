@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FaHome, FaTasks, FaStore, FaWallet, FaShieldAlt, FaChartLine, FaUsers } from 'react-icons/fa';
+import { FaStore, FaWallet, FaShieldAlt } from 'react-icons/fa';
 import { GiGoldBar } from 'react-icons/gi';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 import { MdAdminPanelSettings } from 'react-icons/md';
 import { BsFlower1 } from 'react-icons/bs';
 import ConnectWalletButton from '@/components/wallet/ConnectWalletButton';
-import LanguageSwitcher from '@/components/Header/LanguageSwitcher';
+import LanguageSwitcher from '@/components/common/LanguageSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAccount } from 'wagmi';
 
@@ -44,19 +44,19 @@ const Navbar = () => {
 
   // 基本导航链接配置
   const baseNavLinks = [
-    { name: t('navigation.home'), href: '/', icon: <FaHome className="w-5 h-5" /> },
-    { name: t('navigation.tasks'), href: '/tasks', icon: <FaTasks className="w-5 h-5" /> },
+    { name: t('navigation.home'), href: '/', icon: "🏠" },
+    { name: t('navigation.tasks'), href: '/tasks', icon: "📋" },
     { name: t('navigation.socialTasks'), href: '/social-tasks', icon: <BsFlower1 className="w-5 h-5" /> },
     { name: t('navigation.market'), href: '/market', icon: <FaStore className="w-5 h-5" /> },
     { name: t('navigation.assets'), href: '/assets', icon: <FaWallet className="w-5 h-5" /> },
     { name: t('navigation.vault'), href: '/vault', icon: <GiGoldBar className="w-5 h-5" /> },
-    { name: t('navigation.referralSystem'), href: '/social-tasks?tab=referrals', icon: <FaUsers className="w-5 h-5" /> },
+    { name: t('navigation.referralSystem'), href: '/social-tasks?tab=referrals', icon: "👤" },
   ];
 
   // 管理员导航链接
   const adminNavLinks = [
-    { name: '多签钱包', href: '/admin/multisig', icon: <FaShieldAlt className="w-5 h-5" /> },
-    { name: '管理仪表板', href: '/admin/dashboard', icon: <FaChartLine className="w-5 h-5" /> },
+    { name: '多签钱包', href: '/admin/multisig', icon: "🛡️" },
+    { name: '管理仪表板', href: '/admin/dashboard', icon: "📈" },
     { name: '管理面板', href: '/admin', icon: <MdAdminPanelSettings className="w-5 h-5" /> },
   ];
 

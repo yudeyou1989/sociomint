@@ -33,9 +33,9 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // 平台图标映射
 const platformIcons = {
-  twitter: <FaTwitter className="text-blue-400" />,
-  telegram: <FaTelegram className="text-cyan-400" />,
-  discord: <FaDiscord className="text-purple-400" />
+  twitter: "🐦",
+  telegram: "📱",
+  discord: "💬"
 };
 
 // 任务类型映射

@@ -247,23 +247,65 @@ export function getTranslation(locale: Locale, key: string): string {
   return value || key;
 }
 
+// 优化的i18n初始化 - 懒加载语言包
+const initI18n = async () => {
+  // 只加载默认语言，其他语言按需加载
+  const defaultResources = {
+    [defaultLocale]: { translation: translations[defaultLocale] }
+  };
+
+  await i18n
+    .use(initReactI18next)
+    .init({
+      resources: defaultResources,
+      lng: defaultLocale,
+      fallbackLng: 'en',
+      interpolation: {
+        escapeValue: false,
+      },
+      detection: {
+        order: ['localStorage', 'navigator'],
+        caches: ['localStorage'],
+      },
+      // 性能优化配置
+      react: {
+        useSuspense: false, // 避免Suspense导致的闪烁
+        bindI18n: 'languageChanged loaded',
+        bindI18nStore: 'added removed',
+        transEmptyNodeValue: '',
+        transSupportBasicHtmlNodes: true,
+        transKeepBasicHtmlNodesFor: ['br', 'strong', 'i'],
+      },
+      // 减少初始化时间
+      initImmediate: false,
+      load: 'languageOnly',
+      preload: [defaultLocale],
+    });
+};
+
+// 按需加载语言包
+export const loadLanguage = async (locale: Locale) => {
+  if (!i18n.hasResourceBundle(locale, 'translation')) {
+    i18n.addResourceBundle(locale, 'translation', translations[locale]);
+  }
+  await i18n.changeLanguage(locale);
+};
+
 // 初始化i18n
-i18n
-  .use(initReactI18next)
-  .init({
+if (typeof window !== 'undefined') {
+  initI18n();
+} else {
+  // 服务器端渲染时的简化初始化
+  i18n.use(initReactI18next).init({
     resources: {
-      en: { translation: translations.en },
-      zh: { translation: translations.zh },
+      [defaultLocale]: { translation: translations[defaultLocale] }
     },
     lng: defaultLocale,
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
     },
-    detection: {
-      order: ['localStorage', 'navigator'],
-      caches: ['localStorage'],
-    },
   });
+}
 
 export default i18n;

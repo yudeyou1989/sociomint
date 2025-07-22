@@ -11,8 +11,8 @@
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -35,14 +35,17 @@
     ]
   },
   "include": [
-    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    "./test/**/*.ts",
+    "../hardhat.config.js",
+    "../test/SMTokenExchange.test.ts",
     "./scripts/**/*.ts",
-    "../hardhat.config.js"
-, "../test/SMTokenExchange.test.ts"  ],
+    "./src/types/**/*.d.ts",
+    "./test/**/*.ts",
+    ".next/types/**/*.ts",
+    "next-env.d.ts",
+    "out/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ]

@@ -6,54 +6,43 @@ import { Box, CircularProgress, Typography } from '@mui/material';
 
 // 通用加载组件
 const LoadingFallback = ({ message = '加载中...' }: { message?: string }) => (
-  <Box 
-    display="flex" 
-    flexDirection="column" 
-    alignItems="center" 
-    justifyContent="center" 
-    minHeight="200px"
-    gap={2}
-  >
-    <CircularProgress size={40} />
-    <Typography variant="body2" color="text.secondary">
-      {message}
-    </Typography>
-  </Box>
+  <div className="flex flex-col items-center justify-center min-h-[200px] gap-4 p-8">
+    <div className="w-8 h-8 border-4 border-[#0de5ff] border-t-transparent rounded-full animate-spin"></div>
+    <p className="text-gray-400 text-sm">{message}</p>
+  </div>
+);
+
+const LoadingCard = () => (
+  <div className="animate-pulse bg-gray-800/50 rounded-lg p-6">
+    <div className="h-4 bg-gray-700/50 rounded mb-2"></div>
+    <div className="h-4 bg-gray-700/50 rounded mb-2 w-3/4"></div>
+    <div className="h-4 bg-gray-700/50 rounded w-1/2"></div>
+  </div>
+);
+
+const LoadingTable = () => (
+  <div className="animate-pulse">
+    <div className="h-12 bg-gray-800/50 rounded-lg mb-4"></div>
+    {[1, 2, 3].map(i => (
+      <div key={i} className="h-16 bg-gray-800/50 rounded-lg mb-2"></div>
+    ))}
+  </div>
 );
 
 // 错误边界组件
 const ErrorFallback = ({ error, retry }: { error: Error; retry?: () => void }) => (
-  <Box 
-    display="flex" 
-    flexDirection="column" 
-    alignItems="center" 
-    justifyContent="center" 
-    minHeight="200px"
-    gap={2}
-    p={3}
-  >
-    <Typography variant="h6" color="error">
-      加载失败
-    </Typography>
-    <Typography variant="body2" color="text.secondary" textAlign="center">
-      {error.message}
-    </Typography>
+  <div className="flex flex-col items-center justify-center min-h-[200px] gap-4 p-6">
+    <div className="text-red-400 text-lg font-semibold">加载失败</div>
+    <p className="text-gray-400 text-sm text-center">{error.message}</p>
     {retry && (
-      <button 
+      <button
         onClick={retry}
-        style={{
-          padding: '8px 16px',
-          backgroundColor: '#1976d2',
-          color: 'white',
-          border: 'none',
-          borderRadius: '4px',
-          cursor: 'pointer'
-        }}
+        className="px-4 py-2 bg-[#0de5ff] text-white rounded-lg hover:bg-[#0bc9e0] transition-colors"
       >
         重试
       </button>
     )}
-  </Box>
+  </div>
 );
 
 // 高阶组件：为动态组件添加加载状态和错误处理
@@ -100,6 +89,49 @@ export const LazyWeeklyRewardStatus = dynamic(
     ssr: false
   }
 );
+
+// 页面级组件懒加载
+export const LazyTasksPage = dynamic(() => import('@/app/tasks/page'), {
+  loading: () => <LoadingFallback message="加载任务页面..." />,
+  ssr: false
+});
+
+export const LazyExchangePage = dynamic(() => import('@/app/exchange/page'), {
+  loading: () => <LoadingFallback message="加载兑换页面..." />,
+  ssr: false
+});
+
+export const LazyMarketPage = dynamic(() => import('@/app/market/page'), {
+  loading: () => <LoadingFallback message="加载市场页面..." />,
+  ssr: false
+});
+
+export const LazyProfilePage = dynamic(() => import('@/app/profile/page'), {
+  loading: () => <LoadingFallback message="加载个人资料..." />,
+  ssr: false
+});
+
+export const LazyVaultPage = dynamic(() => import('@/app/vault/page'), {
+  loading: () => <LoadingFallback message="加载金库页面..." />,
+  ssr: false
+});
+
+export const LazySocialTasksPage = dynamic(() => import('@/app/social-tasks/page'), {
+  loading: () => <LoadingFallback message="加载社交任务..." />,
+  ssr: false
+});
+
+// 钱包相关组件
+export const LazyWalletSelectModal = dynamic(() => import('@/components/wallet/WalletSelectModal'), {
+  loading: () => <LoadingCard />,
+  ssr: false
+});
+
+// 任务相关组件
+export const LazyTaskCard = dynamic(() => import('@/components/tasks/TaskCard'), {
+  loading: () => <LoadingCard />,
+  ssr: false
+});
 
 // 注意：以下组件暂时注释，因为对应的文件不存在
 // 在实际实现这些组件后，可以取消注释
